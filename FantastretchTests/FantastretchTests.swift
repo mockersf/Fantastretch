@@ -11,26 +11,32 @@ import XCTest
 
 class FantastretchTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    //MARK: Stretch Class Tests
+    
+    // Confirm that the Meal initializer returns a Meal object when passed valid parameters.
+    func testStretchInitializationSucceeds() {
+        // Zero rating
+        let zeroRatingStretch = Stretch.init(name: "Zero", photo: nil, rating: 0)
+        XCTAssertNotNil(zeroRatingStretch)
+        
+        // Highest positive rating
+        let positiveRatingStretch = Stretch.init(name: "Positive", photo: nil, rating: 5)
+        XCTAssertNotNil(positiveRatingStretch)
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    // Confirm that the Meal initialier returns nil when passed a negative rating or an empty name.
+    func testStretchInitializationFails() {
+        // Negative rating
+        let negativeRatingStretch = Stretch.init(name: "Negative", photo: nil, rating: -1)
+        XCTAssertNil(negativeRatingStretch)
+        
+        // Empty String
+        let emptyStringStretch = Stretch.init(name: "", photo: nil, rating: 0)
+        XCTAssertNil(emptyStringStretch)
+        
+        // Rating exceeds maximum
+        let largeRatingStretch = Stretch.init(name: "Large", photo: nil, rating: 6)
+        XCTAssertNil(largeRatingStretch)
     }
     
 }

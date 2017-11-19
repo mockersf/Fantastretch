@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F189E1FC1747B00D5FC02 /* AppDelegate.swift */; };
-		036F18A11FC1747B00D5FC02 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18A01FC1747B00D5FC02 /* ViewController.swift */; };
+		036F18A11FC1747B00D5FC02 /* StretchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18A01FC1747B00D5FC02 /* StretchViewController.swift */; };
 		036F18A41FC1747B00D5FC02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A21FC1747B00D5FC02 /* Main.storyboard */; };
 		036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A51FC1747B00D5FC02 /* Assets.xcassets */; };
 		036F18A91FC1747B00D5FC02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */; };
 		036F18B41FC1747B00D5FC02 /* FantastretchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18B31FC1747B00D5FC02 /* FantastretchTests.swift */; };
+		036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18BE1FC19FCA00D5FC02 /* RatingControl.swift */; };
+		036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C01FC1BA7900D5FC02 /* Stretch.swift */; };
+		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
+		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +32,7 @@
 /* Begin PBXFileReference section */
 		036F189B1FC1747B00D5FC02 /* Fantastretch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantastretch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F189E1FC1747B00D5FC02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		036F18A01FC1747B00D5FC02 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		036F18A01FC1747B00D5FC02 /* StretchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchViewController.swift; sourceTree = "<group>"; };
 		036F18A31FC1747B00D5FC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		036F18A51FC1747B00D5FC02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		036F18A81FC1747B00D5FC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +40,10 @@
 		036F18AF1FC1747B00D5FC02 /* FantastretchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantastretchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F18B31FC1747B00D5FC02 /* FantastretchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantastretchTests.swift; sourceTree = "<group>"; };
 		036F18B51FC1747B00D5FC02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		036F18BE1FC19FCA00D5FC02 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		036F18C01FC1BA7900D5FC02 /* Stretch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stretch.swift; sourceTree = "<group>"; };
+		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
+		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +85,12 @@
 		036F189D1FC1747B00D5FC02 /* Fantastretch */ = {
 			isa = PBXGroup;
 			children = (
+				036F18C01FC1BA7900D5FC02 /* Stretch.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
-				036F18A01FC1747B00D5FC02 /* ViewController.swift */,
+				036F18BE1FC19FCA00D5FC02 /* RatingControl.swift */,
+				036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */,
+				036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */,
+				036F18A01FC1747B00D5FC02 /* StretchViewController.swift */,
 				036F18A21FC1747B00D5FC02 /* Main.storyboard */,
 				036F18A51FC1747B00D5FC02 /* Assets.xcassets */,
 				036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */,
@@ -199,7 +211,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036F18A11FC1747B00D5FC02 /* ViewController.swift in Sources */,
+				036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */,
+				036F18A11FC1747B00D5FC02 /* StretchViewController.swift in Sources */,
+				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
+				036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */,
+				036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */,
 				036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
