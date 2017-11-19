@@ -9,17 +9,35 @@
 import UIKit
 import os.log
 
+enum Side: String{
+    case Center
+    case Sides
+    case Both
+}
+
+enum Muscle: String {
+    case Legs
+    case Arms
+    case Back
+}
+
 class Stretch: NSObject, NSCoding {
 
     //MARK: Properties
     var name: String
+    var stretch_description: String
     var photo: UIImage?
     var rating: Int
+    var sides: Side
+    var muscle: Muscle
     
     struct PropertyKey {
         static let name = "name"
+        static let description = "stretch_description"
         static let photo = "photo"
         static let rating = "rating"
+        static let sides = "sides"
+        static let muscle = "muscle"
     }
     
     //MARK: Archiving Paths
@@ -28,7 +46,7 @@ class Stretch: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("stretches")
     
     //MARK: Initialization
-    init?(name: String, photo: UIImage?, rating: Int) {
+    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, muscle: Muscle) {
         
         // The name must not be empty
         guard !name.isEmpty else {
@@ -42,15 +60,21 @@ class Stretch: NSObject, NSCoding {
         
         // Initialize stored properties.
         self.name = name
+        self.stretch_description = description
         self.photo = photo
         self.rating = rating
+        self.sides = sides
+        self.muscle = muscle
     }
     
     //MARK: NSCoding
     func encode(with aCoder: NSCoder) {
         aCoder.encode(name, forKey: PropertyKey.name)
+        aCoder.encode(stretch_description, forKey: PropertyKey.description)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
+        aCoder.encode(sides.rawValue, forKey: PropertyKey.sides)
+        aCoder.encode(muscle.rawValue, forKey: PropertyKey.muscle)
     }
     required convenience init?(coder aDecoder: NSCoder) {
         // The name is required. If we cannot decode a name string, the initializer should fail.
@@ -58,14 +82,17 @@ class Stretch: NSObject, NSCoding {
             os_log("Unable to decode the name for a Stretch object.", log: OSLog.default, type: .debug)
             return nil
         }
+        let description = aDecoder.decodeObject(forKey: PropertyKey.description) as? String ?? ""
         
         // Because photo is an optional property of Stretch, just use conditional cast.
         let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
         
         let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
-        
+        let sides = Side(rawValue: aDecoder.decodeObject(forKey: PropertyKey.sides) as? String ?? "") ?? Side.Center
+        let muscle = Muscle(rawValue: aDecoder.decodeObject(forKey: PropertyKey.muscle) as? String ?? "") ?? Muscle.Back
+
         // Must call designated initializer.
-        self.init(name: name, photo: photo, rating: rating)
+        self.init(name: name, description: description, photo: photo, rating: rating, sides: sides, muscle: muscle)
         
     }
 }

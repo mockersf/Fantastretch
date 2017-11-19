@@ -23,8 +23,6 @@ class StretchTableViewController: UITableViewController {
         // Load any saved stretches, otherwise load sample data.
         if let savedStretches = loadStretches() {
             stretches += savedStretches
-        } else {
-            loadSampleStretches()
         }
     }
 
@@ -147,22 +145,6 @@ class StretchTableViewController: UITableViewController {
     }
     
     //MARK: Private Methods
-    private func loadSampleStretches() {
-        guard let stretch1 = Stretch(name: "Caprese Salad", photo: nil, rating: 4) else {
-            fatalError("Unable to instantiate stretch1")
-        }
-        
-        guard let stretch2 = Stretch(name: "Chicken and Potatoes", photo: nil, rating: 5) else {
-            fatalError("Unable to instantiate stretch2")
-        }
-        
-        guard let stretch3 = Stretch(name: "Pasta with Meatballs", photo: nil, rating: 3) else {
-            fatalError("Unable to instantiate stretch3")
-        }
-        
-        stretches += [stretch1, stretch2, stretch3]
-    }
-    
     private func saveStretches() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stretches, toFile: Stretch.ArchiveURL.path)
         if isSuccessfulSave {

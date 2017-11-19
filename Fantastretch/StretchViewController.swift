@@ -92,15 +92,18 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }
         
         let name = nameTextField.text ?? ""
+        let description = ""
         let photo = photoImageView.image
         let rating = ratingControl.rating
+        let sides = Side.Center
+        let muscle = Muscle.Back
         
         // Set the stretch to be passed to StretchTableViewController after the unwind segue.
-        stretch = Stretch(name: name, photo: photo, rating: rating)
+        stretch = Stretch(name: name, description: description, photo: photo, rating: rating, sides: sides, muscle: muscle)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
-        let isPresentingInAddStretchMode = presentingViewController is UINavigationController
+        let isPresentingInAddStretchMode = presentingViewController is UITabBarController
         
         if isPresentingInAddStretchMode {
             dismiss(animated: true, completion: nil)
