@@ -115,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 036F18B81FC1747B00D5FC02 /* Build configuration list for PBXNativeTarget "Fantastretch" */;
 			buildPhases = (
+				03A248691FC37D9700BBF5B6 /* ShellScript */,
 				036F18971FC1747B00D5FC02 /* Sources */,
 				036F18981FC1747B00D5FC02 /* Frameworks */,
 				036F18991FC1747B00D5FC02 /* Resources */,
@@ -205,6 +206,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		03A248691FC37D9700BBF5B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/local/bin/swiftformat .";
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		036F18971FC1747B00D5FC02 /* Sources */ = {

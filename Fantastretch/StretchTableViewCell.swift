@@ -10,12 +10,11 @@ import UIKit
 
 class StretchTableViewCell: UITableViewCell {
 
-    //MARK: Properties
+    // MARK: Properties
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +25,4 @@ class StretchTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
