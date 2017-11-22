@@ -17,6 +17,7 @@
 		036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C01FC1BA7900D5FC02 /* Stretch.swift */; };
 		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
+		03A2486F1FC4E7C600BBF5B6 /* StretchDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2486E1FC4E7C600BBF5B6 /* StretchDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		036F18C01FC1BA7900D5FC02 /* Stretch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stretch.swift; sourceTree = "<group>"; };
 		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
+		03A2486E1FC4E7C600BBF5B6 /* StretchDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */,
 				036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */,
 				036F18A01FC1747B00D5FC02 /* StretchViewController.swift */,
+				03A2486E1FC4E7C600BBF5B6 /* StretchDetailsViewController.swift */,
 				036F18A21FC1747B00D5FC02 /* Main.storyboard */,
 				036F18A51FC1747B00D5FC02 /* Assets.xcassets */,
 				036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */,
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03A2486F1FC4E7C600BBF5B6 /* StretchDetailsViewController.swift in Sources */,
 				036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */,
 				036F18A11FC1747B00D5FC02 /* StretchViewController.swift in Sources */,
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,

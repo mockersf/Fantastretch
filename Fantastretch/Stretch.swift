@@ -13,12 +13,14 @@ enum Side: String {
     case Center
     case Sides
     case Both
+    static let allValues = [Center, Sides, Both]
 }
 
-enum Muscle: String {
+enum Target: String {
     case Legs
     case Arms
     case Back
+    static let allValues = [Legs, Arms, Back]
 }
 
 class Stretch: NSObject, NSCoding {
@@ -29,7 +31,7 @@ class Stretch: NSObject, NSCoding {
     var photo: UIImage?
     var rating: Int
     var sides: Side
-    var muscle: Muscle
+    var target: Target
     var id: UUID
 
     struct PropertyKey {
@@ -38,7 +40,7 @@ class Stretch: NSObject, NSCoding {
         static let photo = "photo"
         static let rating = "rating"
         static let sides = "sides"
-        static let muscle = "muscle"
+        static let target = "target"
         static let id = "id"
     }
 
@@ -48,7 +50,7 @@ class Stretch: NSObject, NSCoding {
     static let ArchiveURL = DocumentsDirectory.appendingPathComponent("stretches")
 
     // MARK: Initialization
-    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, muscle: Muscle) {
+    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, target: Target) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -66,11 +68,11 @@ class Stretch: NSObject, NSCoding {
         self.photo = photo
         self.rating = rating
         self.sides = sides
-        self.muscle = muscle
+        self.target = target
         id = UUID()
     }
 
-    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, muscle: Muscle, id: UUID) {
+    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, target: Target, id: UUID) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -88,7 +90,7 @@ class Stretch: NSObject, NSCoding {
         self.photo = photo
         self.rating = rating
         self.sides = sides
-        self.muscle = muscle
+        self.target = target
         self.id = id
     }
 
@@ -99,7 +101,7 @@ class Stretch: NSObject, NSCoding {
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
         aCoder.encode(sides.rawValue, forKey: PropertyKey.sides)
-        aCoder.encode(muscle.rawValue, forKey: PropertyKey.muscle)
+        aCoder.encode(target.rawValue, forKey: PropertyKey.target)
         aCoder.encode(id.uuidString, forKey: PropertyKey.id)
     }
 
@@ -116,13 +118,13 @@ class Stretch: NSObject, NSCoding {
 
         let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
         let sides = Side(rawValue: aDecoder.decodeObject(forKey: PropertyKey.sides) as? String ?? "") ?? Side.Center
-        let muscle = Muscle(rawValue: aDecoder.decodeObject(forKey: PropertyKey.muscle) as? String ?? "") ?? Muscle.Back
+        let target = Target(rawValue: aDecoder.decodeObject(forKey: PropertyKey.target) as? String ?? "") ?? Target.Back
         guard let id = ((aDecoder.decodeObject(forKey: PropertyKey.id) as? String).flatMap { (ida) -> UUID? in UUID(uuidString: ida) }) else {
             os_log("Unable to decode the id for a Stretch object.", log: OSLog.default, type: .debug)
             return nil
         }
 
         // Must call designated initializer.
-        self.init(name: name, description: description, photo: photo, rating: rating, sides: sides, muscle: muscle, id: id)
+        self.init(name: name, description: description, photo: photo, rating: rating, sides: sides, target: target, id: id)
     }
 }

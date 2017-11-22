@@ -48,7 +48,7 @@
                                     <outlet property="nameLabel" destination="Bxf-3G-QrH" id="cRi-2W-Ux1"/>
                                     <outlet property="photoImageView" destination="J4Y-5a-x2Q" id="wRF-WZ-Hhw"/>
                                     <outlet property="ratingControl" destination="H4X-Yb-MFc" id="rD7-J7-MMQ"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="Klo-e1-M3J"/>
+                                    <segue destination="Mcw-vO-dg9" kind="show" identifier="ShowItem" id="Tvu-Oa-nPF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,7 +67,98 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s18-ak-vAm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-832.79999999999995" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-839" y="-116"/>
+        </scene>
+        <!--Stretch Detail View-->
+        <scene sceneID="MA5-dD-rxe">
+            <objects>
+                <viewController id="Mcw-vO-dg9" customClass="StretchDetailsViewController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="veV-wk-nTK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q6z-cT-87u">
+                                <rect key="frame" x="20" y="84" width="335" height="435"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzC-vF-1hB">
+                                        <rect key="frame" x="20" y="0.0" width="295" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEG-97-cdB">
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="stretch_target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Fb-UY-f5Z">
+                                                <rect key="frame" x="188" y="0.0" width="107" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dr-Ll-W7J">
+                                        <rect key="frame" x="20" y="28.5" width="295" height="20.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKs-NL-jzB">
+                                                <rect key="frame" x="0.0" y="0.0" width="253" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-HK-yNO">
+                                                <rect key="frame" x="253" y="0.0" width="42" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SeX-kK-2bQ">
+                                        <rect key="frame" x="7.5" y="57" width="320" height="320"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="BKt-TQ-Ocs"/>
+                                            <constraint firstAttribute="height" constant="320" id="XWO-im-lRg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-FP-ulm" customClass="RatingControl" customModule="Fantastretch" customModuleProvider="target">
+                                        <rect key="frame" x="57.5" y="385" width="220" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="EzC-vF-1hB" secondAttribute="trailing" constant="20" id="10T-yz-MDh"/>
+                                    <constraint firstItem="7dr-Ll-W7J" firstAttribute="leading" secondItem="Q6z-cT-87u" secondAttribute="leading" constant="20" id="ATJ-uE-hMz"/>
+                                    <constraint firstItem="EzC-vF-1hB" firstAttribute="leading" secondItem="Q6z-cT-87u" secondAttribute="leading" constant="20" id="S61-Pc-vIc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7dr-Ll-W7J" secondAttribute="trailing" constant="20" id="zCd-O8-M0H"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rXp-qn-58L" firstAttribute="trailing" secondItem="Q6z-cT-87u" secondAttribute="trailing" constant="20" id="3Ma-9K-8n5"/>
+                            <constraint firstItem="Q6z-cT-87u" firstAttribute="leading" secondItem="rXp-qn-58L" secondAttribute="leading" constant="20" id="BHF-si-upZ"/>
+                            <constraint firstItem="Q6z-cT-87u" firstAttribute="top" secondItem="rXp-qn-58L" secondAttribute="top" constant="20" id="ZXQ-6a-zHJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rXp-qn-58L"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stretch Detail View" id="q0R-PQ-E5Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="LrO-gX-rfD">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="EditItem" id="aL4-4g-egs"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="photoImageView" destination="SeX-kK-2bQ" id="eJY-NV-mjC"/>
+                        <outlet property="ratingControl" destination="6ZI-FP-ulm" id="DPh-fw-ijT"/>
+                        <outlet property="sidesLabel" destination="TPn-HK-yNO" id="yz5-V8-Kvo"/>
+                        <outlet property="targetLabel" destination="7Fb-UY-f5Z" id="Srz-sj-ah3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qWR-XG-89e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="514" y="316"/>
         </scene>
         <!--New Stretch-->
         <scene sceneID="tne-QT-ifu">
@@ -78,7 +169,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0B0-aD-DfT">
-                                <rect key="frame" x="20" y="84" width="335" height="425"/>
+                                <rect key="frame" x="20" y="84" width="335" height="873"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Stretch Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxk-9j-A1q">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
@@ -86,8 +177,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGl-kD-b0d">
+                                        <rect key="frame" x="7.5" y="38" width="320" height="216"/>
+                                    </pickerView>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m0g-cM-ppm">
+                                        <rect key="frame" x="7.5" y="262" width="320" height="216"/>
+                                    </pickerView>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="yka-7G-LHM">
-                                        <rect key="frame" x="0.0" y="38" width="335" height="335"/>
+                                        <rect key="frame" x="0.0" y="486" width="335" height="335"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="yka-7G-LHM" secondAttribute="height" multiplier="1:1" id="1If-TG-Dvq"/>
@@ -97,7 +194,7 @@
                                         </connections>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MDF-n3-WTi" customClass="RatingControl" customModule="Fantastretch" customModuleProvider="target">
-                                        <rect key="frame" x="41.5" y="381" width="252" height="44"/>
+                                        <rect key="frame" x="41.5" y="829" width="252" height="44"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -130,6 +227,8 @@
                         <outlet property="photoImageView" destination="yka-7G-LHM" id="dV0-Iz-10D"/>
                         <outlet property="ratingControl" destination="MDF-n3-WTi" id="SJd-B7-NlO"/>
                         <outlet property="saveButton" destination="e1o-in-MYS" id="T4Q-UL-sdP"/>
+                        <outlet property="sidePicker" destination="bGl-kD-b0d" id="Dob-Ka-ykR"/>
+                        <outlet property="targetPicker" destination="m0g-cM-ppm" id="2Dq-9k-a3K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -140,7 +239,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1028" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1870" y="-116"/>
         </scene>
         <!--Stretches-->
         <scene sceneID="Lub-kv-A3n">
@@ -159,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCx-s6-5gv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-1700" y="-116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HoM-6L-XUy">
@@ -177,7 +276,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVb-AW-eWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-283"/>
+            <point key="canvasLocation" x="514" y="-463"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="E37-5U-Cco">
@@ -185,11 +284,12 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="K8u-d2-TWm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAO-2s-yjs">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="selectedInfex">
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
                             <integer key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
@@ -251,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivA-VB-6v5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1700" y="1987"/>
+            <point key="canvasLocation" x="-1700" y="2138"/>
         </scene>
     </scenes>
     <resources>
@@ -261,6 +361,6 @@
         <image name="noPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Klo-e1-M3J"/>
+        <segue reference="aL4-4g-egs"/>
     </inferredMetricsTieBreakers>
 </document>
