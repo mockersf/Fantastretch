@@ -27,7 +27,11 @@ class StretchDetailsViewController: UIViewController {
             navigationItem.title = stretch.name
             targetLabel.text = stretch.target.rawValue
             sidesLabel.text = stretch.sides.rawValue
-            photoImageView.image = stretch.photo
+            if let photo = stretch.photo {
+                photoImageView.image = photo
+            } else {
+                photoImageView.isHidden = true
+            }
             ratingControl.rating = stretch.rating
         }
     }

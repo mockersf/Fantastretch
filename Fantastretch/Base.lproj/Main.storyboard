@@ -77,8 +77,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q6z-cT-87u">
-                                <rect key="frame" x="20" y="84" width="335" height="435"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q6z-cT-87u">
+                                <rect key="frame" x="20" y="84" width="335" height="429"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzC-vF-1hB">
                                         <rect key="frame" x="20" y="0.0" width="295" height="20.5"/>
@@ -121,8 +121,8 @@
                                             <constraint firstAttribute="height" constant="320" id="XWO-im-lRg"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-FP-ulm" customClass="RatingControl" customModule="Fantastretch" customModuleProvider="target">
-                                        <rect key="frame" x="57.5" y="385" width="220" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-FP-ulm" customClass="RatingControl" customModule="Fantastretch" customModuleProvider="target">
+                                        <rect key="frame" x="57.5" y="385" width="220" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>

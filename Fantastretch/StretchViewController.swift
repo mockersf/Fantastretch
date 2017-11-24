@@ -46,6 +46,7 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
      or constructed as part of adding a new stretch.
      */
     var stretch: Stretch?
+    var choseImage = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,6 +110,7 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
+        choseImage = true
 
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
@@ -134,7 +136,7 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         let target = Target.allValues[targetPicker.selectedRow(inComponent: 0)]
 
         // Set the stretch to be passed to StretchTableViewController after the unwind segue.
-        stretch = Stretch(name: name, description: description, photo: photo, rating: rating, sides: sides, target: target)
+        stretch = Stretch(name: name, description: description, photo: choseImage ? photo : nil, rating: rating, sides: sides, target: target)
     }
 
     @IBAction func cancel(_: UIBarButtonItem) {
