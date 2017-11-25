@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,7 +80,7 @@
                     <navigationItem key="navigationItem" title="Stretches" id="Dps-vv-wpC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lfM-zM-vXb">
                             <connections>
-                                <segue destination="Bga-A2-kHm" kind="presentation" identifier="AddItem" id="BqL-1i-zH9"/>
+                                <segue destination="RtY-Je-0M1" kind="presentation" identifier="AddItem" id="t4h-78-0YX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -227,75 +226,6 @@
             </objects>
             <point key="canvasLocation" x="513" y="269"/>
         </scene>
-        <!--New Stretch-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="StretchViewController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0B0-aD-DfT">
-                                <rect key="frame" x="20" y="84" width="335" height="373"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Stretch Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxk-9j-A1q">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="yka-7G-LHM">
-                                        <rect key="frame" x="0.0" y="38" width="335" height="335"/>
-                                        <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="yka-7G-LHM" secondAttribute="height" multiplier="1:1" id="1If-TG-Dvq"/>
-                                        </constraints>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="ETp-gJ-CYN" appends="YES" id="XMJ-gp-h2H"/>
-                                        </connections>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="nxk-9j-A1q" secondAttribute="trailing" id="uRQ-bZ-gsB"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="0B0-aD-DfT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ow4-vc-lrP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0B0-aD-DfT" secondAttribute="trailing" constant="20" id="Zh7-wd-Kvm"/>
-                            <constraint firstItem="0B0-aD-DfT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="qEb-RW-ac8"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Stretch" id="1af-Zj-I2x">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2Nf-YO-yev">
-                            <connections>
-                                <action selector="cancel:" destination="BYZ-38-t0r" id="smQ-XT-i8y"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="e1o-in-MYS">
-                            <connections>
-                                <segue destination="aau-ah-K1A" kind="unwind" unwindAction="unwindToStretchListWithSender:" id="Lxf-gp-Jcx"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="nameTextField" destination="nxk-9j-A1q" id="exc-mH-76o"/>
-                        <outlet property="photoImageView" destination="yka-7G-LHM" id="dV0-Iz-10D"/>
-                        <outlet property="saveButton" destination="e1o-in-MYS" id="T4Q-UL-sdP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="aau-ah-K1A" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="ETp-gJ-CYN">
-                    <connections>
-                        <action selector="selectImageFromPhotoLibrary:" destination="BYZ-38-t0r" id="H0Z-eK-xT2"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="802" y="-1295"/>
-        </scene>
         <!--Stretches-->
         <scene sceneID="Lub-kv-A3n">
             <objects>
@@ -314,24 +244,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DCx-s6-5gv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1700" y="-116"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="HoM-6L-XUy">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bga-A2-kHm" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rRl-28-VWu">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="DDj-zM-gsX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JVb-AW-eWd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-476" y="-1241"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="E37-5U-Cco">
