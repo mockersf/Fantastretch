@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		032379F91FC8F2A400480A89 /* StretchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032379F81FC8F2A400480A89 /* StretchViewController.swift */; };
 		032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032379FA1FC8F88100480A89 /* StretchEditController.swift */; };
+		03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03237A041FC9C1D500480A89 /* Model.xcdatamodeld */; };
 		036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F189E1FC1747B00D5FC02 /* AppDelegate.swift */; };
 		036F18A41FC1747B00D5FC02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A21FC1747B00D5FC02 /* Main.storyboard */; };
 		036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A51FC1747B00D5FC02 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		032379F81FC8F2A400480A89 /* StretchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchViewController.swift; sourceTree = "<group>"; };
 		032379FA1FC8F88100480A89 /* StretchEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchEditController.swift; sourceTree = "<group>"; };
+		03237A051FC9C1D500480A89 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		036F189B1FC1747B00D5FC02 /* Fantastretch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantastretch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F189E1FC1747B00D5FC02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		036F18A31FC1747B00D5FC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				036F18A51FC1747B00D5FC02 /* Assets.xcassets */,
 				036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */,
 				036F18AA1FC1747B00D5FC02 /* Info.plist */,
+				03237A041FC9C1D500480A89 /* Model.xcdatamodeld */,
 			);
 			path = Fantastretch;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */,
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
 				036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */,
+				03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */,
 				032379F91FC8F2A400480A89 /* StretchViewController.swift in Sources */,
 				032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */,
 				036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */,
@@ -481,6 +485,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		03237A041FC9C1D500480A89 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				03237A051FC9C1D500480A89 /* Model.xcdatamodel */,
+			);
+			currentVersion = 03237A051FC9C1D500480A89 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 036F18931FC1747A00D5FC02 /* Project object */;
 }

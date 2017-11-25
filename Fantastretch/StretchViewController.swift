@@ -50,7 +50,7 @@ class StretchViewController: UITableViewController {
                     // Update an existing stretch.
                     tableController.stretches[selectedIndexPath.row] = stretch!
                     tableController.tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                    tableController.saveStretches()
+                    stretch?.update()
                 }
             }
         }

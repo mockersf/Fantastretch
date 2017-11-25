@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 class StretchTableViewController: UITableViewController {
 
@@ -20,15 +21,11 @@ class StretchTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        // Load any saved stretches, otherwise load sample data.
-        if let savedStretches = loadStretches() {
-            stretches += savedStretches
-        }
+        stretches = Stretch.load() ?? []
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -43,14 +40,12 @@ class StretchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "StretchTableViewCell"
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? StretchTableViewCell else {
             fatalError("The dequeued cell is not an instance of StretchTableViewCell.")
         }
 
-        // Fetches the appropriate stretch for the data source layout.
         let stretch = stretches[indexPath.row]
 
         cell.nameLabel.text = stretch.name
@@ -62,7 +57,6 @@ class StretchTableViewController: UITableViewController {
         return cell
     }
 
-    // Override to support conditional editing of the table view.
     override func tableView(_: UITableView, canEditRowAt _: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
@@ -71,29 +65,11 @@ class StretchTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            stretches[indexPath.row].delete()
             stretches.remove(at: indexPath.row)
-            saveStretches()
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-     }
-     */
-
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
 
     // MARK: - Navigation
 
@@ -128,48 +104,19 @@ class StretchTableViewController: UITableViewController {
 
     // MARK: Actions
     @IBAction func unwindToStretchList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? StretchViewController, let stretch = sourceViewController.stretch {
+        if let sourceEditController = sender.source as? StretchEditController, let stretch = sourceEditController.stretch {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing stretch.
                 stretches[selectedIndexPath.row] = stretch
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                stretch.update()
             } else {
                 // Add a new stretch.
                 let newIndexPath = IndexPath(row: stretches.count, section: 0)
-
                 stretches.append(stretch)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                stretch.save()
             }
-            // Save the stretches.
-            saveStretches()
-        } else if let sourceEditController = sender.source as? StretchEditController, let stretch = sourceEditController.stretch {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing stretch.
-                stretches[selectedIndexPath.row] = stretch
-                tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            } else {
-                // Add a new stretch.
-                let newIndexPath = IndexPath(row: stretches.count, section: 0)
-
-                stretches.append(stretch)
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-            // Save the stretches.
-            saveStretches()
         }
-    }
-
-    // MARK: Private Methods
-    public func saveStretches() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stretches, toFile: Stretch.ArchiveURL.path)
-        if isSuccessfulSave {
-            os_log("Stretches successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save stretches...", log: OSLog.default, type: .error)
-        }
-    }
-
-    private func loadStretches() -> [Stretch]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Stretch.ArchiveURL.path) as? [Stretch]
     }
 }

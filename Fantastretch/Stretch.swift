@@ -8,6 +8,7 @@
 
 import UIKit
 import os.log
+import CoreData
 
 enum Side: String {
     case Center
@@ -23,7 +24,7 @@ enum Target: String {
     static let allValues = [Legs, Arms, Back]
 }
 
-class Stretch: NSObject, NSCoding {
+class Stretch: NSObject {
 
     // MARK: Properties
     var name: String
@@ -34,23 +35,8 @@ class Stretch: NSObject, NSCoding {
     var target: Target
     var id: UUID
 
-    struct PropertyKey {
-        static let name = "name"
-        static let description = "stretch_description"
-        static let photo = "photo"
-        static let rating = "rating"
-        static let sides = "sides"
-        static let target = "target"
-        static let id = "id"
-    }
-
-    // MARK: Archiving Paths
-
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("stretches")
-
     // MARK: Initialization
-    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, target: Target) {
+    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, target: Target, id: UUID?) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -69,62 +55,103 @@ class Stretch: NSObject, NSCoding {
         self.rating = rating
         self.sides = sides
         self.target = target
-        id = UUID()
+        self.id = id ?? UUID()
     }
 
-    init?(name: String, description: String, photo: UIImage?, rating: Int, sides: Side, target: Target, id: UUID) {
-
-        // The name must not be empty
-        guard !name.isEmpty else {
-            return nil
-        }
-
-        // The rating must be between 0 and 5 inclusively
-        guard (rating >= 0) && (rating <= 5) else {
-            return nil
-        }
-
-        // Initialize stored properties.
-        self.name = name
-        stretch_description = description
-        self.photo = photo
-        self.rating = rating
-        self.sides = sides
-        self.target = target
-        self.id = id
+    convenience init?(mo stretchMO: StretchMO) {
+        self.init(name: stretchMO.name ?? "", description: stretchMO.description_field ?? "",
+                  photo: stretchMO.image.flatMap({ (data) -> UIImage in UIImage(data: data)! }), rating: Int(stretchMO.rating),
+                  sides: Side(rawValue: stretchMO.sides!)!, target: Target(rawValue: stretchMO.target!)!, id: stretchMO.id)
     }
 
-    // MARK: NSCoding
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(name, forKey: PropertyKey.name)
-        aCoder.encode(stretch_description, forKey: PropertyKey.description)
-        aCoder.encode(photo, forKey: PropertyKey.photo)
-        aCoder.encode(rating, forKey: PropertyKey.rating)
-        aCoder.encode(sides.rawValue, forKey: PropertyKey.sides)
-        aCoder.encode(target.rawValue, forKey: PropertyKey.target)
-        aCoder.encode(id.uuidString, forKey: PropertyKey.id)
+    static func load() -> [Stretch]? {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "StretchMO")
+
+        do {
+            let stretchesMO = try managedContext.fetch(fetchRequest)
+            return stretchesMO.map({ (stretchMO) -> Stretch in Stretch(mo: stretchMO as! StretchMO)! })
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return nil
     }
 
-    required convenience init?(coder aDecoder: NSCoder) {
-        // The name is required. If we cannot decode a name string, the initializer should fail.
-        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
-            os_log("Unable to decode the name for a Stretch object.", log: OSLog.default, type: .debug)
-            return nil
+    func save() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
         }
-        let description = aDecoder.decodeObject(forKey: PropertyKey.description) as? String ?? ""
-
-        // Because photo is an optional property of Stretch, just use conditional cast.
-        let photo = aDecoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
-
-        let rating = aDecoder.decodeInteger(forKey: PropertyKey.rating)
-        let sides = Side(rawValue: aDecoder.decodeObject(forKey: PropertyKey.sides) as? String ?? "") ?? Side.Center
-        let target = Target(rawValue: aDecoder.decodeObject(forKey: PropertyKey.target) as? String ?? "") ?? Target.Back
-        guard let id = ((aDecoder.decodeObject(forKey: PropertyKey.id) as? String).flatMap { (ida) -> UUID? in UUID(uuidString: ida) }) else {
-            os_log("Unable to decode the id for a Stretch object.", log: OSLog.default, type: .debug)
-            return nil
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "StretchMO", in: managedContext)!
+        let stretchMO = NSManagedObject(entity: entity, insertInto: managedContext)
+        stretchMO.setValue(id, forKey: "id")
+        stretchMO.setValue(name, forKey: "name")
+        stretchMO.setValue(description, forKey: "description_field")
+        stretchMO.setValue(target.rawValue, forKey: "target")
+        stretchMO.setValue(sides.rawValue, forKey: "sides")
+        stretchMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")
+        stretchMO.setValue(rating, forKey: "rating")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
+    }
 
-        // Must call designated initializer.
-        self.init(name: name, description: description, photo: photo, rating: rating, sides: sides, target: target, id: id)
+    func update() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fr: NSFetchRequest<StretchMO> = StretchMO.fetchRequest()
+        let predicate = NSPredicate(format: "id==%@", argumentArray: [self.id])
+        fr.predicate = predicate
+        do {
+            let stretchMOs = try managedContext.fetch(fr)
+            let stretchMO = stretchMOs[0]
+            stretchMO.setValue(name, forKey: "name")
+            stretchMO.setValue(description, forKey: "description_field")
+            stretchMO.setValue(target.rawValue, forKey: "target")
+            stretchMO.setValue(sides.rawValue, forKey: "sides")
+            stretchMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")
+            stretchMO.setValue(rating, forKey: "rating")
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        } catch {
+            print("Could not save. \(error)")
+        }
+    }
+
+    func delete() {
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fr: NSFetchRequest<StretchMO> = StretchMO.fetchRequest()
+        let predicate = NSPredicate(format: "id==%@", argumentArray: [self.id])
+        fr.predicate = predicate
+        do {
+            let stretchMOs = try managedContext.fetch(fr)
+            let stretchMO = stretchMOs[0]
+            managedContext.delete(stretchMO)
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+        } catch {
+            print("Could not save. \(error)")
+        }
     }
 }
