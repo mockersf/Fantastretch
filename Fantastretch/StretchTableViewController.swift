@@ -106,7 +106,7 @@ class StretchTableViewController: UITableViewController {
             os_log("Adding a new stretch.", log: OSLog.default, type: .debug)
 
         case "ShowItem":
-            guard let stretchDetailViewController = segue.destination as? StretchDetailViewController else {
+            guard let stretchDetailViewController = segue.destination as? StretchViewController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
 
