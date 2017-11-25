@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StretchDetailViewController: UITableViewController {
+class StretchViewController: UITableViewController {
 
     var stretch: Stretch?
 
