@@ -53,19 +53,39 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
+        switch segue.identifier ?? "" {
+
+        case "PickTarget":
+            guard let pickerTableController = segue.destination as? PickerTableController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            pickerTableController.allValues = Target.allValues.map { $0.rawValue }
+            pickerTableController.type = "target"
+
+        case "PickSides":
+            guard let pickerTableController = segue.destination as? PickerTableController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            pickerTableController.allValues = Side.allValues.map { $0.rawValue }
+            pickerTableController.type = "sides"
+
+        case "SaveItem":
+            let name = nameTextField.text ?? ""
+            let description = ""
+            let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
+            let sides = Side.allValues.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Side.Center
+            let target = Target.allValues.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.Legs
+
+            stretch = Stretch(name: name, description: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
+
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
+        }
         // Configure the destination view controller only when the save button is pressed.
         guard let button = sender as? UIBarButtonItem, button === saveButton else {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
-
-        let name = nameTextField.text ?? ""
-        let description = ""
-        let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
-        let sides = Side.allValues.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Side.Center
-        let target = Target.allValues.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.Legs
-
-        stretch = Stretch(name: name, description: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
     }
 
     @IBAction func cancel(_: UIBarButtonItem) {
@@ -112,6 +132,25 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
+    }
+
+    // MARK: Actions
+    @IBAction func unwindToEdit(sender: UIStoryboardSegue) {
+        if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
+            switch pickerTableController.type ?? "" {
+            case "sides":
+                sidesLabel.text = Side.allValues.first(where: { $0.rawValue == selected })?.rawValue
+                sidesLabel.textColor = UIColor.darkText
+
+            case "target":
+                targetLabel.text = Target.allValues.first(where: { $0.rawValue == selected })?.rawValue
+                targetLabel.textColor = UIColor.darkText
+
+            default:
+                fatalError("unknown picker type: \(pickerTableController.type ?? "missing type")")
+            }
+            print("selected: \(selected)")
+        }
     }
 
     // MARK: Private Methods
