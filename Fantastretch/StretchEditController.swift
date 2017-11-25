@@ -19,8 +19,6 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
-    var choseImage: Bool = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,11 +61,11 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
 
         let name = nameTextField.text ?? ""
         let description = ""
-        let photo = photoImageView.image
+        let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
         let sides = Side.allValues.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Side.Center
         let target = Target.allValues.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.Legs
 
-        stretch = Stretch(name: name, description: description, photo: choseImage ? photo : nil, rating: stretch?.rating ?? 0, sides: sides, target: target)
+        stretch = Stretch(name: name, description: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target)
     }
 
     @IBAction func cancel(_: UIBarButtonItem) {
@@ -93,7 +91,6 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         }
 
         photoImageView.image = selectedImage
-        choseImage = true
 
         dismiss(animated: true, completion: nil)
     }
