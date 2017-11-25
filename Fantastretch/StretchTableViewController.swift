@@ -56,6 +56,8 @@ class StretchTableViewController: UITableViewController {
         cell.nameLabel.text = stretch.name
         cell.photoImageView.image = stretch.photo
         cell.ratingControl.rating = stretch.rating
+        cell.targetLabel.text = stretch.target.rawValue
+        cell.sidesLabel.text = stretch.sides.rawValue
 
         return cell
     }
@@ -158,7 +160,7 @@ class StretchTableViewController: UITableViewController {
     }
 
     // MARK: Private Methods
-    private func saveStretches() {
+    public func saveStretches() {
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(stretches, toFile: Stretch.ArchiveURL.path)
         if isSuccessfulSave {
             os_log("Stretches successfully saved.", log: OSLog.default, type: .debug)

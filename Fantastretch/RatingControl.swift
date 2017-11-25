@@ -73,7 +73,6 @@ import UIKit
         let bundle = Bundle(for: type(of: self))
         let filledStar = UIImage(named: "filledStar", in: bundle, compatibleWith: traitCollection)
         let emptyStar = UIImage(named: "emptyStar", in: bundle, compatibleWith: traitCollection)
-        let highlightedStar = UIImage(named: "highlightedStar", in: bundle, compatibleWith: traitCollection)
 
         for index in 0 ..< starCount {
             // Create the button
@@ -82,8 +81,6 @@ import UIKit
             // Set the button images
             button.setImage(emptyStar, for: .normal)
             button.setImage(filledStar, for: .selected)
-            button.setImage(highlightedStar, for: .highlighted)
-            button.setImage(highlightedStar, for: [.highlighted, .selected])
 
             // Add constraints
             button.translatesAutoresizingMaskIntoConstraints = false

@@ -39,13 +39,29 @@ class StretchDetailViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if isMovingFromParentViewController {
+            stretch?.rating = ratingControl.rating
+            let viewControllers = navigationController?.viewControllers
+            if let tableController = viewControllers?.first as? StretchTableViewController {
+                if let selectedIndexPath = tableController.tableView.indexPathForSelectedRow {
+                    // Update an existing stretch.
+                    tableController.stretches[selectedIndexPath.row] = stretch!
+                    tableController.tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                    tableController.saveStretches()
+                }
+            }
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
         switch segue.identifier ?? "" {
 
         case "EditItem":
-            print(segue.destination)
             guard let stretchEditController = segue.destination as? StretchEditController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }

@@ -36,7 +36,6 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             }
         } else {
             navigationItem.title = "New Stretch"
-
         }
     }
 
