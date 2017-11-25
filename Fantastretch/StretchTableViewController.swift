@@ -95,7 +95,6 @@ class StretchTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
@@ -105,7 +104,7 @@ class StretchTableViewController: UITableViewController {
             os_log("Adding a new stretch.", log: OSLog.default, type: .debug)
 
         case "ShowItem":
-            guard let stretchDetailViewController = segue.destination as? StretchDetailsViewController else {
+            guard let stretchDetailViewController = segue.destination as? StretchDetailViewController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
 
@@ -128,6 +127,20 @@ class StretchTableViewController: UITableViewController {
     // MARK: Actions
     @IBAction func unwindToStretchList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? StretchViewController, let stretch = sourceViewController.stretch {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing stretch.
+                stretches[selectedIndexPath.row] = stretch
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
+                // Add a new stretch.
+                let newIndexPath = IndexPath(row: stretches.count, section: 0)
+
+                stretches.append(stretch)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+            // Save the stretches.
+            saveStretches()
+        } else if let sourceEditController = sender.source as? StretchEditController, let stretch = sourceEditController.stretch {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing stretch.
                 stretches[selectedIndexPath.row] = stretch

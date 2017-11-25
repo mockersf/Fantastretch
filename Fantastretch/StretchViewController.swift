@@ -9,38 +9,37 @@
 import UIKit
 import os.log
 
-class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate /* ,  UIPickerViewDataSource, UIPickerViewDelegate */ {
 
-    // MARK: UIPickerViewDataSource, UIPickerViewDelegate
-    func numberOfComponents(in _: UIPickerView) -> Int {
-        return 1
-    }
+    /*    // MARK: UIPickerViewDataSource, UIPickerViewDelegate
+     func numberOfComponents(in _: UIPickerView) -> Int {
+     return 1
+     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
-        if pickerView == sidePicker {
-            return Side.allValues.count
-        } else if pickerView == targetPicker {
-            return Target.allValues.count
-        }
-        return 0
-    }
+     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent _: Int) -> Int {
+     if pickerView == sidePicker {
+     return Side.allValues.count
+     } else if pickerView == targetPicker {
+     return Target.allValues.count
+     }
+     return 0
+     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent _: Int) -> String? {
-        if pickerView == sidePicker {
-            return Side.allValues.map { (side) -> String in side.rawValue }[row]
-        } else if pickerView == targetPicker {
-            return Target.allValues.map { (target) -> String in target.rawValue }[row]
-        }
-        return ""
-    }
+     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent _: Int) -> String? {
+     if pickerView == sidePicker {
+     return Side.allValues.map { (side) -> String in side.rawValue }[row]
+     } else if pickerView == targetPicker {
+     return Target.allValues.map { (target) -> String in target.rawValue }[row]
+     }
+     return ""
+     }*/
 
     // MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var sidePicker: UIPickerView!
-    @IBOutlet weak var targetPicker: UIPickerView!
+    /*    @IBOutlet weak var targetLabel: UILabel!
+     @IBOutlet weak var sidesLabel: UILabel!*/
     /*
      This value is either passed by `StretchTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new stretch.
@@ -51,22 +50,32 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sidePicker.dataSource = self
-        sidePicker.delegate = self
-        targetPicker.dataSource = self
-        targetPicker.delegate = self
+        /*        sidePicker.dataSource = self
+         sidePicker.delegate = self
+         targetPicker.dataSource = self
+         targetPicker.delegate = self*/
 
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         // sidePicker.dataSource = Side.allValues.map { (side) -> String in side.rawValue }
+
+        /*        targetLabel.text = "please choose one"
+         targetLabel.textColor = UIColor.darkGray
+         sidesLabel.text = "please choose one"
+         sidesLabel.textColor = UIColor.gray*/
+
         // Set up views if editing an existing Stretch.
         if let stretch = stretch {
             navigationItem.title = stretch.name
             nameTextField.text = stretch.name
             photoImageView.image = stretch.photo
-            ratingControl.rating = stretch.rating
-            sidePicker.selectRow(Side.allValues.index(of: stretch.sides)!, inComponent: 0, animated: false)
-            targetPicker.selectRow(Target.allValues.index(of: stretch.target)!, inComponent: 0, animated: false)
+            /*            targetLabel.text = stretch.target.rawValue
+             targetLabel.textColor = UIColor.darkText
+             sidesLabel.text = stretch.sides.rawValue
+             sidesLabel.textColor = UIColor.darkText*/
+
+            /*            sidePicker.selectRow(Side.allValues.index(of: stretch.sides)!, inComponent: 0, animated: false)
+             targetPicker.selectRow(Target.allValues.index(of: stretch.target)!, inComponent: 0, animated: false)*/
         }
 
         // Enable the Save button only if the text field has a valid Stretch name.
@@ -131,9 +140,9 @@ class StretchViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         let name = nameTextField.text ?? ""
         let description = ""
         let photo = photoImageView.image
-        let rating = ratingControl.rating
-        let sides = Side.allValues[sidePicker.selectedRow(inComponent: 0)]
-        let target = Target.allValues[targetPicker.selectedRow(inComponent: 0)]
+        let rating = 0
+        let sides = Side.Center // Side.allValues[sidePicker.selectedRow(inComponent: 0)]
+        let target = Target.Legs // Target.allValues[targetPicker.selectedRow(inComponent: 0)]
 
         // Set the stretch to be passed to StretchTableViewController after the unwind segue.
         stretch = Stretch(name: name, description: description, photo: choseImage ? photo : nil, rating: rating, sides: sides, target: target)
