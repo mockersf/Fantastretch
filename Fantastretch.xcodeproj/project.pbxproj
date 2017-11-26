@@ -72,6 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03237A421FCAE2DE00480A89 /* StretchViews */ = {
+			isa = PBXGroup;
+			children = (
+				036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */,
+				036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */,
+				032379F81FC8F2A400480A89 /* StretchViewController.swift */,
+				032379FA1FC8F88100480A89 /* StretchEditController.swift */,
+				03237A3D1FCA266600480A89 /* PickerTableController.swift */,
+				03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */,
+			);
+			path = StretchViews;
+			sourceTree = "<group>";
+		};
 		036F18921FC1747A00D5FC02 = {
 			isa = PBXGroup;
 			children = (
@@ -93,16 +106,11 @@
 		036F189D1FC1747B00D5FC02 /* Fantastretch */ = {
 			isa = PBXGroup;
 			children = (
+				03237A421FCAE2DE00480A89 /* StretchViews */,
 				036F18C01FC1BA7900D5FC02 /* Stretch.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
 				036F18BE1FC19FCA00D5FC02 /* RatingControl.swift */,
-				036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */,
-				036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */,
-				032379F81FC8F2A400480A89 /* StretchViewController.swift */,
-				032379FA1FC8F88100480A89 /* StretchEditController.swift */,
 				036F18A21FC1747B00D5FC02 /* Main.storyboard */,
-				03237A3D1FCA266600480A89 /* PickerTableController.swift */,
-				03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */,
 				036F18A51FC1747B00D5FC02 /* Assets.xcassets */,
 				036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */,
 				036F18AA1FC1747B00D5FC02 /* Info.plist */,
