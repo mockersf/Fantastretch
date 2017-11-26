@@ -65,14 +65,20 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         switch segue.identifier ?? "" {
 
         case "PickTarget":
-            guard let pickerTableController = segue.destination as? PickerTableController else {
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             pickerTableController.allValues = Target.allValues.map { $0.rawValue }.sorted()
             pickerTableController.type = "target"
 
         case "PickSides":
-            guard let pickerTableController = segue.destination as? PickerTableController else {
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             pickerTableController.allValues = Side.allValues.map { $0.rawValue }
