@@ -12,6 +12,7 @@ import os.log
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var stretch: Stretch?
+    let placeholderGray = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1)
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var targetLabel: UILabel!
@@ -45,9 +46,9 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         } else {
             navigationItem.title = "New Stretch"
             targetLabel.text = "Choose one"
-            targetLabel.textColor = UIColor.gray
+            targetLabel.textColor = placeholderGray
             sidesLabel.text = "Choose one"
-            sidesLabel.textColor = UIColor.gray
+            sidesLabel.textColor = placeholderGray
             setPlaceholderDescription()
             updateSaveButtonState()
         }
@@ -202,6 +203,6 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     private func setPlaceholderDescription() {
         descriptionTextEmpty = true
         descriptionText.text = "Set a description for this stretch"
-        descriptionText.textColor = UIColor.gray
+        descriptionText.textColor = placeholderGray
     }
 }

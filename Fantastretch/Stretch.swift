@@ -13,7 +13,7 @@ import CoreData
 enum Side: String {
     case Center
     case Sides
-    case Both
+    case Both = "Center and Sides"
     static let allValues = [Center, Sides, Both]
 }
 
