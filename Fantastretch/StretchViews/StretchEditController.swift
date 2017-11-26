@@ -171,10 +171,12 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             case "sides":
                 sidesLabel.text = Side.allValues.first(where: { $0.rawValue == selected })?.rawValue
                 sidesLabel.textColor = UIColor.darkText
+                updateSaveButtonState()
 
             case "target":
                 targetLabel.text = Target.allValues.first(where: { $0.rawValue == selected })?.rawValue
                 targetLabel.textColor = UIColor.darkText
+                updateSaveButtonState()
 
             default:
                 fatalError("unknown picker type: \(pickerTableController.type ?? "missing type")")
@@ -186,7 +188,9 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
-        saveButton.isEnabled = !text.isEmpty
+        let choseSides = Side.allValues.first(where: { $0.rawValue == sidesLabel.text })
+        let choseTarget = Target.allValues.first(where: { $0.rawValue == targetLabel.text })
+        saveButton.isEnabled = !text.isEmpty && choseSides != nil && choseTarget != nil
     }
 
     private func setPlaceholderDescription() {
