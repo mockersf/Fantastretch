@@ -22,10 +22,18 @@
 		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
 		03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D081FCB66CE003E145B /* RootTabController.swift */; };
+		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		036F18B01FC1747B00D5FC02 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 036F18931FC1747A00D5FC02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 036F189A1FC1747B00D5FC02;
+			remoteInfo = Fantastretch;
+		};
+		03E31D151FCB80EF003E145B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 036F18931FC1747A00D5FC02 /* Project object */;
 			proxyType = 1;
@@ -54,6 +62,9 @@
 		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
 		03E31D081FCB66CE003E145B /* RootTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabController.swift; sourceTree = "<group>"; };
+		03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantastretchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E31D121FCB80EF003E145B /* FantastretchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantastretchUITests.swift; sourceTree = "<group>"; };
+		03E31D141FCB80EF003E145B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +76,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		036F18AC1FC1747B00D5FC02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03E31D0D1FCB80EF003E145B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,6 +110,7 @@
 			children = (
 				036F189D1FC1747B00D5FC02 /* Fantastretch */,
 				036F18B21FC1747B00D5FC02 /* FantastretchTests */,
+				03E31D111FCB80EF003E145B /* FantastretchUITests */,
 				036F189C1FC1747B00D5FC02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,6 +120,7 @@
 			children = (
 				036F189B1FC1747B00D5FC02 /* Fantastretch.app */,
 				036F18AF1FC1747B00D5FC02 /* FantastretchTests.xctest */,
+				03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +149,15 @@
 				036F18B51FC1747B00D5FC02 /* Info.plist */,
 			);
 			path = FantastretchTests;
+			sourceTree = "<group>";
+		};
+		03E31D111FCB80EF003E145B /* FantastretchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				03E31D121FCB80EF003E145B /* FantastretchUITests.swift */,
+				03E31D141FCB80EF003E145B /* Info.plist */,
+			);
+			path = FantastretchUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +199,24 @@
 			productReference = 036F18AF1FC1747B00D5FC02 /* FantastretchTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		03E31D0F1FCB80EF003E145B /* FantastretchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 03E31D171FCB80EF003E145B /* Build configuration list for PBXNativeTarget "FantastretchUITests" */;
+			buildPhases = (
+				03E31D0C1FCB80EF003E145B /* Sources */,
+				03E31D0D1FCB80EF003E145B /* Frameworks */,
+				03E31D0E1FCB80EF003E145B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				03E31D161FCB80EF003E145B /* PBXTargetDependency */,
+			);
+			name = FantastretchUITests;
+			productName = FantastretchUITests;
+			productReference = 03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -185,6 +232,11 @@
 						ProvisioningStyle = Automatic;
 					};
 					036F18AE1FC1747B00D5FC02 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 036F189A1FC1747B00D5FC02;
+					};
+					03E31D0F1FCB80EF003E145B = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 036F189A1FC1747B00D5FC02;
@@ -206,6 +258,7 @@
 			targets = (
 				036F189A1FC1747B00D5FC02 /* Fantastretch */,
 				036F18AE1FC1747B00D5FC02 /* FantastretchTests */,
+				03E31D0F1FCB80EF003E145B /* FantastretchUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,6 +275,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		036F18AD1FC1747B00D5FC02 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		03E31D0E1FCB80EF003E145B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -273,6 +333,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		03E31D0C1FCB80EF003E145B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -280,6 +348,11 @@
 			isa = PBXTargetDependency;
 			target = 036F189A1FC1747B00D5FC02 /* Fantastretch */;
 			targetProxy = 036F18B01FC1747B00D5FC02 /* PBXContainerItemProxy */;
+		};
+		03E31D161FCB80EF003E145B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 036F189A1FC1747B00D5FC02 /* Fantastretch */;
+			targetProxy = 03E31D151FCB80EF003E145B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -474,6 +547,36 @@
 			};
 			name = Release;
 		};
+		03E31D181FCB80EF003E145B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CKFQ3S4U4C;
+				INFOPLIST_FILE = FantastretchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vleue.FantastretchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Fantastretch;
+			};
+			name = Debug;
+		};
+		03E31D191FCB80EF003E145B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CKFQ3S4U4C;
+				INFOPLIST_FILE = FantastretchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vleue.FantastretchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Fantastretch;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -500,6 +603,15 @@
 			buildConfigurations = (
 				036F18BC1FC1747B00D5FC02 /* Debug */,
 				036F18BD1FC1747B00D5FC02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		03E31D171FCB80EF003E145B /* Build configuration list for PBXNativeTarget "FantastretchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03E31D181FCB80EF003E145B /* Debug */,
+				03E31D191FCB80EF003E145B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

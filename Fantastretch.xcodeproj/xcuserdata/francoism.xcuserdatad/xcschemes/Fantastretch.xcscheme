@@ -39,6 +39,16 @@
                ReferencedContainer = "container:Fantastretch.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "03E31D0F1FCB80EF003E145B"
+               BuildableName = "FantastretchUITests.xctest"
+               BlueprintName = "FantastretchUITests"
+               ReferencedContainer = "container:Fantastretch.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
