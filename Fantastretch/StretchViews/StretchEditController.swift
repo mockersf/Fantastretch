@@ -35,7 +35,9 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
 
             nameTextField.text = stretch.name
             targetLabel.text = stretch.target.rawValue
+            targetLabel.textColor = UIColor.gray
             sidesLabel.text = stretch.sides.rawValue
+            sidesLabel.textColor = UIColor.gray
             if let photo = stretch.photo {
                 photoImageView.image = photo
             }
@@ -177,12 +179,12 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             switch pickerTableController.type ?? "" {
             case "sides":
                 sidesLabel.text = Side.allValues.first(where: { $0.rawValue == selected })?.rawValue
-                sidesLabel.textColor = UIColor.darkText
+                sidesLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
             case "target":
                 targetLabel.text = Target.allValues.first(where: { $0.rawValue == selected })?.rawValue
-                targetLabel.textColor = UIColor.darkText
+                targetLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
             default:
