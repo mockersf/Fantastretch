@@ -272,10 +272,10 @@
             </objects>
             <point key="canvasLocation" x="-1700" y="-116"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Root Tab Controller-->
         <scene sceneID="E37-5U-Cco">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="K8u-d2-TWm" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="K8u-d2-TWm" customClass="RootTabController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FAO-2s-yjs">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

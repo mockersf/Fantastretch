@@ -21,6 +21,7 @@
 		036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C01FC1BA7900D5FC02 /* Stretch.swift */; };
 		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
+		03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D081FCB66CE003E145B /* RootTabController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		036F18C01FC1BA7900D5FC02 /* Stretch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stretch.swift; sourceTree = "<group>"; };
 		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
+		03E31D081FCB66CE003E145B /* RootTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				036F18A71FC1747B00D5FC02 /* LaunchScreen.storyboard */,
 				036F18AA1FC1747B00D5FC02 /* Info.plist */,
 				03237A041FC9C1D500480A89 /* Model.xcdatamodeld */,
+				03E31D081FCB66CE003E145B /* RootTabController.swift */,
 			);
 			path = Fantastretch;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */,
 				032379F91FC8F2A400480A89 /* StretchViewController.swift in Sources */,
 				032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */,
+				03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */,
 				036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */,
 				03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */,
 				036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */,
