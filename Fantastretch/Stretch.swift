@@ -18,10 +18,19 @@ enum Side: String {
 }
 
 enum Target: String {
-    case Legs
-    case Arms
+    case Triceps
+    case Biceps
+    case Forearms
+    case Shoulders
     case Back
-    static let allValues = [Legs, Arms, Back]
+    case Chest
+    case Abs
+    case Glutes
+    case Quads
+    case HipFlexors = "Hip Flexors"
+    case Hamstrings
+    case Calves
+    static let allValues = [Triceps, Biceps, Forearms, Shoulders, Back, Chest, Abs, Glutes, Quads, HipFlexors, Hamstrings, Calves]
 }
 
 class Stretch: NSObject {
