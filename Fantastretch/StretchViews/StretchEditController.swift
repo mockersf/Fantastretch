@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var stretch: Stretch?
 
@@ -18,11 +18,15 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet weak var sidesLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var descriptionText: UITextView!
+
+    var descriptionTextEmpty = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nameTextField.delegate = self
+        descriptionText.delegate = self
 
         // Set up views with existing Stretch.
         if let stretch = stretch {
@@ -34,12 +38,17 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             if let photo = stretch.photo {
                 photoImageView.image = photo
             }
+            descriptionText.text = stretch.stretch_description
+            if stretch.stretch_description != "" {
+                descriptionTextEmpty = false
+            }
         } else {
             navigationItem.title = "New Stretch"
             targetLabel.text = "Choose one"
             targetLabel.textColor = UIColor.gray
             sidesLabel.text = "Choose one"
             sidesLabel.textColor = UIColor.gray
+            setPlaceholderDescription()
             updateSaveButtonState()
         }
     }
@@ -71,7 +80,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
 
         case "SaveItem":
             let name = nameTextField.text ?? ""
-            let description = ""
+            let description = descriptionTextEmpty ? "" : (descriptionText.text ?? "")
             let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
             let sides = Side.allValues.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Side.Center
             let target = Target.allValues.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.Legs
@@ -126,6 +135,27 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         updateSaveButtonState()
     }
 
+    // MARK: UITextViewDelegate
+    func textViewShouldBeginEditing(_: UITextView) -> Bool {
+        if descriptionTextEmpty {
+            descriptionText.text = ""
+            descriptionText.textColor = UIColor.darkText
+        }
+        return true
+    }
+
+    func textViewDidEndEditing(_: UITextView) {
+        if descriptionText.text == "" {
+            setPlaceholderDescription()
+        } else {
+            descriptionTextEmpty = false
+        }
+    }
+
+    func textViewDidChange(_: UITextView) {
+        descriptionTextEmpty = descriptionText.text == ""
+    }
+
     // MARK: Actions
     @IBAction func selectImageFromPhotoLibrary(_: UITapGestureRecognizer) {
         let imagePickerController = UIImagePickerController()
@@ -149,7 +179,6 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             default:
                 fatalError("unknown picker type: \(pickerTableController.type ?? "missing type")")
             }
-            print("selected: \(selected)")
         }
     }
 
@@ -158,5 +187,11 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
         saveButton.isEnabled = !text.isEmpty
+    }
+
+    private func setPlaceholderDescription() {
+        descriptionTextEmpty = true
+        descriptionText.text = "Set a description for this stretch"
+        descriptionText.textColor = UIColor.gray
     }
 }

@@ -92,7 +92,7 @@ class Stretch: NSObject {
         let stretchMO = NSManagedObject(entity: entity, insertInto: managedContext)
         stretchMO.setValue(id, forKey: "id")
         stretchMO.setValue(name, forKey: "name")
-        stretchMO.setValue(description, forKey: "description_field")
+        stretchMO.setValue(stretch_description, forKey: "description_field")
         stretchMO.setValue(target.rawValue, forKey: "target")
         stretchMO.setValue(sides.rawValue, forKey: "sides")
         stretchMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")
@@ -117,7 +117,7 @@ class Stretch: NSObject {
             let stretchMOs = try managedContext.fetch(fr)
             let stretchMO = stretchMOs[0]
             stretchMO.setValue(name, forKey: "name")
-            stretchMO.setValue(description, forKey: "description_field")
+            stretchMO.setValue(stretch_description, forKey: "description_field")
             stretchMO.setValue(target.rawValue, forKey: "target")
             stretchMO.setValue(sides.rawValue, forKey: "sides")
             stretchMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")

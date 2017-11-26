@@ -151,12 +151,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="7Qr-0h-VrK">
+                                        <rect key="frame" x="0.0" y="392" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7Qr-0h-VrK" id="CtP-TL-oPb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="placeholder for stretch description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2pJ-nQ-uNA">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="99.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2pJ-nQ-uNA" firstAttribute="top" secondItem="CtP-TL-oPb" secondAttribute="top" id="Ogp-h6-nHn"/>
+                                                <constraint firstAttribute="trailing" secondItem="2pJ-nQ-uNA" secondAttribute="trailing" constant="20" id="hFZ-0i-nfV"/>
+                                                <constraint firstAttribute="bottom" secondItem="2pJ-nQ-uNA" secondAttribute="bottom" id="k2U-4R-FsU"/>
+                                                <constraint firstItem="2pJ-nQ-uNA" firstAttribute="leading" secondItem="CtP-TL-oPb" secondAttribute="leading" constant="20" id="riZ-B5-wOq"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Informations" id="45Z-Pl-uPr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="7Gv-3f-JV0" detailTextLabel="yku-ai-Rts" style="IBUITableViewCellStyleValue1" id="JcC-fU-L3l">
-                                        <rect key="frame" x="0.0" y="420" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="520" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JcC-fU-L3l" id="MDq-2f-nwe">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -180,7 +202,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="ORC-Pj-5y7" detailTextLabel="9Ri-Y0-Oz4" style="IBUITableViewCellStyleValue1" id="DMJ-8W-Ghh">
-                                        <rect key="frame" x="0.0" y="464" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="564" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DMJ-8W-Ghh" id="AkC-j1-DlD">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -219,6 +241,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="DescriptionText" destination="2pJ-nQ-uNA" id="F2C-dd-zoE"/>
                         <outlet property="photoCell" destination="M0x-eJ-Yfz" id="CZI-pb-6Oa"/>
                         <outlet property="photoImageView" destination="LhY-yn-pH1" id="v6b-mB-HWT"/>
                         <outlet property="ratingControl" destination="sKR-aJ-X4z" id="FdR-AD-LLz"/>
@@ -228,7 +251,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdI-bT-ZpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="269"/>
+            <point key="canvasLocation" x="512.79999999999995" y="268.51574212893553"/>
         </scene>
         <!--Stretches-->
         <scene sceneID="Lub-kv-A3n">
@@ -451,6 +474,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="pfD-Xj-lN2">
+                                        <rect key="frame" x="0.0" y="508" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pfD-Xj-lN2" id="fKG-Lc-6e1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2sn-c3-vcT">
+                                                    <rect key="frame" x="20" y="0.0" width="335" height="99.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="2sn-c3-vcT" secondAttribute="bottom" id="8K0-6O-Zks"/>
+                                                <constraint firstItem="2sn-c3-vcT" firstAttribute="leading" secondItem="fKG-Lc-6e1" secondAttribute="leading" constant="20" id="Go7-p9-WPQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="2sn-c3-vcT" secondAttribute="trailing" constant="20" id="Xj0-bT-5ni"/>
+                                                <constraint firstItem="2sn-c3-vcT" firstAttribute="top" secondItem="fKG-Lc-6e1" secondAttribute="top" id="ddL-bY-yYh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -472,6 +517,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="descriptionText" destination="2sn-c3-vcT" id="O4E-7f-bZz"/>
                         <outlet property="nameTextField" destination="4VP-tb-Jgw" id="rGK-VZ-XDS"/>
                         <outlet property="photoImageView" destination="Oaz-O4-Shp" id="Gmi-tL-O7i"/>
                         <outlet property="saveButton" destination="DyG-rY-at8" id="HY7-yV-GGF"/>

@@ -17,6 +17,7 @@ class StretchViewController: UITableViewController {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var photoCell: UIStackView!
     @IBOutlet weak var ratingControl: RatingControl!
+    @IBOutlet weak var DescriptionText: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,8 @@ class StretchViewController: UITableViewController {
             sidesLabel.text = stretch.sides.rawValue
             if let photo = stretch.photo {
                 photoImageView.image = photo
-            } else {
-                photoCell.isHidden = true
             }
+            DescriptionText.text = stretch.stretch_description
             ratingControl.rating = stretch.rating
         }
     }
