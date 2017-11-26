@@ -75,7 +75,7 @@ class Stretch: NSObject {
 
         do {
             let stretchesMO = try managedContext.fetch(fetchRequest)
-            return stretchesMO.map({ (stretchMO) -> Stretch in Stretch(mo: stretchMO as! StretchMO)! })
+            return stretchesMO.map({ Stretch(mo: $0 as! StretchMO)! })
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -148,10 +148,10 @@ class Stretch: NSObject {
             do {
                 try managedContext.save()
             } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
+                print("Could not delete. \(error), \(error.userInfo)")
             }
         } catch {
-            print("Could not save. \(error)")
+            print("Could not delete. \(error)")
         }
     }
 }

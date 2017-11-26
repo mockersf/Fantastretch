@@ -22,6 +22,7 @@ class StretchTableViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
 
         stretches = Stretch.load() ?? []
+        sortStretches()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,6 +118,19 @@ class StretchTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
                 stretch.save()
             }
+            sortStretches()
+            tableView.reloadData()
         }
+    }
+
+    // MARK: private functions
+    private func sortStretches() {
+        stretches = stretches.sorted(by: { (stretchA, stretchB) -> Bool in
+            if stretchA.target.rawValue == stretchB.target.rawValue {
+                return stretchA.name < stretchB.name
+            } else {
+                return stretchA.target.rawValue < stretchB.target.rawValue
+            }
+        })
     }
 }
