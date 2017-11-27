@@ -11,12 +11,12 @@ import UIKit
 class PickerTableController: UITableViewController {
     var allValues: [String]?
     var selected: String?
-    var type: String?
+    var type: PickTarget?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Choose " + (type?.capitalized ?? "")
+        navigationItem.title = "Choose " + (type?.rawValue.capitalized ?? "")
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

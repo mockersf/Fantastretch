@@ -9,6 +9,11 @@
 import UIKit
 import os.log
 
+enum PickTarget: String {
+    case Muscle
+    case Repeat
+}
+
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var stretch: Exercise?
@@ -75,7 +80,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             pickerTableController.allValues = Target.allCases.map { $0.rawValue }.sorted()
-            pickerTableController.type = "target"
+            pickerTableController.type = PickTarget.Muscle
 
         case "PickSides":
             guard let navigationController = segue.destination as? UINavigationController else {
@@ -85,7 +90,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             pickerTableController.allValues = Repeat.allCases.map { $0.rawValue }
-            pickerTableController.type = "sides"
+            pickerTableController.type = PickTarget.Repeat
 
         case "SaveItem":
             let name = nameTextField.text ?? ""
@@ -176,19 +181,19 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     // MARK: Actions
     @IBAction func unwindToEdit(sender: UIStoryboardSegue) {
         if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
-            switch pickerTableController.type ?? "" {
-            case "sides":
+            switch pickerTableController.type {
+            case .some(PickTarget.Repeat):
                 sidesLabel.text = Repeat.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 sidesLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
-            case "target":
+            case .some(PickTarget.Muscle):
                 targetLabel.text = Target.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 targetLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
-            default:
-                fatalError("unknown picker type: \(pickerTableController.type ?? "missing type")")
+            case .none:
+                fatalError("missing picker type")
             }
         }
     }

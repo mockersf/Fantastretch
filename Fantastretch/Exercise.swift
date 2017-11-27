@@ -12,7 +12,7 @@ import CoreData
 
 enum Repeat: String, AutoEnumAllCases {
     case Once
-    case EachSide = "Each Side"
+    case EachSide = "For Each Side"
 
     static let defaultCase = Once
 }

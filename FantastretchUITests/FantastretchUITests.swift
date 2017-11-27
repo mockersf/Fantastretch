@@ -38,7 +38,7 @@ class FantastretchUITests: XCTestCase {
         let tablesQuery = tablesQuery2
         tablesQuery /* @START_MENU_TOKEN@ */ .textFields["Stretch Name"] /* [[".cells.textFields[\"Stretch Name\"]",".textFields[\"Stretch Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery2.children(matching: .cell).element(boundBy: 0).children(matching: .textField).element.typeText("My New Stretch")
-        tablesQuery2.cells.containing(.staticText, identifier: "Target").staticTexts["Choose one"].tap()
+        tablesQuery2.cells.containing(.staticText, identifier: "Muscle").staticTexts["Choose one"].tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Calves"] /* [[".cells.staticTexts[\"Calves\"]",".staticTexts[\"Calves\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Choose one"] /* [[".cells.staticTexts[\"Choose one\"]",".staticTexts[\"Choose one\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Once"] /* [[".cells.staticTexts[\"Center and Sides\"]",".staticTexts[\"Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
