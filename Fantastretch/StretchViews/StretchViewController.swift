@@ -10,7 +10,7 @@ import UIKit
 
 class StretchViewController: UITableViewController {
 
-    var stretch: Stretch?
+    var stretch: Exercise?
 
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var sidesLabel: UILabel!
@@ -30,7 +30,7 @@ class StretchViewController: UITableViewController {
             if let photo = stretch.photo {
                 photoImageView.image = photo
             }
-            DescriptionText.text = stretch.stretch_description
+            DescriptionText.text = stretch.explanation
             ratingControl.rating = stretch.rating
         }
     }

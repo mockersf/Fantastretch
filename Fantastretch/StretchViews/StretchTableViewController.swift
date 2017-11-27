@@ -13,7 +13,7 @@ import CoreData
 class StretchTableViewController: UITableViewController {
 
     // MARK: Properties
-    var stretches = [Stretch]()
+    var stretches = [Exercise]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class StretchTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        stretches = Stretch.load() ?? []
+        stretches = Exercise.load() ?? []
         sortStretches()
     }
 

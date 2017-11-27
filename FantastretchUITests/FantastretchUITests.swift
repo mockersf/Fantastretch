@@ -41,7 +41,7 @@ class FantastretchUITests: XCTestCase {
         tablesQuery2.cells.containing(.staticText, identifier: "Target").staticTexts["Choose one"].tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Calves"] /* [[".cells.staticTexts[\"Calves\"]",".staticTexts[\"Calves\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Choose one"] /* [[".cells.staticTexts[\"Choose one\"]",".staticTexts[\"Choose one\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
-        tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Center and Sides"] /* [[".cells.staticTexts[\"Center and Sides\"]",".staticTexts[\"Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
+        tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Once"] /* [[".cells.staticTexts[\"Center and Sides\"]",".staticTexts[\"Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
 
         let textView = tablesQuery2.children(matching: .cell).element(boundBy: 4).children(matching: .textView).element
         textView.tap()
@@ -55,7 +55,7 @@ class FantastretchUITests: XCTestCase {
         stretchesNavigationBar.buttons["Edit"].tap()
 
         //        let tablesQuery = app.tables
-        tablesQuery /* @START_MENU_TOKEN@ */ .buttons["Delete My New Stretch, Calves, Center and Sides"] /* [[".cells.buttons[\"Delete My New Stretch, Calves, Center and Sides\"]",".buttons[\"Delete My New Stretch, Calves, Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
+        tablesQuery /* @START_MENU_TOKEN@ */ .buttons["Delete My New Stretch, Calves, Once"] /* [[".cells.buttons[\"Delete My New Stretch, Calves, Center and Sides\"]",".buttons[\"Delete My New Stretch, Calves, Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery.buttons["Delete"].tap()
         stretchesNavigationBar.buttons["Done"].tap()
     }

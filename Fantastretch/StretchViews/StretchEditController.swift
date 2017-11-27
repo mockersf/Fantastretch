@@ -11,7 +11,7 @@ import os.log
 
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
-    var stretch: Stretch?
+    var stretch: Exercise?
     let placeholderGray = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1)
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -41,8 +41,8 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             if let photo = stretch.photo {
                 photoImageView.image = photo
             }
-            descriptionText.text = stretch.stretch_description
-            if stretch.stretch_description != "" {
+            descriptionText.text = stretch.explanation
+            if stretch.explanation != "" {
                 descriptionTextEmpty = false
             }
         } else {
@@ -84,17 +84,17 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = Side.allCases.map { $0.rawValue }
+            pickerTableController.allValues = Repeat.allCases.map { $0.rawValue }
             pickerTableController.type = "sides"
 
         case "SaveItem":
             let name = nameTextField.text ?? ""
             let description = descriptionTextEmpty ? "" : (descriptionText.text ?? "")
             let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
-            let sides = Side.allCases.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Side.Center
-            let target = Target.allCases.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.Glutes
+            let sides = Repeat.allCases.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Repeat.defaultCase
+            let target = Target.allCases.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.defaultCase
 
-            stretch = Stretch(name: name, description: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
+            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
@@ -178,7 +178,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
             switch pickerTableController.type ?? "" {
             case "sides":
-                sidesLabel.text = Side.allCases.first(where: { $0.rawValue == selected })?.rawValue
+                sidesLabel.text = Repeat.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 sidesLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
@@ -197,7 +197,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
-        let choseSides = Side.allCases.first(where: { $0.rawValue == sidesLabel.text })
+        let choseSides = Repeat.allCases.first(where: { $0.rawValue == sidesLabel.text })
         let choseTarget = Target.allCases.first(where: { $0.rawValue == targetLabel.text })
         saveButton.isEnabled = !text.isEmpty && choseSides != nil && choseTarget != nil
     }
