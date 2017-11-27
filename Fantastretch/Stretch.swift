@@ -10,14 +10,13 @@ import UIKit
 import os.log
 import CoreData
 
-enum Side: String {
+enum Side: String, AutoEnumAllCases {
     case Center
     case Sides
     case Both = "Center and Sides"
-    static let allValues = [Center, Sides, Both]
 }
 
-enum Target: String {
+enum Target: String, AutoEnumAllCases {
     case Triceps
     case Biceps
     case Forearms
@@ -30,7 +29,6 @@ enum Target: String {
     case HipFlexors = "Hip Flexors"
     case Hamstrings
     case Calves
-    static let allValues = [Triceps, Biceps, Forearms, Shoulders, Back, Chest, Abs, Glutes, Quads, HipFlexors, Hamstrings, Calves]
 }
 
 class Stretch: NSObject {

@@ -12,6 +12,8 @@
 		03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03237A041FC9C1D500480A89 /* Model.xcdatamodeld */; };
 		03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3D1FCA266600480A89 /* PickerTableController.swift */; };
 		03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */; };
+		03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */; };
+		03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */; };
 		036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F189E1FC1747B00D5FC02 /* AppDelegate.swift */; };
 		036F18A41FC1747B00D5FC02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A21FC1747B00D5FC02 /* Main.storyboard */; };
 		036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A51FC1747B00D5FC02 /* Assets.xcassets */; };
@@ -23,6 +25,7 @@
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
 		03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D081FCB66CE003E145B /* RootTabController.swift */; };
 		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
+		03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,8 @@
 		03237A051FC9C1D500480A89 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		03237A3D1FCA266600480A89 /* PickerTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableController.swift; sourceTree = "<group>"; };
 		03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableCell.swift; sourceTree = "<group>"; };
+		03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoEnumAllCases.stencil; sourceTree = "<group>"; };
+		03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEnumAllCases.generated.swift; sourceTree = "<group>"; };
 		036F189B1FC1747B00D5FC02 /* Fantastretch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantastretch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F189E1FC1747B00D5FC02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		036F18A31FC1747B00D5FC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantastretchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E31D121FCB80EF003E145B /* FantastretchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantastretchUITests.swift; sourceTree = "<group>"; };
 		03E31D141FCB80EF003E145B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +111,26 @@
 			path = StretchViews;
 			sourceTree = "<group>";
 		};
+		03471BF61FCC73B3008671A7 /* SourceryTemplates */ = {
+			isa = PBXGroup;
+			children = (
+				03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */,
+			);
+			path = SourceryTemplates;
+			sourceTree = "<group>";
+		};
+		03471BF71FCC73EC008671A7 /* SourceryGenerated */ = {
+			isa = PBXGroup;
+			children = (
+				03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */,
+			);
+			path = SourceryGenerated;
+			sourceTree = "<group>";
+		};
 		036F18921FC1747A00D5FC02 = {
 			isa = PBXGroup;
 			children = (
+				03471BF61FCC73B3008671A7 /* SourceryTemplates */,
 				036F189D1FC1747B00D5FC02 /* Fantastretch */,
 				036F18B21FC1747B00D5FC02 /* FantastretchTests */,
 				03E31D111FCB80EF003E145B /* FantastretchUITests */,
@@ -128,6 +151,8 @@
 		036F189D1FC1747B00D5FC02 /* Fantastretch */ = {
 			isa = PBXGroup;
 			children = (
+				03471BF71FCC73EC008671A7 /* SourceryGenerated */,
+				03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */,
 				03237A421FCAE2DE00480A89 /* StretchViews */,
 				036F18C01FC1BA7900D5FC02 /* Stretch.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
@@ -167,7 +192,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 036F18B81FC1747B00D5FC02 /* Build configuration list for PBXNativeTarget "Fantastretch" */;
 			buildPhases = (
-				03A248691FC37D9700BBF5B6 /* ShellScript */,
+				03471BFA1FCC7484008671A7 /* Sourcery */,
+				03A248691FC37D9700BBF5B6 /* Swift Format */,
 				036F18971FC1747B00D5FC02 /* Sources */,
 				036F18981FC1747B00D5FC02 /* Frameworks */,
 				036F18991FC1747B00D5FC02 /* Resources */,
@@ -270,6 +296,7 @@
 			files = (
 				036F18A91FC1747B00D5FC02 /* LaunchScreen.storyboard in Resources */,
 				036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */,
+				03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */,
 				036F18A41FC1747B00D5FC02 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,18 +318,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03A248691FC37D9700BBF5B6 /* ShellScript */ = {
+		03471BFA1FCC7484008671A7 /* Sourcery */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Sourcery;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/local/bin/swiftformat .";
-			shellScript = "";
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/sourcery\n";
+		};
+		03A248691FC37D9700BBF5B6 /* Swift Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Format";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/swiftformat .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -314,11 +356,13 @@
 				036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */,
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
 				03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */,
+				03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */,
 				036F18C11FC1BA7900D5FC02 /* Stretch.swift in Sources */,
 				03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */,
 				032379F91FC8F2A400480A89 /* StretchViewController.swift in Sources */,
 				032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */,
 				03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */,
+				03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */,
 				036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */,
 				03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */,
 				036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */,

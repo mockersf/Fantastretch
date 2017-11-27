@@ -1,0 +1,6 @@
+sources:
+  - Fantastretch
+templates:
+  - SourceryTemplates
+output:
+  Fantastretch/SourceryGenerated
