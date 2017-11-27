@@ -17,7 +17,7 @@ enum Repeat: String, AutoEnumAllCases {
     static let defaultCase = Once
 }
 
-enum Target: String, AutoEnumAllCases {
+enum Muscle: String, AutoEnumAllCases {
     case Triceps
     case Biceps
     case Forearms
@@ -49,12 +49,12 @@ class Exercise: NSObject {
     var photo: UIImage?
     var rating: Int
     var sides: Repeat
-    var target: Target
+    var target: Muscle
     var id: UUID
     var type: ExerciseType
 
     // MARK: Initialization
-    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, target: Target, id: UUID?) {
+    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, target: Muscle, id: UUID?) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -81,7 +81,7 @@ class Exercise: NSObject {
         self.init(name: exerciseMO.name ?? "", explanation: exerciseMO.explanation ?? "",
                   photo: exerciseMO.image.flatMap({ (data) -> UIImage in UIImage(data: data)! }), rating: Int(exerciseMO.rating),
                   sides: Repeat(rawValue: exerciseMO.sides ?? "") ?? Repeat.defaultCase,
-                  target: Target(rawValue: exerciseMO.target ?? "") ?? Target.defaultCase, id: exerciseMO.id)
+                  target: Muscle(rawValue: exerciseMO.target ?? "") ?? Muscle.defaultCase, id: exerciseMO.id)
     }
 
     static func load() -> [Exercise]? {

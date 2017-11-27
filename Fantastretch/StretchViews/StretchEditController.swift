@@ -79,7 +79,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = Target.allCases.map { $0.rawValue }.sorted()
+            pickerTableController.allValues = Muscle.allCases.map { $0.rawValue }.sorted()
             pickerTableController.type = PickTarget.Muscle
 
         case "PickSides":
@@ -97,7 +97,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             let description = descriptionTextEmpty ? "" : (descriptionText.text ?? "")
             let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
             let sides = Repeat.allCases.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Repeat.defaultCase
-            let target = Target.allCases.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Target.defaultCase
+            let target = Muscle.allCases.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Muscle.defaultCase
 
             stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
 
@@ -188,7 +188,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
                 updateSaveButtonState()
 
             case .some(PickTarget.Muscle):
-                targetLabel.text = Target.allCases.first(where: { $0.rawValue == selected })?.rawValue
+                targetLabel.text = Muscle.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 targetLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
@@ -203,7 +203,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""
         let choseSides = Repeat.allCases.first(where: { $0.rawValue == sidesLabel.text })
-        let choseTarget = Target.allCases.first(where: { $0.rawValue == targetLabel.text })
+        let choseTarget = Muscle.allCases.first(where: { $0.rawValue == targetLabel.text })
         saveButton.isEnabled = !text.isEmpty && choseSides != nil && choseTarget != nil
     }
 

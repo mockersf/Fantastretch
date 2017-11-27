@@ -257,7 +257,7 @@
         <scene sceneID="Lub-kv-A3n">
             <objects>
                 <navigationController title="Stretches" automaticallyAdjustsScrollViewInsets="NO" id="uom-E3-0a7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Stretch List" image="List" id="YaR-Mg-C4N"/>
+                    <tabBarItem key="tabBarItem" title="Stretch List" image="ListIcon" id="YaR-Mg-C4N"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KiK-OH-pQn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -311,7 +311,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="EfL-17-H2m"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Start" image="Play" id="drN-pp-Sgm"/>
+                    <tabBarItem key="tabBarItem" title="Start" image="PlayIcon" id="drN-pp-Sgm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqd-1y-gyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -320,7 +320,7 @@
         <!--Settings-->
         <scene sceneID="KNt-Hf-frP">
             <objects>
-                <tableViewController id="Lhf-Oe-Ekn" sceneMemberID="viewController">
+                <tableViewController id="Lhf-Oe-Ekn" customClass="SettingsController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2db-Iy-bhR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,6 +541,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="zMA-Zf-lg1"/>
+                    <connections>
+                        <outlet property="alertsSoundSwitch" destination="Yk8-SP-SGT" id="fjU-p3-qmD"/>
+                        <outlet property="alertsVibrationSwitch" destination="vQV-S1-o2y" id="uar-dz-BhP"/>
+                        <outlet property="timersHoldLabel" destination="S5a-Rj-iHH" id="al0-td-A5C"/>
+                        <outlet property="timersRestLabel" destination="nBc-RI-I0g" id="VnS-DF-zaT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMx-2G-cFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -823,7 +829,7 @@
         <scene sceneID="09q-pr-14w">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TtU-hl-IKb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="qhr-nq-ZI9"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon" id="qhr-nq-ZI9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Fy9-5d-aQf">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -840,9 +846,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="List" width="30" height="30"/>
-        <image name="Play" width="30" height="30"/>
-        <image name="Settings" width="30" height="30"/>
+        <image name="ListIcon" width="30" height="30"/>
+        <image name="PlayIcon" width="30" height="30"/>
+        <image name="SettingsIcon" width="30" height="30"/>
         <image name="noPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
