@@ -25,7 +25,7 @@ class StretchViewController: UITableViewController {
         // Set up views with existing Stretch.
         if let stretch = stretch {
             navigationItem.title = stretch.name
-            targetLabel.text = stretch.target.rawValue
+            targetLabel.text = stretch.muscle.rawValue
             sidesLabel.text = stretch.sides.rawValue
             if let photo = stretch.photo {
                 photoImageView.image = photo

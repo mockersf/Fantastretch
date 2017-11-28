@@ -49,12 +49,12 @@ class Exercise: NSObject {
     var photo: UIImage?
     var rating: Int
     var sides: Repeat
-    var target: Muscle
+    var muscle: Muscle
     var id: UUID
     var type: ExerciseType
 
     // MARK: Initialization
-    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, target: Muscle, id: UUID?) {
+    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, muscle: Muscle, id: UUID?) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -72,7 +72,7 @@ class Exercise: NSObject {
         self.photo = photo
         self.rating = rating
         self.sides = sides
-        self.target = target
+        self.muscle = muscle
         self.id = id ?? UUID()
         type = ExerciseType.Stretch
     }
@@ -81,7 +81,7 @@ class Exercise: NSObject {
         self.init(name: exerciseMO.name ?? "", explanation: exerciseMO.explanation ?? "",
                   photo: exerciseMO.image.flatMap({ (data) -> UIImage in UIImage(data: data)! }), rating: Int(exerciseMO.rating),
                   sides: Repeat(rawValue: exerciseMO.sides ?? "") ?? Repeat.defaultCase,
-                  target: Muscle(rawValue: exerciseMO.target ?? "") ?? Muscle.defaultCase, id: exerciseMO.id)
+                  muscle: Muscle(rawValue: exerciseMO.muscle ?? "") ?? Muscle.defaultCase, id: exerciseMO.id)
     }
 
     static func load() -> [Exercise]? {
@@ -113,7 +113,7 @@ class Exercise: NSObject {
         exerciseMO.setValue(id, forKey: "id")
         exerciseMO.setValue(name, forKey: "name")
         exerciseMO.setValue(explanation, forKey: "explanation")
-        exerciseMO.setValue(target.rawValue, forKey: "target")
+        exerciseMO.setValue(muscle.rawValue, forKey: "muscle")
         exerciseMO.setValue(sides.rawValue, forKey: "sides")
         exerciseMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")
         exerciseMO.setValue(rating, forKey: "rating")
@@ -139,7 +139,7 @@ class Exercise: NSObject {
             let exerciseMO = exerciseMOs[0]
             exerciseMO.setValue(name, forKey: "name")
             exerciseMO.setValue(explanation, forKey: "explanation")
-            exerciseMO.setValue(target.rawValue, forKey: "target")
+            exerciseMO.setValue(muscle.rawValue, forKey: "muscle")
             exerciseMO.setValue(sides.rawValue, forKey: "sides")
             exerciseMO.setValue(photo.flatMap { UIImagePNGRepresentation($0) }, forKey: "image")
             exerciseMO.setValue(rating, forKey: "rating")

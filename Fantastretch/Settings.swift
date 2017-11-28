@@ -45,6 +45,9 @@ class Settings {
         defaults.set(timerRest, forKey: "timerRest")
         defaults.set(alertsVibration, forKey: "alertsVibration")
         defaults.set(alertsSound, forKey: "alertsSound")
-        defaults.set(musclePreferences, forKey: "musclePreferences")
+        let musclePreferencesRaw = Dictionary(uniqueKeysWithValues: musclePreferences.map({ (key: Muscle, value: Int) -> (String, Int) in
+            (key.rawValue, value)
+        }))
+        defaults.set(musclePreferencesRaw, forKey: "musclePreferences")
     }
 }

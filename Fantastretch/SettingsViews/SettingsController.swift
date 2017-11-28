@@ -23,7 +23,6 @@ class SettingsController: UITableViewController {
         timersRestLabel.text = "\(settings.timerRest) s"
         alertsVibrationSwitch.isOn = settings.alertsVibration
         alertsSoundSwitch.isOn = settings.alertsSound
-        print(settings.musclePreferences)
     }
 
     override func didReceiveMemoryWarning() {

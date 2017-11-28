@@ -39,7 +39,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             navigationItem.title = "Edit Stretch"
 
             nameTextField.text = stretch.name
-            targetLabel.text = stretch.target.rawValue
+            targetLabel.text = stretch.muscle.rawValue
             targetLabel.textColor = UIColor.gray
             sidesLabel.text = stretch.sides.rawValue
             sidesLabel.textColor = UIColor.gray
@@ -97,9 +97,9 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             let description = descriptionTextEmpty ? "" : (descriptionText.text ?? "")
             let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
             let sides = Repeat.allCases.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Repeat.defaultCase
-            let target = Muscle.allCases.first(where: { (target) -> Bool in target.rawValue == targetLabel.text }) ?? Muscle.defaultCase
+            let muscle = Muscle.allCases.first(where: { (muscle) -> Bool in muscle.rawValue == targetLabel.text }) ?? Muscle.defaultCase
 
-            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, target: target, id: stretch?.id)
+            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, muscle: muscle, id: stretch?.id)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")

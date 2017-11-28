@@ -52,7 +52,7 @@ class StretchTableViewController: UITableViewController {
         cell.nameLabel.text = stretch.name
         cell.photoImageView.image = stretch.photo
         cell.ratingControl.rating = stretch.rating
-        cell.targetLabel.text = stretch.target.rawValue
+        cell.targetLabel.text = stretch.muscle.rawValue
         cell.sidesLabel.text = stretch.sides.rawValue
 
         return cell
@@ -126,10 +126,10 @@ class StretchTableViewController: UITableViewController {
     // MARK: private functions
     private func sortStretches() {
         stretches = stretches.sorted(by: { (stretchA, stretchB) -> Bool in
-            if stretchA.target.rawValue == stretchB.target.rawValue {
+            if stretchA.muscle.rawValue == stretchB.muscle.rawValue {
                 return stretchA.name < stretchB.name
             } else {
-                return stretchA.target.rawValue < stretchB.target.rawValue
+                return stretchA.muscle.rawValue < stretchB.muscle.rawValue
             }
         })
     }
