@@ -79,7 +79,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = Muscle.allCases.map { $0.rawValue }.sorted()
+            pickerTableController.allValues = Muscle.allCases.map { $0.rawValue }
             pickerTableController.type = PickTarget.Muscle
 
         case "PickSides":
