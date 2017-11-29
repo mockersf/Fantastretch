@@ -29,6 +29,7 @@
 		038FD3731FCCD91600C8C5C9 /* DoExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD3721FCCD91600C8C5C9 /* DoExerciseCell.swift */; };
 		038FD3751FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD3741FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift */; };
 		038FD3771FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD3761FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift */; };
+		03DD52DF1FCE264C00E9C69D /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD52DE1FCE264C00E9C69D /* DataLoader.swift */; };
 		03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D081FCB66CE003E145B /* RootTabController.swift */; };
 		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
 		03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */; };
@@ -79,6 +80,7 @@
 		038FD3721FCCD91600C8C5C9 /* DoExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoExerciseCell.swift; sourceTree = "<group>"; };
 		038FD3741FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusclePreferenceTableController.swift; sourceTree = "<group>"; };
 		038FD3761FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusclePreferenceCell.swift; sourceTree = "<group>"; };
+		03DD52DE1FCE264C00E9C69D /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		03E31D081FCB66CE003E145B /* RootTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabController.swift; sourceTree = "<group>"; };
 		03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantastretchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E31D121FCB80EF003E145B /* FantastretchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantastretchUITests.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				038FD36D1FCCD44700C8C5C9 /* DoitViews */,
 				036F18C01FC1BA7900D5FC02 /* Exercise.swift */,
 				03EBBDD61FCCC163001ED74E /* Settings.swift */,
+				03DD52DE1FCE264C00E9C69D /* DataLoader.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
 				03E31D081FCB66CE003E145B /* RootTabController.swift */,
 				036F18A21FC1747B00D5FC02 /* Main.storyboard */,
@@ -392,6 +395,7 @@
 			files = (
 				036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */,
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
+				03DD52DF1FCE264C00E9C69D /* DataLoader.swift in Sources */,
 				038FD3751FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift in Sources */,
 				038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */,
 				03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */,

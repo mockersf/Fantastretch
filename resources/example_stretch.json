@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Butterfly",
+    "uuid": "3a04c5b3-671b-44cb-9515-296db4c8d1e2",
+    "explanation": "let's fly",
+    "muscle": "Global",
+    "repeat": "Once"
+  },
+  {
+    "name": "test1",
+    "uuid": "1b58610a-4cc2-49ed-b946-a582fe8c19b7",
+    "explanation": "this is a stretch",
+    "muscle": "Back",
+    "repeat": "For Each Side"
+  },
+  {
+    "name": "test with image",
+    "uuid": "908bd803-c047-4dd1-a8f7-fd6ec8f32e41",
+    "explanation": "this is a stretch",
+    "imgUrl": "https://www.ten.co.uk/wp-content/uploads/2015/02/phy13-how-do-i-get-a-better-stretch1.jpg",
+    "muscle": "Hamstrings",
+    "repeat": "For Each Side"
+  },
+]
