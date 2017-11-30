@@ -12,15 +12,18 @@ import os.log
 class StretchTableNewController: UITableViewController {
 
     var exercises = [Exercise]()
+    var knownExercises = [Exercise]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         DataLoader(jsonUrl: "https://bf135275.ngrok.io/example_stretch.json", exerciseLoaded: { (exercise) -> Void in
-            self.exercises.append(exercise)
-            self.sortExercises()
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                if !self.knownExercises.map({ $0.id }).contains(exercise.id) {
+                    self.exercises.append(exercise)
+                    self.sortExercises()
+                    self.tableView.reloadData()
+                }
             }
         })
     }
@@ -138,7 +141,11 @@ class StretchTableNewController: UITableViewController {
     // MARK: Actions
     @IBAction func unwindToNewStretchList(sender _: UIStoryboardSegue) {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            exercises[selectedIndexPath.row].save()
+            let newExercise = exercises[selectedIndexPath.row]
+            newExercise.save()
+            knownExercises.append(newExercise)
+            exercises.remove(at: selectedIndexPath.row)
+            tableView.reloadData()
         }
     }
 
