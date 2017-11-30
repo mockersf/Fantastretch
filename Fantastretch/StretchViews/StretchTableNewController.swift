@@ -18,6 +18,7 @@ class StretchTableNewController: UITableViewController {
 
         DataLoader(jsonUrl: "https://bf135275.ngrok.io/example_stretch.json", exerciseLoaded: { (exercise) -> Void in
             self.exercises.append(exercise)
+            self.sortExercises()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -139,5 +140,16 @@ class StretchTableNewController: UITableViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             exercises[selectedIndexPath.row].save()
         }
+    }
+
+    // MARK: private function
+    private func sortExercises() {
+        exercises = exercises.sorted(by: { (exerciseA, exerciseB) -> Bool in
+            if exerciseA.muscle.rawValue == exerciseB.muscle.rawValue {
+                return exerciseA.name < exerciseB.name
+            } else {
+                return exerciseA.muscle.rawValue < exerciseB.muscle.rawValue
+            }
+        })
     }
 }
