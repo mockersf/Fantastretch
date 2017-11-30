@@ -31,7 +31,7 @@ class DataLoader {
                 } else {
                     if let res = response as? HTTPURLResponse {
                         print("Downloaded exercise list with response code \(res.statusCode)")
-                        if let jsonData = data {
+                        if res.statusCode == 200, let jsonData = data {
                             let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
                             self.loadJson(jsonArray: json as! [Any], exerciseLoaded: closure)
                         } else {

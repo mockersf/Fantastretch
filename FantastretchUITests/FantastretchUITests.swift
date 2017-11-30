@@ -28,11 +28,12 @@ class FantastretchUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
+    func addNewAndRate() {
 
         let app = XCUIApplication()
         app.tabBars.buttons["Stretch List"].tap()
         app.navigationBars["Stretches"].buttons["Add"].tap()
+        app.navigationBars["New Stretches"].buttons["New"].tap()
 
         let tablesQuery2 = app.tables
         let tablesQuery = tablesQuery2

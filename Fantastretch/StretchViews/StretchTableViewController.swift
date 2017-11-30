@@ -21,8 +21,7 @@ class StretchTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
 
-        stretches = Exercise.load() ?? []
-        sortStretches()
+        loadNewStretchesAndReload()
     }
 
     override func didReceiveMemoryWarning() {
@@ -82,6 +81,9 @@ class StretchTableViewController: UITableViewController {
         case "AddItem":
             os_log("Adding a new stretch.", log: OSLog.default, type: .debug)
 
+        case "ListNewExercises":
+            os_log("Adding a new stretch.", log: OSLog.default, type: .debug)
+
         case "ShowItem":
             guard let stretchDetailViewController = segue.destination as? StretchViewController else {
                 fatalError("Unexpected controller: \(segue.destination)")
@@ -132,5 +134,12 @@ class StretchTableViewController: UITableViewController {
                 return stretchA.muscle.rawValue < stretchB.muscle.rawValue
             }
         })
+    }
+
+    public func loadNewStretchesAndReload() {
+        stretches = Exercise.load() ?? []
+        sortStretches()
+
+        tableView.reloadData()
     }
 }
