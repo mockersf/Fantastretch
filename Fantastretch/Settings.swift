@@ -16,6 +16,7 @@ class Settings {
     var alertsVibration: Bool
     var alertsSound: Bool
     var musclePreferences: [Muscle: Int]
+    var autoNbOfExercises: Int
     let maxOldExerciseWeight = 30
 
     init() {
@@ -26,6 +27,7 @@ class Settings {
             "alertsVibration": false,
             "alertsSound": true,
             "musclePreferences": [:],
+            "autoNbOfExercises": 10,
         ])
         timerHold = defaults.integer(forKey: "timerHold")
         timerRest = defaults.integer(forKey: "timerRest")
@@ -38,6 +40,7 @@ class Settings {
             let savedValueInt: Int? = savedValue as? Int
             return (muscle, savedValueInt ?? 1)
         }))
+        autoNbOfExercises = defaults.integer(forKey: "autoNbOfExercises")
     }
 
     func save() {
@@ -50,5 +53,6 @@ class Settings {
             (key.rawValue, value)
         }))
         defaults.set(musclePreferencesRaw, forKey: "musclePreferences")
+        defaults.set(autoNbOfExercises, forKey: "autoNbOfExercises")
     }
 }

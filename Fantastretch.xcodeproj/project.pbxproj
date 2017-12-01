@@ -33,6 +33,7 @@
 		03DD52E11FCF594200E9C69D /* StretchTableNewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD52E01FCF594200E9C69D /* StretchTableNewController.swift */; };
 		03DD52E31FCF5A3A00E9C69D /* StretchTableNewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD52E21FCF5A3A00E9C69D /* StretchTableNewCell.swift */; };
 		03DD52E51FCF6E3600E9C69D /* StretchAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD52E41FCF6E3600E9C69D /* StretchAddController.swift */; };
+		03DD52E71FD1A9D200E9C69D /* DoingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD52E61FD1A9D200E9C69D /* DoingController.swift */; };
 		03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D081FCB66CE003E145B /* RootTabController.swift */; };
 		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
 		03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */; };
@@ -87,6 +88,7 @@
 		03DD52E01FCF594200E9C69D /* StretchTableNewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableNewController.swift; sourceTree = "<group>"; };
 		03DD52E21FCF5A3A00E9C69D /* StretchTableNewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableNewCell.swift; sourceTree = "<group>"; };
 		03DD52E41FCF6E3600E9C69D /* StretchAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchAddController.swift; sourceTree = "<group>"; };
+		03DD52E61FD1A9D200E9C69D /* DoingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingController.swift; sourceTree = "<group>"; };
 		03E31D081FCB66CE003E145B /* RootTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabController.swift; sourceTree = "<group>"; };
 		03E31D101FCB80EF003E145B /* FantastretchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FantastretchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E31D121FCB80EF003E145B /* FantastretchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FantastretchUITests.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				038FD36E1FCCD48200C8C5C9 /* StartController.swift */,
 				038FD3701FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift */,
 				038FD3721FCCD91600C8C5C9 /* DoExerciseCell.swift */,
+				03DD52E61FD1A9D200E9C69D /* DoingController.swift */,
 			);
 			path = DoitViews;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */,
 				03DD52E31FCF5A3A00E9C69D /* StretchTableNewCell.swift in Sources */,
 				03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */,
+				03DD52E71FD1A9D200E9C69D /* DoingController.swift in Sources */,
 				03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */,
 				03EBBDD71FCCC163001ED74E /* Settings.swift in Sources */,
 				036F18C11FC1BA7900D5FC02 /* Exercise.swift in Sources */,

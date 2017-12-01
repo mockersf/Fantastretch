@@ -27,8 +27,4 @@ class DoExerciseCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-    @IBAction func doItAction(_: UIButton) {
-        exercise?.updateHistory()
-    }
 }

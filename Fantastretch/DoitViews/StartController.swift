@@ -46,7 +46,7 @@ struct ExerciseWithMetadata {
         return (muscleWeight * (1 + exerciseRating)) + (daysSinceLastDone * 2)
     }
 
-    func updateHistory() {
+    func updateHistory(durationDone: Int) {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -55,12 +55,34 @@ struct ExerciseWithMetadata {
         let exerciseHistoryMO = NSManagedObject(entity: ExerciseHistoryMO.entity(), insertInto: managedContext)
         exerciseHistoryMO.setValue(exercise.id, forKey: "id")
         exerciseHistoryMO.setValue(Date(), forKey: "date")
+        exerciseHistoryMO.setValue(durationDone, forKey: "duration")
         do {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+}
+
+extension Array {
+    /// Returns an array containing this sequence shuffled
+    var shuffled: Array {
+        var elements = self
+        return elements.shuffle()
+    }
+
+    /// Shuffles this sequence in place
+    @discardableResult
+    mutating func shuffle() -> Array {
+        let count = self.count
+        indices.lazy.dropLast().forEach {
+            swapAt($0, Int(arc4random_uniform(UInt32(count - $0))) + $0)
+        }
+        return self
+    }
+
+    var chooseOne: Element { return self[Int(arc4random_uniform(UInt32(count)))] }
+    func choose(_ n: Int, outOf m: Int) -> Array { return Array(Array(prefix(m)).shuffled.prefix(n)) }
 }
 
 class StartController: UIViewController {
@@ -80,15 +102,19 @@ class StartController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
         guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
             fatalError("zut")
         }
         let settings = Settings()
 
-        activeExerciseTable.exercises = Exercise.load()?
+        let exercisesByScore = Exercise.load()?
             .map({ ExerciseWithMetadata(exercise: $0, settings: settings) })
-            .sorted(by: { $0.score > $1.score })
+            .sorted(by: { $0.score > $1.score }) ?? []
+
+        activeExerciseTable.exercises = exercisesByScore.choose(settings.autoNbOfExercises, outOf: Int(Double(settings.autoNbOfExercises) * 1.5))
+    }
+
+    // MARK: Actions
+    @IBAction func unwindToStart(sender _: UIStoryboardSegue) {
     }
 }

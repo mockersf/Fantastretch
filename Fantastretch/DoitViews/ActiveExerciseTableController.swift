@@ -47,7 +47,6 @@ class ActiveExerciseTableController: UITableViewController {
 
         let exercise = exercises?[indexPath.row]
 
-        cell.doItButton.setTitle("\(exercise?.score ?? 0)", for: .normal)
         if let photo = exercise?.exercise.photo {
             cell.imagePhotoView.image = photo
         }
@@ -57,5 +56,16 @@ class ActiveExerciseTableController: UITableViewController {
         cell.exercise = exercise
 
         return cell
+    }
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
+        guard let doingController = segue.destination as? DoingController else {
+            fatalError("zut")
+        }
+
+        doingController.exercises = exercises ?? []
     }
 }
