@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ExerciseHistoryMO" representedClassName="ExerciseHistoryMO" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="ExerciseMO" representedClassName="ExerciseMO" syncable="YES" codeGenerationType="class">
         <attribute name="explanation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
@@ -12,5 +16,6 @@
     </entity>
     <elements>
         <element name="ExerciseMO" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="ExerciseHistoryMO" positionX="162" positionY="252" width="128" height="75"/>
     </elements>
 </model>

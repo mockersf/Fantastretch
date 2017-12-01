@@ -16,6 +16,7 @@ class Settings {
     var alertsVibration: Bool
     var alertsSound: Bool
     var musclePreferences: [Muscle: Int]
+    let maxOldExerciseWeight = 30
 
     init() {
         let defaults = UserDefaults.standard

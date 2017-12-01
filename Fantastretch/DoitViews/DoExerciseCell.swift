@@ -10,8 +10,13 @@ import UIKit
 
 class DoExerciseCell: UITableViewCell {
 
-    @IBOutlet weak var exerciseNameLabel: UILabel!
-    @IBOutlet weak var exerciseScoreLabel: UILabel!
+    @IBOutlet weak var imagePhotoView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var sidesLabel: UILabel!
+    @IBOutlet weak var doItButton: UIButton!
+    var exercise: ExerciseWithMetadata?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +26,9 @@ class DoExerciseCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    @IBAction func doItAction(_: UIButton) {
+        exercise?.updateHistory()
     }
 }

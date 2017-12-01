@@ -10,7 +10,7 @@ import UIKit
 
 class ActiveExerciseTableController: UITableViewController {
 
-    var exercises: [Exercise]?
+    var exercises: [ExerciseWithMetadata]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,12 +30,10 @@ class ActiveExerciseTableController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return exercises?.count ?? 0
     }
 
@@ -47,70 +45,17 @@ class ActiveExerciseTableController: UITableViewController {
             fatalError("The dequeued cell is not an instance of DoExerciseCell.")
         }
 
-        let settings = Settings()
         let exercise = exercises?[indexPath.row]
-        let preference = settings.musclePreferences[exercise?.muscle ?? Muscle.defaultCase] ?? 1
-        let rating = exercise?.rating ?? 0
-        let score = preference * (rating + 1)
 
-        cell.exerciseNameLabel.text = exercise?.name
-        cell.exerciseScoreLabel.text = "\(score)"
+        cell.doItButton.setTitle("\(exercise?.score ?? 0)", for: .normal)
+        if let photo = exercise?.exercise.photo {
+            cell.imagePhotoView.image = photo
+        }
+        cell.nameLabel.text = exercise?.exercise.name
+        cell.targetLabel.text = exercise?.exercise.muscle.rawValue
+        cell.sidesLabel.text = exercise?.exercise.sides.rawValue
+        cell.exercise = exercise
 
         return cell
     }
-
-    /*
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-     // Configure the cell...
-
-     return cell
-     }
-     */
-
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-     }
-     */
-
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-
-    /*
-     // MARK: - Navigation
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
