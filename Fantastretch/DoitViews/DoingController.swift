@@ -50,6 +50,8 @@ class DoingController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.isIdleTimerDisabled = true
+
         settings = Settings()
         prepareExercise(index: 0)
         currentTimer = settings?.timerRest ?? 10
@@ -97,6 +99,7 @@ class DoingController: UIViewController {
 
     func done() {
         print("done exercising")
+        UIApplication.shared.isIdleTimerDisabled = false
         performSegue(withIdentifier: "DoneExercising", sender: self)
     }
 
