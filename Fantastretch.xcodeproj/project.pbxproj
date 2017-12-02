@@ -14,6 +14,7 @@
 		03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */; };
 		03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */; };
 		03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */; };
+		035437631FD3672000157D8A /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 035437621FD3672000157D8A /* sounds */; };
 		036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F189E1FC1747B00D5FC02 /* AppDelegate.swift */; };
 		036F18A41FC1747B00D5FC02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A21FC1747B00D5FC02 /* Main.storyboard */; };
 		036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F18A51FC1747B00D5FC02 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
 		03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */; };
 		03EBBDD71FCCC163001ED74E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD61FCCC163001ED74E /* Settings.swift */; };
+		6CD9D2399805C239BD1C6CB0 /* Pods_Fantastretch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,7 @@
 		03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableCell.swift; sourceTree = "<group>"; };
 		03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoEnumAllCases.stencil; sourceTree = "<group>"; };
 		03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEnumAllCases.generated.swift; sourceTree = "<group>"; };
+		035437621FD3672000157D8A /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
 		036F189B1FC1747B00D5FC02 /* Fantastretch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fantastretch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F189E1FC1747B00D5FC02 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		036F18A31FC1747B00D5FC02 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +98,9 @@
 		03E31D141FCB80EF003E145B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryProtocols.swift; sourceTree = "<group>"; };
 		03EBBDD61FCCC163001ED74E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fantastretch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch.debug.xcconfig"; sourceTree = "<group>"; };
+		43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fantastretch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fantastretch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CD9D2399805C239BD1C6CB0 /* Pods_Fantastretch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,11 +165,14 @@
 		036F18921FC1747A00D5FC02 = {
 			isa = PBXGroup;
 			children = (
+				035437621FD3672000157D8A /* sounds */,
 				03471BF61FCC73B3008671A7 /* SourceryTemplates */,
 				036F189D1FC1747B00D5FC02 /* Fantastretch */,
 				036F18B21FC1747B00D5FC02 /* FantastretchTests */,
 				03E31D111FCB80EF003E145B /* FantastretchUITests */,
 				036F189C1FC1747B00D5FC02 /* Products */,
+				630FA3493DB360C7304DD791 /* Pods */,
+				640C8352252952986BD45BBA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,6 +247,23 @@
 			path = FantastretchUITests;
 			sourceTree = "<group>";
 		};
+		630FA3493DB360C7304DD791 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */,
+				A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		640C8352252952986BD45BBA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,11 +271,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 036F18B81FC1747B00D5FC02 /* Build configuration list for PBXNativeTarget "Fantastretch" */;
 			buildPhases = (
+				0D640003EA5B375EF02E0973 /* [CP] Check Pods Manifest.lock */,
 				03471BFA1FCC7484008671A7 /* Sourcery */,
 				03A248691FC37D9700BBF5B6 /* Swift Format */,
 				036F18971FC1747B00D5FC02 /* Sources */,
 				036F18981FC1747B00D5FC02 /* Frameworks */,
 				036F18991FC1747B00D5FC02 /* Resources */,
+				5FA30F6CC0C0C00DAF800D1C /* [CP] Embed Pods Frameworks */,
+				AF15A12CF6E00B4ED740E39A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				035437631FD3672000157D8A /* sounds in Resources */,
 				036F18A91FC1747B00D5FC02 /* LaunchScreen.storyboard in Resources */,
 				036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */,
 				03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */,
@@ -397,6 +428,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/swiftformat .\n";
+		};
+		0D640003EA5B375EF02E0973 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fantastretch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FA30F6CC0C0C00DAF800D1C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftySound/SwiftySound.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftySound.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF15A12CF6E00B4ED740E39A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -593,6 +675,7 @@
 		};
 		036F18B91FC1747B00D5FC02 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -608,6 +691,7 @@
 		};
 		036F18BA1FC1747B00D5FC02 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

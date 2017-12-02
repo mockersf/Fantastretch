@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftySound
 
 enum Steps: String {
     case Rest
@@ -54,7 +55,7 @@ class DoingController: UIViewController {
 
         settings = Settings()
         prepareExercise(index: 0)
-        currentTimer = settings?.timerRest ?? 10
+        currentTimer = (settings?.timerRest ?? 10) * 10
         currentStepLabel.text = Steps.Rest.rawValue
         runTimer()
     }
@@ -87,7 +88,7 @@ class DoingController: UIViewController {
     func runTimer() {
         guard timer == nil else { return }
         print("starting timer")
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(DoingController.updateStatus)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(DoingController.updateStatus)), userInfo: nil, repeats: true)
     }
 
     func stopTimer() {
@@ -104,19 +105,26 @@ class DoingController: UIViewController {
     }
 
     @objc func updateStatus() {
-        timerLabel.text = "\(currentTimer)"
-        switch currentTimer {
-        case 0:
-            switch step {
-            case Steps.Rest:
-                currentTimer = settings?.timerHold ?? 10
+        timerLabel.text = "\(currentTimer / 10).\(currentTimer % 10)"
+        currentTimer -= 1
+        switch step {
+        case Steps.Rest:
+            if currentTimer == 10 || currentTimer == 20 || currentTimer == 30 {
+                Sound.play(file: "sounds/1000Hz.wav")
+            } else if currentTimer == 0 {
+                currentTimer = (settings?.timerHold ?? 10) * 10
                 step = Steps.Hold
                 currentStepLabel.text = step.rawValue
-            case Steps.Hold:
+                Sound.play(file: "sounds/2000Hz.wav")
+            }
+        case Steps.Hold:
+            if currentTimer == 0 {
+                Sound.play(file: "sounds/800Hz.wav")
+
                 currentSide += 1
                 if currentSide >= sides.count {
                     exercises[currentExercise].updateHistory(durationDone: settings?.timerHold ?? 10)
-                    currentTimer = settings?.timerRest ?? 10
+                    currentTimer = (settings?.timerRest ?? 10) * 10
                     step = Steps.Rest
                     currentStepLabel.text = step.rawValue
                     currentExercise += 1
@@ -128,13 +136,11 @@ class DoingController: UIViewController {
                     prepareExercise(index: currentExercise)
                 } else {
                     currentSideLabel.text = sides[currentSide].rawValue
-                    currentTimer = settings?.timerRest ?? 10
+                    currentTimer = (settings?.timerRest ?? 10) * 10
                     step = Steps.Rest
                     currentStepLabel.text = step.rawValue
                 }
             }
-        default:
-            currentTimer -= 1
         }
     }
 }
