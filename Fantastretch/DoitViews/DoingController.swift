@@ -83,12 +83,16 @@ class DoingController: UIViewController {
         }
         currentSide = 0
         currentSideLabel.text = sides[currentSide].rawValue
+
+        resetButton.setTitle("Reset", for: .normal)
     }
 
     func runTimer() {
         guard timer == nil else { return }
         print("starting timer")
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(DoingController.updateStatus)), userInfo: nil, repeats: true)
+        runControlButton.setTitle("Pause", for: .normal)
+        resetButton.isEnabled = false
     }
 
     func stopTimer() {
@@ -96,6 +100,8 @@ class DoingController: UIViewController {
         print("stopping timer")
         timer?.invalidate()
         timer = nil
+        runControlButton.setTitle("Start", for: .normal)
+        resetButton.isEnabled = true
     }
 
     func done() {
@@ -105,7 +111,7 @@ class DoingController: UIViewController {
     }
 
     @objc func updateStatus() {
-        timerLabel.text = "\(currentTimer / 10).\(currentTimer % 10)"
+        timerLabel.text = timeString(time: currentTimer)
         currentTimer -= 1
         switch step {
         case Steps.Rest:
@@ -142,5 +148,28 @@ class DoingController: UIViewController {
                 }
             }
         }
+    }
+
+    @IBAction func runControlAction(_: UIButton) {
+        switch timer {
+        case nil:
+            runTimer()
+        default:
+            stopTimer()
+        }
+    }
+
+    @IBAction func resetAction(_: UIButton) {
+        currentTimer = (settings?.timerRest ?? 10) * 10
+        step = Steps.Rest
+        currentStepLabel.text = step.rawValue
+        timerLabel.text = timeString(time: currentTimer)
+    }
+
+    func timeString(time: Int) -> String {
+        let minutes = time / 600
+        let seconds = time / 10 % 60
+        let milliseconds = time % 10
+        return String(format: "%02i:%02i.%01i", minutes, seconds, milliseconds)
     }
 }
