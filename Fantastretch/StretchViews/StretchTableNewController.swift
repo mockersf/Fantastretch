@@ -17,7 +17,7 @@ class StretchTableNewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DataLoader(jsonUrl: "https://bf135275.ngrok.io/example_stretch.json", exerciseLoaded: { (exercise) -> Void in
+        DataLoader.loadFrom(jsonUrl: "https://321782ea.ngrok.io/example_stretch.json", exerciseLoaded: { (exercise) -> Void in
             DispatchQueue.main.async {
                 if !self.knownExercises.map({ $0.id }).contains(exercise.id) {
                     self.exercises.append(exercise)

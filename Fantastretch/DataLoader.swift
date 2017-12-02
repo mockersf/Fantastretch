@@ -9,20 +9,13 @@
 import UIKit
 
 class DataLoader {
-    public var list: [Exercise]?
 
-    init() {
-        list = []
-    }
-
-    func add(exercise: Exercise, exerciseLoaded closure: (Exercise) -> Void) {
+    static func add(exercise: Exercise, exerciseLoaded closure: (Exercise) -> Void) {
         print("adding \(exercise)")
         closure(exercise)
-        list?.append(exercise)
     }
 
-    convenience init?(jsonUrl url: String, exerciseLoaded closure: @escaping (Exercise) -> Void) {
-        self.init()
+    static func loadFrom(jsonUrl url: String, exerciseLoaded closure: @escaping (Exercise) -> Void) {
         if let jsonURL = URL(string: url) {
             let session = URLSession(configuration: .default)
             let downloadJsonTask = session.dataTask(with: jsonURL) { data, response, error in
@@ -33,7 +26,7 @@ class DataLoader {
                         print("Downloaded exercise list with response code \(res.statusCode)")
                         if res.statusCode == 200, let jsonData = data {
                             let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
-                            self.loadJson(jsonArray: json as! [Any], exerciseLoaded: closure)
+                            loadJson(jsonArray: json as! [Any], exerciseLoaded: closure)
                         } else {
                             print("Couldn't get exercise list: json is nil")
                         }
@@ -46,7 +39,7 @@ class DataLoader {
         }
     }
 
-    func loadJson(jsonArray: [Any], exerciseLoaded closure: @escaping (Exercise) -> Void) {
+    static func loadJson(jsonArray: [Any], exerciseLoaded closure: @escaping (Exercise) -> Void) {
         for jsonObject in jsonArray {
             let json = jsonObject as! [String: Any]
             guard let name = json["name"] as? String,
@@ -73,7 +66,7 @@ class DataLoader {
                                 let image = UIImage(data: imageData)
                                 if let exercise = Exercise(name: name, explanation: explanation, photo: image, rating: 0,
                                                            sides: sides, muscle: muscle, id: uuid) {
-                                    self.add(exercise: exercise, exerciseLoaded: closure)
+                                    add(exercise: exercise, exerciseLoaded: closure)
                                 }
                             } else {
                                 print("Couldn't get image: Image is nil")
