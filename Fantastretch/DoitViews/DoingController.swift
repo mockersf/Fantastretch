@@ -48,6 +48,7 @@ class DoingController: UIViewController {
 
     @IBOutlet weak var runControlButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,29 +84,26 @@ class DoingController: UIViewController {
         }
         currentSide = 0
         displaySide(side: sides[currentSide])
-
-        resetButton.setTitle("Reset", for: .normal)
     }
 
     func runTimer() {
         guard timer == nil else { return }
-        print("starting timer")
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(DoingController.updateStatus)), userInfo: nil, repeats: true)
         runControlButton.setTitle("Pause", for: .normal)
         resetButton.isEnabled = false
+        stopButton.isEnabled = false
     }
 
     func stopTimer() {
         guard timer != nil else { return }
-        print("stopping timer")
         timer?.invalidate()
         timer = nil
         runControlButton.setTitle("Start", for: .normal)
         resetButton.isEnabled = true
+        stopButton.isEnabled = true
     }
 
     func done() {
-        print("done exercising")
         UIApplication.shared.isIdleTimerDisabled = false
         performSegue(withIdentifier: "DoneExercising", sender: self)
     }
@@ -178,6 +176,11 @@ class DoingController: UIViewController {
         step = Steps.Rest
         currentStepLabel.text = step.rawValue
         timerLabel.text = timeString(time: currentTimer)
+    }
+
+    @IBAction func stopAction(_: UIButton) {
+        stopTimer()
+        done()
     }
 
     func timeString(time: Int) -> String {
