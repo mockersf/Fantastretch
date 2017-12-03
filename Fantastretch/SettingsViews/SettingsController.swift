@@ -61,8 +61,9 @@ class SettingsController: UITableViewController {
             let settings = Settings()
             pickerTableController.current = "\(settings.timerRest) seconds"
 
-        case "":
+        case "autoModeSetUp":
             ()
+            
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")
         }
