@@ -8,10 +8,18 @@
 
 import UIKit
 
+enum PickTarget: String {
+    case Muscle
+    case Repeat
+    case Timer
+}
+
 class PickerTableController: UITableViewController {
     var allValues: [String]?
     var selected: String?
     var type: PickTarget?
+    var extraInfo: String?
+    var current: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +57,9 @@ class PickerTableController: UITableViewController {
 
         let value = allValues?[indexPath.row]
 
+        if value == current {
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        }
         cell.label.text = value
 
         return cell

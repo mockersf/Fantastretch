@@ -136,8 +136,6 @@
 				036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */,
 				032379F81FC8F2A400480A89 /* StretchViewController.swift */,
 				032379FA1FC8F88100480A89 /* StretchEditController.swift */,
-				03237A3D1FCA266600480A89 /* PickerTableController.swift */,
-				03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */,
 				036F18BE1FC19FCA00D5FC02 /* RatingControl.swift */,
 				03DD52E01FCF594200E9C69D /* StretchTableNewController.swift */,
 				03DD52E21FCF5A3A00E9C69D /* StretchTableNewCell.swift */,
@@ -160,6 +158,15 @@
 				03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */,
 			);
 			path = SourceryGenerated;
+			sourceTree = "<group>";
+		};
+		035437641FD37B3C00157D8A /* SharedViews */ = {
+			isa = PBXGroup;
+			children = (
+				03237A3D1FCA266600480A89 /* PickerTableController.swift */,
+				03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */,
+			);
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
 		036F18921FC1747A00D5FC02 = {
@@ -191,6 +198,7 @@
 			children = (
 				03471BF71FCC73EC008671A7 /* SourceryGenerated */,
 				03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */,
+				035437641FD37B3C00157D8A /* SharedViews */,
 				03237A421FCAE2DE00480A89 /* StretchViews */,
 				038FD36C1FCCD25300C8C5C9 /* SettingsViews */,
 				038FD36D1FCCD44700C8C5C9 /* DoitViews */,

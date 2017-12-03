@@ -548,6 +548,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="j17-pu-0lr" kind="popoverPresentation" identifier="holdTimerSelection" popoverAnchorView="Yfa-Wu-tzH" id="Gj6-65-5k4">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BGM-1r-5JK" detailTextLabel="nBc-RI-I0g" style="IBUITableViewCellStyleValue1" id="eKp-gE-x82">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
@@ -572,6 +577,11 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="j17-pu-0lr" kind="popoverPresentation" identifier="restTimerSelection" popoverAnchorView="eKp-gE-x82" id="NVa-1k-WeB">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -657,7 +667,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" popoverAnchorView="ii6-8I-eYl" id="9G5-Ds-S6m">
+                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" identifier="autoModeSetUp" popoverAnchorView="ii6-8I-eYl" id="9G5-Ds-S6m">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -1015,15 +1025,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PickerTableCell" textLabel="2Eo-Eg-hxh" style="IBUITableViewCellStyleDefault" id="mir-ZS-pqc" customClass="PickerTableCell" customModule="Fantastretch" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerTableCell" textLabel="2Eo-Eg-hxh" style="IBUITableViewCellStyleDefault" id="mir-ZS-pqc" customClass="PickerTableCell" customModule="Fantastretch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mir-ZS-pqc" id="SzP-VB-bcF">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Eo-Eg-hxh">
-                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1367,6 +1377,55 @@
             </objects>
             <point key="canvasLocation" x="512" y="2086.9565217391305"/>
         </scene>
+        <!--Pick-->
+        <scene sceneID="kdk-FH-UUQ">
+            <objects>
+                <tableViewController id="LoQ-TU-t2s" customClass="PickerTableController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="usx-AS-aCC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PickerTableCell" textLabel="KGV-x8-q3K" style="IBUITableViewCellStyleDefault" id="DmA-ye-TCn" customClass="PickerTableCell" customModule="Fantastretch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DmA-ye-TCn" id="i8v-dP-a8e">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KGV-x8-q3K">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="KGV-x8-q3K" id="zOf-bJ-eKL"/>
+                                    <segue destination="iUv-MF-C82" kind="unwind" unwindAction="unwindToSettingsWithSender:" id="GtR-4L-VQw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LoQ-TU-t2s" id="P1s-5d-N4a"/>
+                            <outlet property="delegate" destination="LoQ-TU-t2s" id="mvW-Aw-maZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Pick" id="ANM-ei-p6j">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="rLc-tH-Ttg">
+                            <connections>
+                                <segue destination="iUv-MF-C82" kind="unwind" unwindAction="unwindToSettingsWithSender:" id="aqo-cR-qn5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vnK-AL-6nd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iUv-MF-C82" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1569" y="2955"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="YBV-nY-5Zs">
             <objects>
@@ -1385,6 +1444,24 @@
             </objects>
             <point key="canvasLocation" x="2681" y="1039"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="O6G-dc-yKf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j17-pu-0lr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JDp-el-aiK">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LoQ-TU-t2s" kind="relationship" relationship="rootViewController" id="85J-Q7-eaZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="coW-jE-XIb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="512" y="2955.92203898051"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ListIcon" width="30" height="30"/>
@@ -1393,6 +1470,7 @@
         <image name="noPhoto" width="540" height="540"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Gj6-65-5k4"/>
         <segue reference="W7t-jf-iXM"/>
         <segue reference="H16-Zz-hcB"/>
         <segue reference="WPg-zi-VoY"/>

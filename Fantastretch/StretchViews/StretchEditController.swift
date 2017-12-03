@@ -9,11 +9,6 @@
 import UIKit
 import os.log
 
-enum PickTarget: String {
-    case Muscle
-    case Repeat
-}
-
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var stretch: Exercise?
@@ -81,6 +76,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             }
             pickerTableController.allValues = Muscle.allCases.map { $0.rawValue }
             pickerTableController.type = PickTarget.Muscle
+            pickerTableController.current = targetLabel.text
 
         case "PickSides":
             guard let navigationController = segue.destination as? UINavigationController else {
@@ -91,6 +87,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             }
             pickerTableController.allValues = Repeat.allCases.map { $0.rawValue }
             pickerTableController.type = PickTarget.Repeat
+            pickerTableController.current = sidesLabel.text
 
         case "SaveItem":
             let name = nameTextField.text ?? ""
@@ -191,6 +188,9 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
                 targetLabel.text = Muscle.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 targetLabel.textColor = UIColor.gray
                 updateSaveButtonState()
+
+            case .some(PickTarget.Timer):
+                fatalError("PickTarget.Timer should not happen here")
 
             case .none:
                 fatalError("missing picker type")
