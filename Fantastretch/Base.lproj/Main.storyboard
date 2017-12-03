@@ -1414,7 +1414,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Pick" id="ANM-ei-p6j">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="rLc-tH-Ttg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rLc-tH-Ttg">
                             <connections>
                                 <segue destination="iUv-MF-C82" kind="unwind" unwindAction="unwindToSettingsWithSender:" id="aqo-cR-qn5"/>
                             </connections>
