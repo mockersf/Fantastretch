@@ -23,7 +23,7 @@ class Settings {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [
             "timerHold": 30,
-            "timerRest": 5,
+            "timerRest": 10,
             "alertsVibration": false,
             "alertsSound": true,
             "musclePreferences": [:],

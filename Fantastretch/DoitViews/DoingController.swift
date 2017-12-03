@@ -82,7 +82,7 @@ class DoingController: UIViewController {
             sides = Sides.forEachSide
         }
         currentSide = 0
-        currentSideLabel.text = sides[currentSide].rawValue
+        displaySide(side: sides[currentSide])
 
         resetButton.setTitle("Reset", for: .normal)
     }
@@ -141,12 +141,26 @@ class DoingController: UIViewController {
                     }
                     prepareExercise(index: currentExercise)
                 } else {
-                    currentSideLabel.text = sides[currentSide].rawValue
+                    displaySide(side: sides[currentSide])
                     currentTimer = (settings?.timerRest ?? 10) * 10
                     step = Steps.Rest
                     currentStepLabel.text = step.rawValue
                 }
             }
+        }
+    }
+
+    private func displaySide(side: Sides) {
+        switch side {
+        case Sides.Left:
+            currentSideLabel.isEnabled = true
+            currentSideLabel.text = side.rawValue
+        case Sides.Right:
+            currentSideLabel.isEnabled = true
+            currentSideLabel.text = side.rawValue
+        case Sides.Center:
+            currentSideLabel.isEnabled = false
+            currentSideLabel.text = ""
         }
     }
 
