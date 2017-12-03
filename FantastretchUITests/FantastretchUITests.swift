@@ -28,7 +28,7 @@ class FantastretchUITests: XCTestCase {
         super.tearDown()
     }
 
-    func addNewAndRate() {
+    func testAddNewAndRate() {
 
         let app = XCUIApplication()
         app.tabBars.buttons["Stretch List"].tap()
