@@ -11,34 +11,18 @@ import CoreData
 
 struct ExerciseWithMetadata {
     let exercise: Exercise
-    let daysSinceLastDone: Int
     let score: Int
 
     init(exercise: Exercise, settings: Settings) {
         let weight = settings.musclePreferences[exercise.muscle] ?? 1
         let rating = exercise.rating
 
-        var daysSinceLastDone = settings.maxOldExerciseWeight
-        if let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate {
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let fr: NSFetchRequest<ExerciseHistoryMO> = ExerciseHistoryMO.fetchRequest()
-            let predicate = NSPredicate(format: "id==%@", argumentArray: [exercise.id])
-            let sort = NSSortDescriptor(key: #keyPath(ExerciseHistoryMO.date), ascending: false)
-            fr.predicate = predicate
-            fr.sortDescriptors = [sort]
-            do {
-                let history = try managedContext.fetch(fr)
-                let lastDone = history.first?.date ?? Date().addingTimeInterval(TimeInterval(-settings.maxOldExerciseWeight * 24 * 60 * 60))
-                daysSinceLastDone = min(Calendar.current.dateComponents([.day], from: lastDone, to: Date()).day ?? settings.maxOldExerciseWeight,
-                                        settings.maxOldExerciseWeight)
-            } catch {
-                print("Cannot fetch history for exercise \(exercise.id)")
-            }
-        }
+        let latestHistory = ExerciseHistory.loadLatest(exercise: exercise)
+        let lastDone = latestHistory?.date ?? Date().addingTimeInterval(TimeInterval(-settings.maxOldExerciseWeight * 24 * 60 * 60))
+        let daysSinceLastDone = min(Calendar.current.dateComponents([.day], from: lastDone, to: Date()).day ?? settings.maxOldExerciseWeight,
+                                    settings.maxOldExerciseWeight)
 
         self.exercise = exercise
-        self.daysSinceLastDone = daysSinceLastDone
         score = ExerciseWithMetadata.getScore(muscleWeight: weight, exerciseRating: rating, daysSinceLastDone: daysSinceLastDone)
     }
 
@@ -47,42 +31,8 @@ struct ExerciseWithMetadata {
     }
 
     func updateHistory(durationDone: Int) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let exerciseHistoryMO = NSManagedObject(entity: ExerciseHistoryMO.entity(), insertInto: managedContext)
-        exerciseHistoryMO.setValue(exercise.id, forKey: "id")
-        exerciseHistoryMO.setValue(Date(), forKey: "date")
-        exerciseHistoryMO.setValue(durationDone, forKey: "duration")
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        ExerciseHistory(exercise: exercise, date: Date(), duration: durationDone).save()
     }
-}
-
-extension Array {
-    /// Returns an array containing this sequence shuffled
-    var shuffled: Array {
-        var elements = self
-        return elements.shuffle()
-    }
-
-    /// Shuffles this sequence in place
-    @discardableResult
-    mutating func shuffle() -> Array {
-        let count = self.count
-        indices.lazy.dropLast().forEach {
-            swapAt($0, Int(arc4random_uniform(UInt32(count - $0))) + $0)
-        }
-        return self
-    }
-
-    var chooseOne: Element { return self[Int(arc4random_uniform(UInt32(count)))] }
-    func choose(_ n: Int, outOf m: Int) -> Array { return Array(Array(prefix(m)).shuffled.prefix(n)) }
 }
 
 class StartController: UIViewController {

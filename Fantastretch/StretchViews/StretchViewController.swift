@@ -18,6 +18,8 @@ class StretchViewController: UITableViewController {
     @IBOutlet weak var photoCell: UIStackView!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var DescriptionText: UITextView!
+    @IBOutlet weak var statsLastRunLabel: UILabel!
+    @IBOutlet weak var statsTotalRunLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class StretchViewController: UITableViewController {
             }
             DescriptionText.text = stretch.explanation
             ratingControl.rating = stretch.rating
+            statsLastRunLabel.text = (ExerciseHistory.loadLatest(exercise: stretch)?.date)
+                .map({ DateFormatter.localizedString(from: $0, dateStyle: .short, timeStyle: .short) }) ?? "Never"
+            statsTotalRunLabel.text = "\(ExerciseHistory.loadAll(exercise: stretch).count)"
         }
     }
 

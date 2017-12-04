@@ -63,7 +63,7 @@ class SettingsController: UITableViewController {
 
         case "autoModeSetUp":
             ()
-            
+
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")
         }
