@@ -25,6 +25,7 @@
 		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
 		038207EF1FD60708008355ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207EE1FD60708008355ED /* Extensions.swift */; };
+		038207F21FD60934008355ED /* ExerciseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207F11FD60934008355ED /* ExerciseHistory.swift */; };
 		038FD36B1FCCCD9B00C8C5C9 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD36A1FCCCD9B00C8C5C9 /* SettingsController.swift */; };
 		038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD36E1FCCD48200C8C5C9 /* StartController.swift */; };
 		038FD3711FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD3701FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift */; };
@@ -83,6 +84,7 @@
 		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
 		038207EE1FD60708008355ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		038207F11FD60934008355ED /* ExerciseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistory.swift; sourceTree = "<group>"; };
 		038FD36A1FCCCD9B00C8C5C9 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		038FD36E1FCCD48200C8C5C9 /* StartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		038FD3701FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseTableController.swift; sourceTree = "<group>"; };
@@ -204,8 +206,7 @@
 				03237A421FCAE2DE00480A89 /* StretchViews */,
 				038FD36C1FCCD25300C8C5C9 /* SettingsViews */,
 				038FD36D1FCCD44700C8C5C9 /* DoitViews */,
-				036F18C01FC1BA7900D5FC02 /* Exercise.swift */,
-				03EBBDD61FCCC163001ED74E /* Settings.swift */,
+				038207F01FD608D5008355ED /* Model */,
 				03DD52DE1FCE264C00E9C69D /* DataLoader.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
 				03E31D081FCB66CE003E145B /* RootTabController.swift */,
@@ -226,6 +227,16 @@
 				036F18B51FC1747B00D5FC02 /* Info.plist */,
 			);
 			path = FantastretchTests;
+			sourceTree = "<group>";
+		};
+		038207F01FD608D5008355ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				036F18C01FC1BA7900D5FC02 /* Exercise.swift */,
+				038207F11FD60934008355ED /* ExerciseHistory.swift */,
+				03EBBDD61FCCC163001ED74E /* Settings.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		038FD36C1FCCD25300C8C5C9 /* SettingsViews */ = {
@@ -508,6 +519,7 @@
 				03DD52E71FD1A9D200E9C69D /* DoingController.swift in Sources */,
 				03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */,
 				03EBBDD71FCCC163001ED74E /* Settings.swift in Sources */,
+				038207F21FD60934008355ED /* ExerciseHistory.swift in Sources */,
 				036F18C11FC1BA7900D5FC02 /* Exercise.swift in Sources */,
 				038FD3711FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift in Sources */,
 				038FD3771FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift in Sources */,
