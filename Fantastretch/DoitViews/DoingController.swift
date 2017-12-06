@@ -195,4 +195,19 @@ class DoingController: UIViewController {
         let milliseconds = time % 10
         return String(format: "%02i:%02i.%01i", minutes, seconds, milliseconds)
     }
+
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
+        guard let navigationController = segue.destination as? UINavigationController else {
+            fatalError("Unexpected controller: \(segue.destination)")
+        }
+        guard let stretchTableController = navigationController.childViewControllers[0] as? StretchTableViewController else {
+            fatalError("Unexpected controller: \(segue.destination)")
+        }
+
+        stretchTableController.stretches = exercises.map({ $0.exercise })
+        stretchTableController.fixedSet = true
+    }
 }

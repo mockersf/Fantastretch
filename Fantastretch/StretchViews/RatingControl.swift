@@ -18,6 +18,8 @@ import UIKit
         }
     }
 
+    var onUpdate: ((_ rating: Int) -> Void)?
+
     @IBInspectable var starSize: CGSize = CGSize(width: 44.0, height: 44.0) {
         didSet {
             setupButtons()
@@ -56,6 +58,9 @@ import UIKit
         } else {
             // Otherwise set the rating to the selected star
             rating = selectedRating
+        }
+        if let onUpdate = onUpdate {
+            onUpdate(rating)
         }
     }
 

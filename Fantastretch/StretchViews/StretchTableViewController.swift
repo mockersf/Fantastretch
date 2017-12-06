@@ -14,14 +14,23 @@ class StretchTableViewController: UITableViewController {
 
     // MARK: Properties
     var stretches = [Exercise]()
+    var fixedSet = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Use the edit button item provided by the table view controller.
-        navigationItem.leftBarButtonItem = editButtonItem
+        if !fixedSet {
+            // Use the edit button item provided by the table view controller.
+            navigationItem.leftBarButtonItem = editButtonItem
+        }
+    }
 
-        loadNewStretchesAndReload()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !fixedSet {
+            loadNewStretchesAndReload()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,13 +62,17 @@ class StretchTableViewController: UITableViewController {
         cell.ratingControl.rating = stretch.rating
         cell.targetLabel.text = stretch.muscle.rawValue
         cell.sidesLabel.text = stretch.sides.rawValue
+        cell.ratingControl.onUpdate = { (rating: Int) -> Void in
+            stretch.rating = rating
+            stretch.update()
+        }
 
         return cell
     }
 
     override func tableView(_: UITableView, canEditRowAt _: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return !fixedSet
     }
 
     // Override to support editing the table view.
@@ -103,6 +116,9 @@ class StretchTableViewController: UITableViewController {
 
             let selectedStretch = stretches[indexPath.row]
             stretchDetailViewController.stretch = selectedStretch
+
+        case "unwind":
+            ()
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
