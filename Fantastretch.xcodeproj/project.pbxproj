@@ -26,6 +26,8 @@
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
 		038207EF1FD60708008355ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207EE1FD60708008355ED /* Extensions.swift */; };
 		038207F21FD60934008355ED /* ExerciseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207F11FD60934008355ED /* ExerciseHistory.swift */; };
+		038207F51FD7606E008355ED /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038207F41FD7606E008355ED /* HealthKit.framework */; };
+		038207F71FD763DB008355ED /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207F61FD763DB008355ED /* HealthKitHelper.swift */; };
 		038FD36B1FCCCD9B00C8C5C9 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD36A1FCCCD9B00C8C5C9 /* SettingsController.swift */; };
 		038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD36E1FCCD48200C8C5C9 /* StartController.swift */; };
 		038FD3711FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038FD3701FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift */; };
@@ -85,6 +87,9 @@
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
 		038207EE1FD60708008355ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		038207F11FD60934008355ED /* ExerciseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistory.swift; sourceTree = "<group>"; };
+		038207F31FD7606E008355ED /* Fantastretch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fantastretch.entitlements; sourceTree = "<group>"; };
+		038207F41FD7606E008355ED /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		038207F61FD763DB008355ED /* HealthKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
 		038FD36A1FCCCD9B00C8C5C9 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		038FD36E1FCCD48200C8C5C9 /* StartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartController.swift; sourceTree = "<group>"; };
 		038FD3701FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseTableController.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CD9D2399805C239BD1C6CB0 /* Pods_Fantastretch.framework in Frameworks */,
+				038207F51FD7606E008355ED /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +206,7 @@
 		036F189D1FC1747B00D5FC02 /* Fantastretch */ = {
 			isa = PBXGroup;
 			children = (
+				038207F31FD7606E008355ED /* Fantastretch.entitlements */,
 				03471BF71FCC73EC008671A7 /* SourceryGenerated */,
 				03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */,
 				035437641FD37B3C00157D8A /* SharedViews */,
@@ -207,6 +214,7 @@
 				038FD36C1FCCD25300C8C5C9 /* SettingsViews */,
 				038FD36D1FCCD44700C8C5C9 /* DoitViews */,
 				038207F01FD608D5008355ED /* Model */,
+				038207F61FD763DB008355ED /* HealthKitHelper.swift */,
 				03DD52DE1FCE264C00E9C69D /* DataLoader.swift */,
 				036F189E1FC1747B00D5FC02 /* AppDelegate.swift */,
 				03E31D081FCB66CE003E145B /* RootTabController.swift */,
@@ -281,6 +289,7 @@
 		640C8352252952986BD45BBA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				038207F41FD7606E008355ED /* HealthKit.framework */,
 				43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */,
 			);
 			name = Frameworks;
@@ -360,6 +369,11 @@
 					036F189A1FC1747B00D5FC02 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					036F18AE1FC1747B00D5FC02 = {
 						CreatedOnToolsVersion = 9.1;
@@ -513,6 +527,7 @@
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
 				03DD52DF1FCE264C00E9C69D /* DataLoader.swift in Sources */,
 				038FD3751FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift in Sources */,
+				038207F71FD763DB008355ED /* HealthKitHelper.swift in Sources */,
 				038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */,
 				03DD52E31FCF5A3A00E9C69D /* StretchTableNewCell.swift in Sources */,
 				03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */,
@@ -702,6 +717,7 @@
 			baseConfigurationReference = 15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fantastretch/Fantastretch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKFQ3S4U4C;
 				INFOPLIST_FILE = Fantastretch/Info.plist;
@@ -718,6 +734,7 @@
 			baseConfigurationReference = A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Fantastretch/Fantastretch.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CKFQ3S4U4C;
 				INFOPLIST_FILE = Fantastretch/Info.plist;

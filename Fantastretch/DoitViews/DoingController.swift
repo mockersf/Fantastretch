@@ -36,6 +36,7 @@ class DoingController: UIViewController {
     var step = Steps.Rest
     var sides = [Sides]()
     var currentSide = 0
+    var durationDone = 0
 
     @IBOutlet weak var exerciseNameLabel: UILabel!
     @IBOutlet weak var exercisePhoto: UIImageView!
@@ -59,6 +60,7 @@ class DoingController: UIViewController {
         currentTimer = (settings?.timerRest ?? 10) * 10
         currentStepLabel.text = Steps.Rest.rawValue
         runTimer()
+        durationDone = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,6 +107,7 @@ class DoingController: UIViewController {
 
     func done() {
         UIApplication.shared.isIdleTimerDisabled = false
+        HealthKitHelper.saveWorkoutDuration(duration: durationDone)
         performSegue(withIdentifier: "DoneExercising", sender: self)
     }
 
@@ -116,6 +119,7 @@ class DoingController: UIViewController {
             if currentTimer == 10 || currentTimer == 20 || currentTimer == 30 {
                 Sound.play(file: "sounds/1000Hz.wav")
             } else if currentTimer == 0 {
+                durationDone += settings?.timerRest ?? 10
                 currentTimer = (settings?.timerHold ?? 10) * 10
                 step = Steps.Hold
                 currentStepLabel.text = step.rawValue
@@ -127,6 +131,7 @@ class DoingController: UIViewController {
 
                 currentSide += 1
                 if currentSide >= sides.count {
+                    durationDone += settings?.timerHold ?? 10
                     exercises[currentExercise].updateHistory(durationDone: settings?.timerHold ?? 10)
                     currentTimer = (settings?.timerRest ?? 10) * 10
                     step = Steps.Rest
@@ -139,6 +144,7 @@ class DoingController: UIViewController {
                     }
                     prepareExercise(index: currentExercise)
                 } else {
+                    durationDone += settings?.timerHold ?? 10
                     displaySide(side: sides[currentSide])
                     currentTimer = (settings?.timerRest ?? 10) * 10
                     step = Steps.Rest

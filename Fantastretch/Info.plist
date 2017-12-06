@@ -41,5 +41,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allows you to add photos for your stretchs</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Allows Fantastretch to record sessions in Healthkit</string>
 </dict>
 </plist>
