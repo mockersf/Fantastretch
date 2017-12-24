@@ -15,6 +15,10 @@ class DataLoader {
         closure(exercise)
     }
 
+    static func load(exerciseLoaded closure: @escaping (Exercise) -> Void) {
+        loadFrom(jsonUrl: "https://7e48b817.ngrok.io/example_stretch.json", exerciseLoaded: closure)
+    }
+
     static func loadFrom(jsonUrl url: String, exerciseLoaded closure: @escaping (Exercise) -> Void) {
         if let jsonURL = URL(string: url) {
             let session = URLSession(configuration: .default)
