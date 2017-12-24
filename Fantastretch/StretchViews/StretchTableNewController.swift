@@ -6,8 +6,8 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 class StretchTableNewController: UITableViewController {
 
@@ -139,6 +139,7 @@ class StretchTableNewController: UITableViewController {
     }
 
     // MARK: Actions
+
     @IBAction func unwindToNewStretchList(sender _: UIStoryboardSegue) {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             let newExercise = exercises[selectedIndexPath.row]
@@ -150,6 +151,7 @@ class StretchTableNewController: UITableViewController {
     }
 
     // MARK: private function
+
     private func sortExercises() {
         exercises = exercises.sorted(by: { (exerciseA, exerciseB) -> Bool in
             if exerciseA.muscle.rawValue == exerciseB.muscle.rawValue {

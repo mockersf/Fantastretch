@@ -6,8 +6,8 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 class ExerciseHistory {
     let exerciseId: UUID

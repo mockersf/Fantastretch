@@ -6,8 +6,8 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
 import SwiftySound
+import UIKit
 
 enum Steps: String {
     case Rest
@@ -38,18 +38,18 @@ class DoingController: UIViewController {
     var currentSide = 0
     var durationDone = 0
 
-    @IBOutlet weak var exerciseNameLabel: UILabel!
-    @IBOutlet weak var exercisePhoto: UIImageView!
-    @IBOutlet weak var exerciseExplanation: UITextView!
+    @IBOutlet var exerciseNameLabel: UILabel!
+    @IBOutlet var exercisePhoto: UIImageView!
+    @IBOutlet var exerciseExplanation: UITextView!
 
-    @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var progressLabel: UILabel!
-    @IBOutlet weak var currentStepLabel: UILabel!
-    @IBOutlet weak var currentSideLabel: UILabel!
+    @IBOutlet var timerLabel: UILabel!
+    @IBOutlet var progressLabel: UILabel!
+    @IBOutlet var currentStepLabel: UILabel!
+    @IBOutlet var currentSideLabel: UILabel!
 
-    @IBOutlet weak var runControlButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet var runControlButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
+    @IBOutlet var stopButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +69,7 @@ class DoingController: UIViewController {
     }
 
     // MARK: private functions
+
     func prepareExercise(index: Int) {
         let exercise = exercises[index]
 

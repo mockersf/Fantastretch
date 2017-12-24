@@ -6,13 +6,14 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
-import os.log
 import CoreData
+import os.log
+import UIKit
 
 class StretchTableViewController: UITableViewController {
 
     // MARK: Properties
+
     var stretches = [Exercise]()
     var fixedSet = false
 
@@ -126,6 +127,7 @@ class StretchTableViewController: UITableViewController {
     }
 
     // MARK: Actions
+
     @IBAction func unwindToStretchList(sender: UIStoryboardSegue) {
         if let sourceEditController = sender.source as? StretchEditController, let stretch = sourceEditController.stretch {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
@@ -146,6 +148,7 @@ class StretchTableViewController: UITableViewController {
     }
 
     // MARK: private functions
+
     private func sortStretches() {
         stretches = stretches.sorted(by: { (stretchA, stretchB) -> Bool in
             if stretchA.muscle.rawValue == stretchB.muscle.rawValue {

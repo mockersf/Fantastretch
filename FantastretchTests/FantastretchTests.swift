@@ -6,8 +6,8 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import XCTest
 @testable import Fantastretch
+import XCTest
 
 class FantastretchTests: XCTestCase {
 

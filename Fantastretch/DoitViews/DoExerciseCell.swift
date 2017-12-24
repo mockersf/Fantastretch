@@ -10,11 +10,11 @@ import UIKit
 
 class DoExerciseCell: UITableViewCell {
 
-    @IBOutlet weak var imagePhotoView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var sidesLabel: UILabel!
-    @IBOutlet weak var doItButton: UIButton!
+    @IBOutlet var imagePhotoView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var sidesLabel: UILabel!
+    @IBOutlet var doItButton: UIButton!
     var exercise: ExerciseWithMetadata?
 
     override func awakeFromNib() {

@@ -10,9 +10,9 @@ import UIKit
 
 class MusclePreferenceCell: UITableViewCell {
 
-    @IBOutlet weak var muscleLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var scoreStepper: UIStepper!
+    @IBOutlet var muscleLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var scoreStepper: UIStepper!
     var muscle: Muscle?
 
     override func awakeFromNib() {

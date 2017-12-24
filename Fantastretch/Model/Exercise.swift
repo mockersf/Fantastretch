@@ -6,9 +6,9 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
-import os.log
 import CoreData
+import os.log
+import UIKit
 
 enum Repeat: String, AutoEnumAllCases {
     case Once
@@ -44,6 +44,7 @@ enum ExerciseType: String {
 class Exercise: NSObject {
 
     // MARK: Properties
+
     var name: String
     var explanation: String
     var photo: UIImage?
@@ -54,6 +55,7 @@ class Exercise: NSObject {
     var type: ExerciseType
 
     // MARK: Initialization
+
     init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, muscle: Muscle, id: UUID?) {
 
         // The name must not be empty

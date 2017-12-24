@@ -11,11 +11,12 @@ import UIKit
 class StretchTableViewCell: UITableViewCell {
 
     // MARK: Properties
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var ratingControl: RatingControl!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var sidesLabel: UILabel!
+
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var photoImageView: UIImageView!
+    @IBOutlet var ratingControl: RatingControl!
+    @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var sidesLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

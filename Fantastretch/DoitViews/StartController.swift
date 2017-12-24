@@ -6,8 +6,8 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
 struct ExerciseWithMetadata {
     let exercise: Exercise
@@ -65,6 +65,7 @@ class StartController: UIViewController {
     }
 
     // MARK: Actions
+
     @IBAction func unwindToStart(sender _: UIStoryboardSegue) {
     }
 }

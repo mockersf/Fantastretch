@@ -10,10 +10,10 @@ import UIKit
 
 class SettingsController: UITableViewController {
 
-    @IBOutlet weak var timersHoldLabel: UILabel!
-    @IBOutlet weak var timersRestLabel: UILabel!
-    @IBOutlet weak var alertsVibrationSwitch: UISwitch!
-    @IBOutlet weak var alertsSoundSwitch: UISwitch!
+    @IBOutlet var timersHoldLabel: UILabel!
+    @IBOutlet var timersRestLabel: UILabel!
+    @IBOutlet var alertsVibrationSwitch: UISwitch!
+    @IBOutlet var alertsSoundSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +72,7 @@ class SettingsController: UITableViewController {
     }
 
     // MARK: Actions
+
     @IBAction func unwindToSettings(sender: UIStoryboardSegue) {
         if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
             switch pickerTableController.type {

@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable class RatingControl: UIStackView {
 
     // MARK: Properties
+
     private var ratingButtons = [UIButton]()
     var rating = 0 {
         didSet {
@@ -33,6 +34,7 @@ import UIKit
     }
 
     // MARK: Initialization
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButtons()
@@ -44,6 +46,7 @@ import UIKit
     }
 
     // MARK: Button Action
+
     @objc func ratingButtonTapped(button: UIButton) {
         guard let index = ratingButtons.index(of: button) else {
             fatalError("The button, \(button), is not in the ratingButtons array: \(ratingButtons)")
@@ -65,6 +68,7 @@ import UIKit
     }
 
     // MARK: Private Methods
+
     private func setupButtons() {
 
         // Clear any existing buttons

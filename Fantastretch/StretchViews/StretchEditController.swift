@@ -6,20 +6,20 @@
 //  Copyright © 2017 Vleue. All rights reserved.
 //
 
-import UIKit
 import os.log
+import UIKit
 
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     var stretch: Exercise?
     let placeholderGray = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1)
 
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var sidesLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var descriptionText: UITextView!
+    @IBOutlet var nameTextField: UITextField!
+    @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var sidesLabel: UILabel!
+    @IBOutlet var photoImageView: UIImageView!
+    @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var descriptionText: UITextView!
 
     var descriptionTextEmpty = true
 
@@ -62,6 +62,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
@@ -121,6 +122,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: UIImagePickerControllerDelegate
+
     func imagePickerControllerDidCancel(_: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
@@ -136,6 +138,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: UITextFieldDelegate
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
@@ -147,6 +150,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: UITextViewDelegate
+
     func textViewShouldBeginEditing(_: UITextView) -> Bool {
         if descriptionTextEmpty {
             descriptionText.text = ""
@@ -168,6 +172,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: Actions
+
     @IBAction func selectImageFromPhotoLibrary(_: UITapGestureRecognizer) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .photoLibrary
@@ -176,6 +181,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: Actions
+
     @IBAction func unwindToEdit(sender: UIStoryboardSegue) {
         if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
             switch pickerTableController.type {
@@ -199,6 +205,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     }
 
     // MARK: Private Methods
+
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let text = nameTextField.text ?? ""

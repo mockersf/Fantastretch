@@ -12,10 +12,10 @@ class StretchAddController: UITableViewController {
 
     var stretch: Exercise?
 
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var descriptionText: UITextView!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var sidesLabel: UILabel!
+    @IBOutlet var photoImageView: UIImageView!
+    @IBOutlet var descriptionText: UITextView!
+    @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var sidesLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()

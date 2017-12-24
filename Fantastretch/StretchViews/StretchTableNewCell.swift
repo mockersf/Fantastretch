@@ -10,10 +10,10 @@ import UIKit
 
 class StretchTableNewCell: UITableViewCell {
 
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var targetLabel: UILabel!
-    @IBOutlet weak var sidesLabel: UILabel!
+    @IBOutlet var photoView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var sidesLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

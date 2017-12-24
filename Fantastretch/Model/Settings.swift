@@ -11,6 +11,7 @@ import Foundation
 class Settings {
 
     // MARK: properties
+
     var timerHold: Int
     var timerRest: Int
     var alertsVibration: Bool
