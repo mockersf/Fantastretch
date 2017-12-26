@@ -121,7 +121,7 @@ class DoingController: UIViewController {
                 Sound.play(file: "sounds/1000Hz.wav")
             } else if currentTimer == 0 {
                 durationDone += settings?.timerRest ?? 10
-                currentTimer = (settings?.timerHold ?? 10) * 10
+                currentTimer = (exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10)) * 10
                 step = Steps.Hold
                 currentStepLabel.text = step.rawValue
                 Sound.play(file: "sounds/2000Hz.wav")
@@ -131,12 +131,12 @@ class DoingController: UIViewController {
                 Sound.play(file: "sounds/800Hz.wav")
 
                 currentSide += 1
+                durationDone += exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10)
+                step = Steps.Rest
+                currentStepLabel.text = step.rawValue
+                currentTimer = (settings?.timerRest ?? 10) * 10
                 if currentSide >= sides.count {
-                    durationDone += settings?.timerHold ?? 10
-                    exercises[currentExercise].updateHistory(durationDone: settings?.timerHold ?? 10)
-                    currentTimer = (settings?.timerRest ?? 10) * 10
-                    step = Steps.Rest
-                    currentStepLabel.text = step.rawValue
+                    exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10))
                     currentExercise += 1
                     if currentExercise >= exercises.count {
                         stopTimer()
@@ -145,11 +145,7 @@ class DoingController: UIViewController {
                     }
                     prepareExercise(index: currentExercise)
                 } else {
-                    durationDone += settings?.timerHold ?? 10
                     displaySide(side: sides[currentSide])
-                    currentTimer = (settings?.timerRest ?? 10) * 10
-                    step = Steps.Rest
-                    currentStepLabel.text = step.rawValue
                 }
             }
         }

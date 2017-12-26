@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0303BCE81FF1AFC900FB8044 /* ExerciseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0303BCE71FF1AFC900FB8044 /* ExerciseSettings.swift */; };
 		032379F91FC8F2A400480A89 /* StretchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032379F81FC8F2A400480A89 /* StretchViewController.swift */; };
 		032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032379FA1FC8F88100480A89 /* StretchEditController.swift */; };
 		03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03237A041FC9C1D500480A89 /* Model.xcdatamodeld */; };
@@ -64,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0303BCE71FF1AFC900FB8044 /* ExerciseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSettings.swift; sourceTree = "<group>"; };
 		032379F81FC8F2A400480A89 /* StretchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchViewController.swift; sourceTree = "<group>"; };
 		032379FA1FC8F88100480A89 /* StretchEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchEditController.swift; sourceTree = "<group>"; };
 		03237A051FC9C1D500480A89 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				036F18C01FC1BA7900D5FC02 /* Exercise.swift */,
 				038207F11FD60934008355ED /* ExerciseHistory.swift */,
 				03EBBDD61FCCC163001ED74E /* Settings.swift */,
+				0303BCE71FF1AFC900FB8044 /* ExerciseSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				038207F21FD60934008355ED /* ExerciseHistory.swift in Sources */,
 				036F18C11FC1BA7900D5FC02 /* Exercise.swift in Sources */,
 				038FD3711FCCD86E00C8C5C9 /* ActiveExerciseTableController.swift in Sources */,
+				0303BCE81FF1AFC900FB8044 /* ExerciseSettings.swift in Sources */,
 				038FD3771FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift in Sources */,
 				03DD52E11FCF594200E9C69D /* StretchTableNewController.swift in Sources */,
 				038FD36B1FCCCD9B00C8C5C9 /* SettingsController.swift in Sources */,

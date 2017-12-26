@@ -11,6 +11,7 @@ import UIKit
 
 struct ExerciseWithMetadata {
     let exercise: Exercise
+    let settings: ExerciseSettings
     let score: Int
 
     init(exercise: Exercise, settings: Settings) {
@@ -24,6 +25,7 @@ struct ExerciseWithMetadata {
 
         self.exercise = exercise
         score = ExerciseWithMetadata.getScore(muscleWeight: weight, exerciseRating: rating, daysSinceLastDone: daysSinceLastDone)
+        self.settings = ExerciseSettings.loadOrDefault(exercise: exercise)
     }
 
     static func getScore(muscleWeight: Int, exerciseRating: Int, daysSinceLastDone: Int) -> Int {
