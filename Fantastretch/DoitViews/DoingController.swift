@@ -57,7 +57,7 @@ class DoingController: UIViewController {
 
         settings = Settings()
         prepareExercise(index: 0)
-        currentTimer = (settings?.timerRest ?? 10) * 10
+        currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
         currentStepLabel.text = Steps.Rest.rawValue
         runTimer()
         durationDone = 0
@@ -120,8 +120,8 @@ class DoingController: UIViewController {
             if currentTimer == 10 || currentTimer == 20 || currentTimer == 30 {
                 Sound.play(file: "sounds/1000Hz.wav")
             } else if currentTimer == 0 {
-                durationDone += settings?.timerRest ?? 10
-                currentTimer = (exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10)) * 10
+                durationDone += settings?.timerRest ?? Settings.defaultTimerRest
+                currentTimer = (exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold)) * 10
                 step = Steps.Hold
                 currentStepLabel.text = step.rawValue
                 Sound.play(file: "sounds/2000Hz.wav")
@@ -131,12 +131,12 @@ class DoingController: UIViewController {
                 Sound.play(file: "sounds/800Hz.wav")
 
                 currentSide += 1
-                durationDone += exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10)
+                durationDone += exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold)
                 step = Steps.Rest
                 currentStepLabel.text = step.rawValue
-                currentTimer = (settings?.timerRest ?? 10) * 10
+                currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
                 if currentSide >= sides.count {
-                    exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? 10))
+                    exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold))
                     currentExercise += 1
                     if currentExercise >= exercises.count {
                         stopTimer()
@@ -175,7 +175,7 @@ class DoingController: UIViewController {
     }
 
     @IBAction func resetAction(_: UIButton) {
-        currentTimer = (settings?.timerRest ?? 10) * 10
+        currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
         step = Steps.Rest
         currentStepLabel.text = step.rawValue
         timerLabel.text = timeString(time: currentTimer)

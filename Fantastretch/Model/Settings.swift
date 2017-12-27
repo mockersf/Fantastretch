@@ -21,6 +21,9 @@ class Settings {
     let maxOldExerciseWeight = 30
     var healthKitPermsAsked: Bool
 
+    static let defaultTimerHold = 30
+    static let defaultTimerRest = 10
+
     init() {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [

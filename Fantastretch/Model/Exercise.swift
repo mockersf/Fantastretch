@@ -86,6 +86,10 @@ class Exercise: NSObject {
                   muscle: Muscle(rawValue: exerciseMO.muscle ?? "") ?? Muscle.defaultCase, id: exerciseMO.id)
     }
 
+    func getSettings() -> ExerciseSettings {
+        return ExerciseSettings.loadOrDefault(exercise: self)
+    }
+
     static func load() -> [Exercise]? {
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {

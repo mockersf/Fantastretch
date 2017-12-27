@@ -244,8 +244,8 @@
 			children = (
 				036F18C01FC1BA7900D5FC02 /* Exercise.swift */,
 				038207F11FD60934008355ED /* ExerciseHistory.swift */,
-				03EBBDD61FCCC163001ED74E /* Settings.swift */,
 				0303BCE71FF1AFC900FB8044 /* ExerciseSettings.swift */,
+				03EBBDD61FCCC163001ED74E /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

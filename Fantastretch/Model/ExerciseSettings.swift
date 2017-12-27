@@ -11,11 +11,19 @@ import UIKit
 
 class ExerciseSettings {
     let exerciseId: UUID
-    let duration: Int?
+    var duration: Int?
 
     init(exerciseId: UUID, duration: Int?) {
         self.exerciseId = exerciseId
-        self.duration = duration
+        if let duration = duration {
+            if duration != 0 {
+                self.duration = duration
+            } else {
+                self.duration = nil
+            }
+        } else {
+            self.duration = nil
+        }
     }
 
     convenience init(exercise: Exercise, duration: Int?) {
