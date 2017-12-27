@@ -692,7 +692,7 @@
                     <navigationItem key="navigationItem" title="Congrats!" id="gXi-dm-KZb">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="DsC-Og-MF2">
                             <connections>
-                                <segue destination="MyB-QH-sNB" kind="unwind" identifier="unwind" unwindAction="unwindToStartWithSender:" id="N2L-OL-S4f"/>
+                                <segue destination="MyB-QH-sNB" kind="unwind" identifier="unwind" animates="NO" unwindAction="unwindToStartWithSender:" id="N2L-OL-S4f"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
