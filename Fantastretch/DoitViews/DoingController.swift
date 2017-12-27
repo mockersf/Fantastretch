@@ -38,6 +38,10 @@ class DoingController: UIViewController {
     var currentSide = 0
     var durationDone = 0
 
+    var restTime = Settings.defaultTimerRest
+    var holdTime = Settings.defaultTimerHold
+    var defaultHoldTime = Settings.defaultTimerHold
+
     @IBOutlet var exerciseNameLabel: UILabel!
     @IBOutlet var exercisePhoto: UIImageView!
     @IBOutlet var exerciseExplanation: UITextView!
@@ -46,6 +50,7 @@ class DoingController: UIViewController {
     @IBOutlet var progressLabel: UILabel!
     @IBOutlet var currentStepLabel: UILabel!
     @IBOutlet var currentSideLabel: UILabel!
+    @IBOutlet var currentProgress: UIProgressView!
 
     @IBOutlet var runControlButton: UIButton!
     @IBOutlet var resetButton: UIButton!
@@ -61,6 +66,10 @@ class DoingController: UIViewController {
         currentStepLabel.text = Steps.Rest.rawValue
         runTimer()
         durationDone = 0
+        currentProgress.progress = 0
+        restTime = settings?.timerRest ?? Settings.defaultTimerRest
+        holdTime = settings?.timerHold ?? Settings.defaultTimerHold
+        defaultHoldTime = settings?.timerHold ?? Settings.defaultTimerHold
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,24 +126,27 @@ class DoingController: UIViewController {
         currentTimer -= 1
         switch step {
         case Steps.Rest:
+            currentProgress.progress = 1 - Float(currentTimer) / (Float(restTime) * 10)
             if currentTimer == 10 || currentTimer == 20 || currentTimer == 30 {
                 Sound.play(file: "sounds/1000Hz.wav")
             } else if currentTimer == 0 {
-                durationDone += settings?.timerRest ?? Settings.defaultTimerRest
-                currentTimer = (exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold)) * 10
+                durationDone += restTime
+                holdTime = exercises[currentExercise].settings.duration ?? defaultHoldTime
+                currentTimer = holdTime * 10
                 step = Steps.Hold
                 currentStepLabel.text = step.rawValue
                 Sound.play(file: "sounds/2000Hz.wav")
             }
         case Steps.Hold:
+            currentProgress.progress = 1 - Float(currentTimer) / (Float(holdTime) * 10)
             if currentTimer == 0 {
                 Sound.play(file: "sounds/800Hz.wav")
 
                 currentSide += 1
-                durationDone += exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold)
+                durationDone += holdTime
                 step = Steps.Rest
                 currentStepLabel.text = step.rawValue
-                currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
+                currentTimer = restTime * 10
                 if currentSide >= sides.count {
                     exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold))
                     currentExercise += 1
