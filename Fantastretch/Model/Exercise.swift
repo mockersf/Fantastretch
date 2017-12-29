@@ -41,7 +41,7 @@ enum ExerciseType: String {
     case Exercise
 }
 
-class Exercise: NSObject {
+class Exercise: CustomStringConvertible {
 
     // MARK: Properties
 
@@ -53,6 +53,10 @@ class Exercise: NSObject {
     var muscle: Muscle
     var id: UUID
     var type: ExerciseType
+
+    var description: String {
+        return "<\(name) (\(muscle) - \(sides))>"
+    }
 
     // MARK: Initialization
 
