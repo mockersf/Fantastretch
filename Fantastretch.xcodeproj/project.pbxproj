@@ -25,7 +25,6 @@
 		036F18C11FC1BA7900D5FC02 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C01FC1BA7900D5FC02 /* Exercise.swift */; };
 		036F18C31FC1C96800D5FC02 /* StretchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */; };
 		036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */; };
-		038207EF1FD60708008355ED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207EE1FD60708008355ED /* Extensions.swift */; };
 		038207F21FD60934008355ED /* ExerciseHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207F11FD60934008355ED /* ExerciseHistory.swift */; };
 		038207F51FD7606E008355ED /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038207F41FD7606E008355ED /* HealthKit.framework */; };
 		038207F71FD763DB008355ED /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038207F61FD763DB008355ED /* HealthKitHelper.swift */; };
@@ -44,6 +43,8 @@
 		03E31D131FCB80EF003E145B /* FantastretchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E31D121FCB80EF003E145B /* FantastretchUITests.swift */; };
 		03EBBDD51FCC7E9C001ED74E /* SourceryProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */; };
 		03EBBDD71FCCC163001ED74E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EBBDD61FCCC163001ED74E /* Settings.swift */; };
+		03F9ACB61FF51DCA0004711A /* ExerciseSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F9ACB51FF51DCA0004711A /* ExerciseSelectionTests.swift */; };
+		4419B57BBFA89B90AEE21248 /* Pods_FantastretchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90B6ABA913E7876B7668B69D /* Pods_FantastretchTests.framework */; };
 		6CD9D2399805C239BD1C6CB0 /* Pods_Fantastretch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */; };
 /* End PBXBuildFile section */
 
@@ -87,7 +88,6 @@
 		036F18C01FC1BA7900D5FC02 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		036F18C21FC1C96800D5FC02 /* StretchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewCell.swift; sourceTree = "<group>"; };
 		036F18C41FC1D20A00D5FC02 /* StretchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchTableViewController.swift; sourceTree = "<group>"; };
-		038207EE1FD60708008355ED /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		038207F11FD60934008355ED /* ExerciseHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseHistory.swift; sourceTree = "<group>"; };
 		038207F31FD7606E008355ED /* Fantastretch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fantastretch.entitlements; sourceTree = "<group>"; };
 		038207F41FD7606E008355ED /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -109,9 +109,13 @@
 		03E31D141FCB80EF003E145B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03EBBDD41FCC7E9C001ED74E /* SourceryProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceryProtocols.swift; sourceTree = "<group>"; };
 		03EBBDD61FCCC163001ED74E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		03F9ACB51FF51DCA0004711A /* ExerciseSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectionTests.swift; sourceTree = "<group>"; };
 		15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fantastretch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch.debug.xcconfig"; sourceTree = "<group>"; };
+		3A547F1D9FB86C9921274E35 /* Pods-FantastretchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantastretchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FantastretchTests/Pods-FantastretchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fantastretch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B6ABA913E7876B7668B69D /* Pods_FantastretchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FantastretchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fantastretch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch.release.xcconfig"; sourceTree = "<group>"; };
+		F959DC35A7250982B7AC3059 /* Pods-FantastretchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FantastretchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FantastretchTests/Pods-FantastretchTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4419B57BBFA89B90AEE21248 /* Pods_FantastretchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +230,6 @@
 				036F18A51FC1747B00D5FC02 /* Assets.xcassets */,
 				036F18AA1FC1747B00D5FC02 /* Info.plist */,
 				03237A041FC9C1D500480A89 /* Model.xcdatamodeld */,
-				038207EE1FD60708008355ED /* Extensions.swift */,
 			);
 			path = Fantastretch;
 			sourceTree = "<group>";
@@ -234,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				036F18B31FC1747B00D5FC02 /* FantastretchTests.swift */,
+				03F9ACB51FF51DCA0004711A /* ExerciseSelectionTests.swift */,
 				036F18B51FC1747B00D5FC02 /* Info.plist */,
 			);
 			path = FantastretchTests;
@@ -285,6 +290,8 @@
 			children = (
 				15EA350471ECCB2F8A267D61 /* Pods-Fantastretch.debug.xcconfig */,
 				A63949277C8451B3EBDF25CF /* Pods-Fantastretch.release.xcconfig */,
+				3A547F1D9FB86C9921274E35 /* Pods-FantastretchTests.debug.xcconfig */,
+				F959DC35A7250982B7AC3059 /* Pods-FantastretchTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -294,6 +301,7 @@
 			children = (
 				038207F41FD7606E008355ED /* HealthKit.framework */,
 				43A6653EBE53306B241461FD /* Pods_Fantastretch.framework */,
+				90B6ABA913E7876B7668B69D /* Pods_FantastretchTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -327,9 +335,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 036F18BB1FC1747B00D5FC02 /* Build configuration list for PBXNativeTarget "FantastretchTests" */;
 			buildPhases = (
+				37AD7D028CBD5AFE18B2B8A6 /* [CP] Check Pods Manifest.lock */,
 				036F18AB1FC1747B00D5FC02 /* Sources */,
 				036F18AC1FC1747B00D5FC02 /* Frameworks */,
 				036F18AD1FC1747B00D5FC02 /* Resources */,
+				F9B859C625EC1C47F0D2D8BF /* [CP] Embed Pods Frameworks */,
+				CE67D8889B9BB350D0C520AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -486,6 +497,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		37AD7D028CBD5AFE18B2B8A6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FantastretchTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5FA30F6CC0C0C00DAF800D1C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,6 +548,39 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fantastretch/Pods-Fantastretch-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CE67D8889B9BB350D0C520AC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FantastretchTests/Pods-FantastretchTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9B859C625EC1C47F0D2D8BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FantastretchTests/Pods-FantastretchTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FantastretchTests/Pods-FantastretchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -550,7 +612,6 @@
 				032379FB1FC8F88100480A89 /* StretchEditController.swift in Sources */,
 				03E31D091FCB66CE003E145B /* RootTabController.swift in Sources */,
 				03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */,
-				038207EF1FD60708008355ED /* Extensions.swift in Sources */,
 				036F18BF1FC19FCA00D5FC02 /* RatingControl.swift in Sources */,
 				03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */,
 				038FD3731FCCD91600C8C5C9 /* DoExerciseCell.swift in Sources */,
@@ -562,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03F9ACB61FF51DCA0004711A /* ExerciseSelectionTests.swift in Sources */,
 				036F18B41FC1747B00D5FC02 /* FantastretchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -752,6 +814,7 @@
 		};
 		036F18BC1FC1747B00D5FC02 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A547F1D9FB86C9921274E35 /* Pods-FantastretchTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -769,6 +832,7 @@
 		};
 		036F18BD1FC1747B00D5FC02 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F959DC35A7250982B7AC3059 /* Pods-FantastretchTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

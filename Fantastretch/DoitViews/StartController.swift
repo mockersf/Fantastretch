@@ -35,6 +35,43 @@ struct ExerciseWithMetadata {
     func updateHistory(durationDone: Int) {
         ExerciseHistory(exercise: exercise, date: Date(), duration: durationDone).save()
     }
+
+    static func getSelectedExercisesByScore(type: ExerciseType) -> [ExerciseWithMetadata] {
+        let settings = Settings()
+
+        let exercisesOfType = Exercise.load()?
+            .filter({ $0.type == type }) ?? []
+
+        return getSelectedExercisesByScore(exercises: exercisesOfType, settings: settings)
+    }
+
+    static func getSelectedExercisesByScore(exercises: [Exercise], settings: Settings) -> [ExerciseWithMetadata] {
+        let exercisesByScore = exercises
+            .map({ ExerciseWithMetadata(exercise: $0, settings: settings) })
+            .sorted(by: { $0.score > $1.score })
+
+        let scores = exercisesByScore.map({ $0.score })
+//        let maxScore = scores.max() ?? 0
+//        let meanScore = scores.reduce(0, +) / scores.count
+        let mostAreOverScore = scores[scores.count * 3 / 4]
+
+        let firstPass = exercisesByScore.reduce([ExerciseWithMetadata](), { (acc, exercise) -> [ExerciseWithMetadata] in
+
+            if acc.count != settings.autoNbOfExercises {
+                if (!acc.map({ $0.exercise.muscle }).contains(exercise.exercise.muscle)) && (exercise.score >= mostAreOverScore) {
+                    return acc + [exercise]
+                }
+            }
+
+            return acc
+        })
+
+        let remaining = exercisesByScore.filter({ (exercise) -> Bool in !firstPass.contains(where: { exercise.exercise.id == $0.exercise.id }) })
+
+        return Array(remaining.reduce(firstPass, { (acc, exercise) -> [ExerciseWithMetadata] in
+            acc + [exercise]
+        }).prefix(settings.autoNbOfExercises))
+    }
 }
 
 class StartController: UIViewController {
@@ -54,16 +91,17 @@ class StartController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
-        guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
-            fatalError("zut")
+
+        switch segue.identifier ?? "" {
+        case "startAutoStretch":
+            guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
+                fatalError("zut")
+            }
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(type: ExerciseType.Stretch)
+
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
         }
-        let settings = Settings()
-
-        let exercisesByScore = Exercise.load()?
-            .map({ ExerciseWithMetadata(exercise: $0, settings: settings) })
-            .sorted(by: { $0.score > $1.score }) ?? []
-
-        activeExerciseTable.exercises = exercisesByScore.choose(settings.autoNbOfExercises, outOf: Int(Double(settings.autoNbOfExercises) * 1.5))
     }
 
     // MARK: Actions

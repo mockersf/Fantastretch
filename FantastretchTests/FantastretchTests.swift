@@ -13,7 +13,7 @@ class FantastretchTests: XCTestCase {
 
     // MARK: Stretch Class Tests
 
-    // Confirm that the Meal initializer returns a Meal object when passed valid parameters.
+    // Confirm that the Stretch initializer returns a Stretch object when passed valid parameters.
     func testStretchInitializationSucceeds() {
         // Zero rating
         let zeroRatingStretch = Exercise(name: "Zero", explanation: "", photo: nil, rating: 0, sides: Repeat.allCases.first!, muscle: Muscle.allCases.first!, id: nil)
@@ -24,7 +24,7 @@ class FantastretchTests: XCTestCase {
         XCTAssertNotNil(positiveRatingStretch)
     }
 
-    // Confirm that the Meal initialier returns nil when passed a negative rating or an empty name.
+    // Confirm that the Stretch initialier returns nil when passed a negative rating or an empty name.
     func testStretchInitializationFails() {
         // Negative rating
         let negativeRatingStretch = Exercise(name: "Negative", explanation: "", photo: nil, rating: -1, sides: Repeat.allCases.first!, muscle: Muscle.allCases.first!, id: nil)

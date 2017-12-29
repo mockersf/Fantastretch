@@ -387,7 +387,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Start Auto Routine"/>
                                 <connections>
-                                    <segue destination="bVl-7t-mc3" kind="show" id="VbW-2a-19O"/>
+                                    <segue destination="bVl-7t-mc3" kind="show" identifier="startAutoStretch" id="VbW-2a-19O"/>
                                 </connections>
                             </button>
                         </subviews>
