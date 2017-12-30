@@ -29,7 +29,7 @@ struct ExerciseWithMetadata {
     }
 
     static func getScore(muscleWeight: Int, exerciseRating: Int, daysSinceLastDone: Int) -> Int {
-        return (muscleWeight * (1 + exerciseRating)) + (daysSinceLastDone * 2)
+        return Int((Float(muscleWeight * (1 + exerciseRating))) + Float(daysSinceLastDone) * 1.5)
     }
 
     func updateHistory(durationDone: Int) {
@@ -52,21 +52,24 @@ struct ExerciseWithMetadata {
 
         let scores = exercisesByScore.map({ $0.score })
 //        let maxScore = scores.max() ?? 0
-//        let meanScore = scores.reduce(0, +) / scores.count
-        let mostAreOverScore = scores[scores.count * 3 / 4]
+        let meanScore = scores.reduce(0, +) / scores.count
+//        let mostAreOverScore = scores[scores.count * 3 / 4]
+//        print("scores: \(scores), max: \(maxScore), mean: \(meanScore), 3/4: \(mostAreOverScore)")
 
         let firstPass = exercisesByScore.reduce([ExerciseWithMetadata](), { (acc, exercise) -> [ExerciseWithMetadata] in
 
             if acc.count != settings.autoNbOfExercises {
-                if (!acc.map({ $0.exercise.muscle }).contains(exercise.exercise.muscle)) && (exercise.score >= mostAreOverScore) {
+                if (!acc.map({ $0.exercise.muscle.getMuscle(settings: settings) }).contains(exercise.exercise.muscle.getMuscle(settings: settings))) && (exercise.score >= meanScore) {
                     return acc + [exercise]
                 }
             }
 
             return acc
         })
+//        print("firstpass: \(firstPass)")
 
         let remaining = exercisesByScore.filter({ (exercise) -> Bool in !firstPass.contains(where: { exercise.exercise.id == $0.exercise.id }) })
+//        print("remaining: \(remaining)")
 
         return Array(remaining.reduce(firstPass, { (acc, exercise) -> [ExerciseWithMetadata] in
             acc + [exercise]
