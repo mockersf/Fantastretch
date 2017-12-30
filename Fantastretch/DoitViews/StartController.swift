@@ -15,7 +15,7 @@ struct ExerciseWithMetadata {
     let score: Int
 
     init(exercise: Exercise, settings: Settings) {
-        let weight = settings.musclePreferences[exercise.muscle] ?? 1
+        let weight = settings.musclePreferences[exercise.muscle.getMuscle(settings: settings)] ?? 1
         let rating = exercise.rating
 
         let latestHistory = ExerciseHistory.loadLatest(exercise: exercise)

@@ -14,15 +14,19 @@ class SettingsController: UITableViewController {
     @IBOutlet var timersRestLabel: UILabel!
     @IBOutlet var alertsVibrationSwitch: UISwitch!
     @IBOutlet var alertsSoundSwitch: UISwitch!
+    @IBOutlet var advancedAbsSwitch: UISwitch!
+
+    var settings: Settings?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let settings = Settings()
-        timersHoldLabel.text = "\(settings.timerHold) s"
-        timersRestLabel.text = "\(settings.timerRest) s"
-        alertsVibrationSwitch.isOn = settings.alertsVibration
-        alertsSoundSwitch.isOn = settings.alertsSound
+        settings = Settings()
+        timersHoldLabel.text = "\(settings!.timerHold) s"
+        timersRestLabel.text = "\(settings!.timerRest) s"
+        alertsVibrationSwitch.isOn = settings!.alertsVibration
+        alertsSoundSwitch.isOn = settings!.alertsSound
+        advancedAbsSwitch.isOn = settings!.advancedAbs
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,5 +108,10 @@ class SettingsController: UITableViewController {
                 fatalError("missing picker type")
             }
         }
+    }
+
+    @IBAction func advancedAbsSwitched(_: UISwitch) {
+        settings?.advancedAbs = advancedAbsSwitch.isOn
+        settings?.save()
     }
 }

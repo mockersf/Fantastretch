@@ -20,6 +20,7 @@ class Settings {
     var autoNbOfExercises: Int
     let maxOldExerciseWeight = 30
     var healthKitPermsAsked: Bool
+    var advancedAbs: Bool
 
     static let defaultTimerHold = 30
     static let defaultTimerRest = 10
@@ -34,12 +35,14 @@ class Settings {
             "musclePreferences": [:],
             "autoNbOfExercises": 10,
             "healthKitPermsAsked": false,
+            "advancedAbs": false,
         ])
         timerHold = defaults.integer(forKey: "timerHold")
         timerRest = defaults.integer(forKey: "timerRest")
         alertsVibration = defaults.bool(forKey: "alertsVibration")
         alertsSound = defaults.bool(forKey: "alertsSound")
         healthKitPermsAsked = defaults.bool(forKey: "healthKitPermsAsked")
+        advancedAbs = defaults.bool(forKey: "advancedAbs")
 
         let musclePreferencesRaw = defaults.dictionary(forKey: "musclePreferences")
         musclePreferences = Dictionary(uniqueKeysWithValues: Muscle.allCases.map({ (muscle: Muscle) -> (Muscle, Int) in
@@ -62,5 +65,6 @@ class Settings {
         defaults.set(musclePreferencesRaw, forKey: "musclePreferences")
         defaults.set(autoNbOfExercises, forKey: "autoNbOfExercises")
         defaults.set(healthKitPermsAsked, forKey: "healthKitPermsAsked")
+        defaults.set(advancedAbs, forKey: "advancedAbs")
     }
 }

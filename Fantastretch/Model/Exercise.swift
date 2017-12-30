@@ -25,6 +25,9 @@ enum Muscle: String, AutoEnumAllCases {
     case Back
     case Chest
     case Abs
+    case AbsExternalOblique = "Abs - External  Oblique"
+    case AbsInternalOblique = "Abs - Internal  Oblique"
+    case AbsTransverse = "Abs - Transverse"
     case Glutes
     case Quads
     case HipFlexors = "Hip Flexors"
@@ -33,6 +36,26 @@ enum Muscle: String, AutoEnumAllCases {
     case Global
 
     static let defaultCase = Global
+}
+
+extension Muscle {
+    static func getAllMuscles(settings: Settings) -> [Muscle] {
+        return Muscle.allCases.filter({ muscle -> Bool in
+            if !settings.advancedAbs {
+                return ![.AbsExternalOblique, .AbsInternalOblique, .AbsTransverse].contains(muscle)
+            }
+            return true
+        })
+    }
+
+    func getMuscle(settings: Settings) -> Muscle {
+        switch self {
+        case .AbsExternalOblique: return settings.advancedAbs ? self : .Abs
+        case .AbsInternalOblique: return settings.advancedAbs ? self : .Abs
+        case .AbsTransverse: return settings.advancedAbs ? self : .Abs
+        default: return self
+        }
+    }
 }
 
 enum ExerciseType: String {
