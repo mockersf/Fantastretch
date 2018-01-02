@@ -32,27 +32,29 @@ class FantastretchUITests: XCTestCase {
 
         let app = XCUIApplication()
         app.tabBars.buttons["Stretch List"].tap()
-        app.navigationBars["Stretches"].buttons["Add"].tap()
-        app.navigationBars["New Stretches"].buttons["New"].tap()
+        app.navigationBars["Exercises"].buttons["Add"].tap()
+        app.navigationBars["New Exercises"].buttons["New"].tap()
 
         let tablesQuery2 = app.tables
         let tablesQuery = tablesQuery2
-        tablesQuery /* @START_MENU_TOKEN@ */ .textFields["Stretch Name"] /* [[".cells.textFields[\"Stretch Name\"]",".textFields[\"Stretch Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
+        tablesQuery /* @START_MENU_TOKEN@ */ .textFields["Exercise Name"] /* [[".cells.textFields[\"Stretch Name\"]",".textFields[\"Stretch Name\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery2.children(matching: .cell).element(boundBy: 0).children(matching: .textField).element.typeText("My New Stretch")
         tablesQuery2.cells.containing(.staticText, identifier: "Muscle").staticTexts["Choose one"].tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Calves"] /* [[".cells.staticTexts[\"Calves\"]",".staticTexts[\"Calves\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
-        tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Choose one"] /* [[".cells.staticTexts[\"Choose one\"]",".staticTexts[\"Choose one\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
+        tablesQuery2.cells.containing(.staticText, identifier: "Repeat").staticTexts["Choose one"].tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Once"] /* [[".cells.staticTexts[\"Center and Sides\"]",".staticTexts[\"Center and Sides\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
+        tablesQuery2.cells.containing(.staticText, identifier: "Type").staticTexts["Choose one"].tap()
+        tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["Stretch"].tap()
 
-        let textView = tablesQuery2.children(matching: .cell).element(boundBy: 4).children(matching: .textView).element
+        let textView = tablesQuery2.children(matching: .cell).element(boundBy: 5).children(matching: .textView).element
         textView.tap()
         textView.typeText("Description for stretch")
-        app.navigationBars["New Stretch"].buttons["Save"].tap()
+        app.navigationBars["New Exercise"].buttons["Save"].tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .staticTexts["My New Stretch"] /* [[".cells.staticTexts[\"My New Stretch\"]",".staticTexts[\"My New Stretch\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
         tablesQuery /* @START_MENU_TOKEN@ */ .buttons["Set 4 star rating"] /* [[".cells.buttons[\"Set 4 star rating\"]",".buttons[\"Set 4 star rating\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@ */ .tap()
-        app.navigationBars["My New Stretch"].buttons["Stretches"].tap()
+        app.navigationBars["My New Stretch"].buttons["Exercises"].tap()
 
-        let stretchesNavigationBar = app.navigationBars["Stretches"]
+        let stretchesNavigationBar = app.navigationBars["Exercises"]
         stretchesNavigationBar.buttons["Edit"].tap()
 
         //        let tablesQuery = app.tables

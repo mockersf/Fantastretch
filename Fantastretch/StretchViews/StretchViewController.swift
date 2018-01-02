@@ -10,7 +10,7 @@ import UIKit
 
 class StretchViewController: UITableViewController {
 
-    var stretch: Exercise?
+    var exercise: Exercise?
     var exerciseSettings: ExerciseSettings?
     var settings: Settings?
 
@@ -29,19 +29,19 @@ class StretchViewController: UITableViewController {
 
         settings = Settings()
         // Set up views with existing Stretch.
-        if let stretch = stretch {
-            exerciseSettings = stretch.getSettings()
-            navigationItem.title = stretch.name
-            targetLabel.text = stretch.muscle.rawValue
-            sidesLabel.text = stretch.sides.rawValue
-            if let photo = stretch.photo {
+        if let exercise = exercise {
+            exerciseSettings = exercise.getSettings()
+            navigationItem.title = exercise.name
+            targetLabel.text = exercise.muscle.rawValue
+            sidesLabel.text = exercise.sides.rawValue
+            if let photo = exercise.photo {
                 photoImageView.image = photo
             }
-            DescriptionText.text = stretch.explanation
-            ratingControl.rating = stretch.rating
-            statsLastRunLabel.text = (ExerciseHistory.loadLatest(exercise: stretch)?.date)
+            DescriptionText.text = exercise.explanation
+            ratingControl.rating = exercise.rating
+            statsLastRunLabel.text = (ExerciseHistory.loadLatest(exercise: exercise)?.date)
                 .map({ DateFormatter.localizedString(from: $0, dateStyle: .short, timeStyle: .short) }) ?? "Never"
-            statsTotalRunLabel.text = "\(ExerciseHistory.loadAll(exercise: stretch).count)"
+            statsTotalRunLabel.text = "\(ExerciseHistory.loadAll(exercise: exercise).count)"
             currentHoldTImer.text = currentHold()
         }
     }
@@ -54,14 +54,14 @@ class StretchViewController: UITableViewController {
         super.viewWillDisappear(animated)
 
         if isMovingFromParentViewController {
-            stretch?.rating = ratingControl.rating
+            exercise?.rating = ratingControl.rating
             let viewControllers = navigationController?.viewControllers
             if let tableController = viewControllers?.first as? StretchTableViewController {
                 if let selectedIndexPath = tableController.tableView.indexPathForSelectedRow {
                     // Update an existing stretch.
-                    tableController.exercises[stretch!.type]![selectedIndexPath.row] = stretch!
+                    tableController.exercises[exercise!.type]![selectedIndexPath.row] = exercise!
                     tableController.tableView.reloadRows(at: [selectedIndexPath], with: .none)
-                    stretch?.update()
+                    exercise?.update()
                 }
             }
         }
@@ -76,7 +76,7 @@ class StretchViewController: UITableViewController {
             guard let stretchEditController = segue.destination as? StretchEditController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            stretchEditController.stretch = stretch
+            stretchEditController.exercise = exercise
 
         case "PickTimer":
             guard let navigationController = segue.destination as? UINavigationController else {

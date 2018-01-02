@@ -120,7 +120,7 @@ class StretchTableViewController: UITableViewController {
             }
 
             let selectedExercise = exercises[exerciseTypeForSection(indexPath.section)]![indexPath.row]
-            stretchDetailViewController.stretch = selectedExercise
+            stretchDetailViewController.exercise = selectedExercise
 
         case "unwind":
             ()
@@ -133,14 +133,14 @@ class StretchTableViewController: UITableViewController {
     // MARK: Actions
 
     @IBAction func unwindToStretchList(sender: UIStoryboardSegue) {
-        if let sourceEditController = sender.source as? StretchEditController, let exercise = sourceEditController.stretch {
+        if let sourceEditController = sender.source as? StretchEditController, let exercise = sourceEditController.exercise {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing stretch.
+                // Update an existing exercise.
                 exercises[exerciseTypeForSection(selectedIndexPath.section)]![selectedIndexPath.row] = exercise
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
                 exercise.update()
             } else {
-                // Add a new stretch.
+                // Add a new exercise.
                 let newIndexPath = IndexPath(row: exercises.count, section: Array(exercises.keys).index(of: exercise.type) ?? Array(exercises.keys).count)
                 exercises.merge([exercise.type: [exercise]], uniquingKeysWith: { $0 + $1 })
                 tableView.insertRows(at: [newIndexPath], with: .automatic)

@@ -12,7 +12,7 @@ enum PickTarget: String {
     case Muscle
     case Repeat
     case Timer
-    case ExerciseType
+    case ExerciseType = "Exercise Type"
 }
 
 class PickerTableController: UITableViewController {

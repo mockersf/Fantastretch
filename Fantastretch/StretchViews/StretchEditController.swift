@@ -11,7 +11,7 @@ import UIKit
 
 class StretchEditController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
 
-    var stretch: Exercise?
+    var exercise: Exercise?
     let placeholderGray = UIColor(red: 0.78, green: 0.78, blue: 0.80, alpha: 1)
 
     @IBOutlet var nameTextField: UITextField!
@@ -30,26 +30,26 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
         nameTextField.delegate = self
         descriptionText.delegate = self
 
-        // Set up views with existing Stretch.
-        if let stretch = stretch {
-            navigationItem.title = "Edit Stretch"
+        // Set up views with existing Exercise.
+        if let exercise = exercise {
+            navigationItem.title = "Edit Exercise"
 
-            nameTextField.text = stretch.name
-            targetLabel.text = stretch.muscle.rawValue
+            nameTextField.text = exercise.name
+            targetLabel.text = exercise.muscle.rawValue
             targetLabel.textColor = UIColor.gray
-            sidesLabel.text = stretch.sides.rawValue
+            sidesLabel.text = exercise.sides.rawValue
             sidesLabel.textColor = UIColor.gray
-            typeLabel.text = stretch.type.rawValue
+            typeLabel.text = exercise.type.rawValue
             typeLabel.textColor = UIColor.gray
-            if let photo = stretch.photo {
+            if let photo = exercise.photo {
                 photoImageView.image = photo
             }
-            descriptionText.text = stretch.explanation
-            if stretch.explanation != "" {
+            descriptionText.text = exercise.explanation
+            if exercise.explanation != "" {
                 descriptionTextEmpty = false
             }
         } else {
-            navigationItem.title = "New Stretch"
+            navigationItem.title = "New Exercise"
             targetLabel.text = "Choose one"
             targetLabel.textColor = placeholderGray
             sidesLabel.text = "Choose one"
@@ -114,7 +114,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             let muscle = Muscle.allCases.first(where: { (muscle) -> Bool in muscle.rawValue == targetLabel.text }) ?? Muscle.defaultCase
             let type = ExerciseType(rawValue: typeLabel.text ?? "") ?? ExerciseType.defaultCase
 
-            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, muscle: muscle, type: type, id: stretch?.id)
+            exercise = Exercise(name: name, explanation: description, photo: photo, rating: exercise?.rating ?? 0, sides: sides, muscle: muscle, type: type, id: exercise?.id)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
