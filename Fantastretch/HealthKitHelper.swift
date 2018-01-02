@@ -9,6 +9,11 @@
 import Foundation
 import HealthKit
 
+enum WorkoutType {
+    case Stretch
+    case Strength
+}
+
 class HealthKitHelper {
     private enum HealthkitSetupError: Error {
         case notAvailableOnDevice
@@ -60,13 +65,14 @@ class HealthKitHelper {
         }
     }
 
-    class func saveWorkoutDuration(duration: Int) {
+    class func saveWorkoutDuration(duration: Int, workoutType: WorkoutType) {
         if HKHealthStore.isHealthDataAvailable() {
             authorizeIfNeededAndThen(doSomething: {
                 HKWorkoutType.workoutType()
                 let finish = Date()
                 let start = finish.addingTimeInterval(TimeInterval(-duration))
-                let workout = HKWorkout(activityType: HKWorkoutActivityType.preparationAndRecovery, start: start, end: finish)
+                let type = workoutTypeToActivityType(workoutType: workoutType)
+                let workout = HKWorkout(activityType: type, start: start, end: finish)
                 sharedInstance.healthStore.save(workout, withCompletion: { _, error in
                     if let error = error {
                         print("Error Saving Workout: \(error.localizedDescription)")
@@ -75,6 +81,15 @@ class HealthKitHelper {
                     }
                 })
             })
+        }
+    }
+
+    private static func workoutTypeToActivityType(workoutType: WorkoutType) -> HKWorkoutActivityType {
+        switch workoutType {
+        case WorkoutType.Stretch:
+            return HKWorkoutActivityType.preparationAndRecovery
+        case WorkoutType.Strength:
+            return HKWorkoutActivityType.functionalStrengthTraining
         }
     }
 }

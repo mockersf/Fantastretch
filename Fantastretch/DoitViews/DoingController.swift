@@ -118,7 +118,11 @@ class DoingController: UIViewController {
 
     func done() {
         UIApplication.shared.isIdleTimerDisabled = false
-        HealthKitHelper.saveWorkoutDuration(duration: durationDone)
+        if exercises.filter({ $0.exercise.getMetaType() == MetaExerciseType.Stretch }).count > exercises.filter({ $0.exercise.getMetaType() == MetaExerciseType.Strength }).count {
+            HealthKitHelper.saveWorkoutDuration(duration: durationDone, workoutType: .Stretch)
+        } else {
+            HealthKitHelper.saveWorkoutDuration(duration: durationDone, workoutType: .Strength)
+        }
         performSegue(withIdentifier: "DoneExercising", sender: self)
     }
 

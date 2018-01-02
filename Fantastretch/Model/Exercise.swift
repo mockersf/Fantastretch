@@ -69,6 +69,12 @@ enum ExerciseType: String, AutoEnumAllCases {
     static let defaultCase = Stretch
 }
 
+enum MetaExerciseType {
+    case Stretch
+    case Strength
+    case WarmUp
+}
+
 class Exercise: CustomStringConvertible {
 
     // MARK: Properties
@@ -117,6 +123,14 @@ class Exercise: CustomStringConvertible {
                   sides: Repeat(rawValue: exerciseMO.sides ?? "") ?? Repeat.defaultCase,
                   muscle: Muscle(rawValue: exerciseMO.muscle ?? "") ?? Muscle.defaultCase,
                   type: ExerciseType(rawValue: exerciseMO.type ?? "") ?? ExerciseType.defaultCase, id: exerciseMO.id)
+    }
+
+    func getMetaType() -> MetaExerciseType {
+        switch type {
+        case .Stretch: return MetaExerciseType.Stretch
+        case .Exercise, .Isometric: return MetaExerciseType.Strength
+        case .WarmUp: return MetaExerciseType.WarmUp
+        }
     }
 
     func getSettings() -> ExerciseSettings {
