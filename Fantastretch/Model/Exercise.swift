@@ -27,6 +27,7 @@ enum Muscle: String, AutoEnumAllCases {
     case Abs
     case AbsExternalOblique = "Abs - External  Oblique"
     case AbsInternalOblique = "Abs - Internal  Oblique"
+    case AbsRectus = "Abs - Rectus"
     case AbsTransverse = "Abs - Transverse"
     case Glutes
     case Quads
@@ -42,7 +43,7 @@ extension Muscle {
     static func getAllMuscles(settings: Settings) -> [Muscle] {
         return Muscle.allCases.filter({ muscle -> Bool in
             if !settings.advancedAbs {
-                return ![.AbsExternalOblique, .AbsInternalOblique, .AbsTransverse].contains(muscle)
+                return ![.AbsExternalOblique, .AbsInternalOblique, .AbsTransverse, .AbsRectus].contains(muscle)
             }
             return true
         })
@@ -53,6 +54,7 @@ extension Muscle {
         case .AbsExternalOblique: return settings.advancedAbs ? self : .Abs
         case .AbsInternalOblique: return settings.advancedAbs ? self : .Abs
         case .AbsTransverse: return settings.advancedAbs ? self : .Abs
+        case .AbsRectus: return settings.advancedAbs ? self : .Abs
         default: return self
         }
     }

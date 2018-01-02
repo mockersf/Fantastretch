@@ -12,7 +12,7 @@ extension ExerciseType {
 }
 
 extension Muscle {
-    static let count: Int = 16
+    static let count: Int = 17
     static let allCases: [Muscle] = [
         .Triceps,
         .Biceps,
@@ -23,6 +23,7 @@ extension Muscle {
         .Abs,
         .AbsExternalOblique,
         .AbsInternalOblique,
+        .AbsRectus,
         .AbsTransverse,
         .Glutes,
         .Quads,
