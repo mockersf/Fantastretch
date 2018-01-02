@@ -12,6 +12,7 @@ import UIKit
 enum Steps: String {
     case Rest
     case Hold
+    case Move
 }
 
 enum Sides: String {
@@ -133,11 +134,16 @@ class DoingController: UIViewController {
                 durationDone += restTime
                 holdTime = exercises[currentExercise].settings.duration ?? defaultHoldTime
                 currentTimer = holdTime * 10
-                step = Steps.Hold
+                switch exercises[currentExercise].exercise.type {
+                case ExerciseType.Isometric, ExerciseType.Stretch:
+                    step = Steps.Hold
+                case ExerciseType.Exercise, ExerciseType.WarmUp:
+                    step = Steps.Move
+                }
                 currentStepLabel.text = step.rawValue
                 Sound.play(file: "sounds/2000Hz.wav")
             }
-        case Steps.Hold:
+        case Steps.Hold, Steps.Move:
             currentProgress.progress = 1 - Float(currentTimer) / (Float(holdTime) * 10)
             if currentTimer == 0 {
                 Sound.play(file: "sounds/800Hz.wav")
