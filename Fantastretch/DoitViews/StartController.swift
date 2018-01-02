@@ -88,10 +88,10 @@ class StartController: UIViewController {
 
     override func viewWillAppear(_: Bool) {
         let exercises = Exercise.load() ?? []
-        if exercises.filter(filterStretches).count == 0 {
+        if exercises.filter({ $0.getMetaType() == MetaExerciseType.Stretch }).count == 0 {
             startAutoStretch.isEnabled = false
         }
-        if exercises.filter(filterExercises).count == 0 {
+        if exercises.filter({ $0.getMetaType() == MetaExerciseType.Strength }).count == 0 {
             startAutoExercise.isEnabled = false
         }
     }
@@ -111,13 +111,13 @@ class StartController: UIViewController {
             guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
                 fatalError("zut")
             }
-            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: filterStretches)
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Stretch })
 
         case "startAutoExercise":
             guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
                 fatalError("zut")
             }
-            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: filterExercises)
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Strength })
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
@@ -127,15 +127,5 @@ class StartController: UIViewController {
     // MARK: Actions
 
     @IBAction func unwindToStart(sender _: UIStoryboardSegue) {
-    }
-
-    // MARK: Private Functions
-
-    private func filterStretches(exercise: Exercise) -> Bool {
-        return exercise.type == ExerciseType.Stretch
-    }
-
-    private func filterExercises(exercise: Exercise) -> Bool {
-        return exercise.type == ExerciseType.Exercise || exercise.type == ExerciseType.Isometric
     }
 }
