@@ -58,10 +58,13 @@ extension Muscle {
     }
 }
 
-enum ExerciseType: String {
-    case WarmUp
+enum ExerciseType: String, AutoEnumAllCases {
+    case WarmUp = "Warm Up"
     case Stretch
     case Exercise
+    case Isometric
+
+    static let defaultCase = Stretch
 }
 
 class Exercise: CustomStringConvertible {
@@ -83,7 +86,7 @@ class Exercise: CustomStringConvertible {
 
     // MARK: Initialization
 
-    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, muscle: Muscle, id: UUID?) {
+    init?(name: String, explanation: String, photo: UIImage?, rating: Int, sides: Repeat, muscle: Muscle, type: ExerciseType, id: UUID?) {
 
         // The name must not be empty
         guard !name.isEmpty else {
@@ -103,14 +106,15 @@ class Exercise: CustomStringConvertible {
         self.sides = sides
         self.muscle = muscle
         self.id = id ?? UUID()
-        type = ExerciseType.Stretch
+        self.type = type
     }
 
     convenience init?(mo exerciseMO: ExerciseMO) {
         self.init(name: exerciseMO.name ?? "", explanation: exerciseMO.explanation ?? "",
                   photo: exerciseMO.image.flatMap({ (data) -> UIImage in UIImage(data: data)! }), rating: Int(exerciseMO.rating),
                   sides: Repeat(rawValue: exerciseMO.sides ?? "") ?? Repeat.defaultCase,
-                  muscle: Muscle(rawValue: exerciseMO.muscle ?? "") ?? Muscle.defaultCase, id: exerciseMO.id)
+                  muscle: Muscle(rawValue: exerciseMO.muscle ?? "") ?? Muscle.defaultCase,
+                  type: ExerciseType(rawValue: exerciseMO.type ?? "") ?? ExerciseType.defaultCase, id: exerciseMO.id)
     }
 
     func getSettings() -> ExerciseSettings {

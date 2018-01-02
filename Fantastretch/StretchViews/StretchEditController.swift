@@ -17,6 +17,7 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var targetLabel: UILabel!
     @IBOutlet var sidesLabel: UILabel!
+    @IBOutlet var typeLabel: UILabel!
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var descriptionText: UITextView!
@@ -38,6 +39,8 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             targetLabel.textColor = UIColor.gray
             sidesLabel.text = stretch.sides.rawValue
             sidesLabel.textColor = UIColor.gray
+            typeLabel.text = stretch.type.rawValue
+            typeLabel.textColor = UIColor.gray
             if let photo = stretch.photo {
                 photoImageView.image = photo
             }
@@ -51,6 +54,8 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             targetLabel.textColor = placeholderGray
             sidesLabel.text = "Choose one"
             sidesLabel.textColor = placeholderGray
+            typeLabel.text = "Choose one"
+            typeLabel.textColor = placeholderGray
             setPlaceholderDescription()
             updateSaveButtonState()
         }
@@ -90,14 +95,26 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             pickerTableController.type = PickTarget.Repeat
             pickerTableController.current = sidesLabel.text
 
+        case "PickType":
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            pickerTableController.allValues = ExerciseType.allCases.map { $0.rawValue }
+            pickerTableController.type = PickTarget.ExerciseType
+            pickerTableController.current = typeLabel.text
+
         case "SaveItem":
             let name = nameTextField.text ?? ""
             let description = descriptionTextEmpty ? "" : (descriptionText.text ?? "")
             let photo = photoImageView.image != UIImage(named: "noPhoto") ? photoImageView.image : nil
             let sides = Repeat.allCases.first(where: { (side) -> Bool in side.rawValue == sidesLabel.text }) ?? Repeat.defaultCase
             let muscle = Muscle.allCases.first(where: { (muscle) -> Bool in muscle.rawValue == targetLabel.text }) ?? Muscle.defaultCase
+            let type = ExerciseType(rawValue: typeLabel.text ?? "") ?? ExerciseType.defaultCase
 
-            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, muscle: muscle, id: stretch?.id)
+            stretch = Exercise(name: name, explanation: description, photo: photo, rating: stretch?.rating ?? 0, sides: sides, muscle: muscle, type: type, id: stretch?.id)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
@@ -193,6 +210,11 @@ class StretchEditController: UITableViewController, UIImagePickerControllerDeleg
             case .some(PickTarget.Muscle):
                 targetLabel.text = Muscle.allCases.first(where: { $0.rawValue == selected })?.rawValue
                 targetLabel.textColor = UIColor.gray
+                updateSaveButtonState()
+
+            case .some(PickTarget.ExerciseType):
+                typeLabel.text = ExerciseType.allCases.first(where: { $0.rawValue == selected })?.rawValue
+                typeLabel.textColor = UIColor.gray
                 updateSaveButtonState()
 
             case .some(PickTarget.Timer):

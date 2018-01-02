@@ -36,11 +36,11 @@ struct ExerciseWithMetadata {
         ExerciseHistory(exercise: exercise, date: Date(), duration: durationDone).save()
     }
 
-    static func getSelectedExercisesByScore(type: ExerciseType) -> [ExerciseWithMetadata] {
+    static func getSelectedExercisesByScore(filter: (Exercise) -> Bool) -> [ExerciseWithMetadata] {
         let settings = Settings()
 
         let exercisesOfType = Exercise.load()?
-            .filter({ $0.type == type }) ?? []
+            .filter(filter) ?? []
 
         return getSelectedExercisesByScore(exercises: exercisesOfType, settings: settings)
     }
@@ -79,10 +79,21 @@ struct ExerciseWithMetadata {
 
 class StartController: UIViewController {
 
+    @IBOutlet var startAutoStretch: UIButton!
+    @IBOutlet var startAutoExercise: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_: Bool) {
+        let exercises = Exercise.load() ?? []
+        if exercises.filter(filterStretches).count == 0 {
+            startAutoStretch.isEnabled = false
+        }
+        if exercises.filter(filterExercises).count == 0 {
+            startAutoExercise.isEnabled = false
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +111,13 @@ class StartController: UIViewController {
             guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
                 fatalError("zut")
             }
-            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(type: ExerciseType.Stretch)
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: filterStretches)
+
+        case "startAutoExercise":
+            guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
+                fatalError("zut")
+            }
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: filterExercises)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")
@@ -110,5 +127,15 @@ class StartController: UIViewController {
     // MARK: Actions
 
     @IBAction func unwindToStart(sender _: UIStoryboardSegue) {
+    }
+
+    // MARK: Private Functions
+
+    private func filterStretches(exercise: Exercise) -> Bool {
+        return exercise.type == ExerciseType.Stretch
+    }
+
+    private func filterExercises(exercise: Exercise) -> Bool {
+        return exercise.type == ExerciseType.Exercise || exercise.type == ExerciseType.Isometric
     }
 }

@@ -1,13 +1,13 @@
 // Generated using Sourcery 0.10.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
-extension Abs {
+extension ExerciseType {
     static let count: Int = 4
-    static let allCases: [Abs] = [
-        .Global,
-        .AbsExternalOblique,
-        .AbsInternalOblique,
-        .AbsTransverse,
+    static let allCases: [ExerciseType] = [
+        .WarmUp,
+        .Stretch,
+        .Exercise,
+        .Isometric,
     ]
 }
 

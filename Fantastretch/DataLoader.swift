@@ -56,6 +56,7 @@ class DataLoader {
             let sides = Repeat(rawValue: json["repeat"] as? String ?? "") ?? Repeat.defaultCase
             let muscle = Muscle(rawValue: json["muscle"] as? String ?? "") ?? Muscle.defaultCase
             let withImgUrl = json["imgUrl"] as? String
+            let type = ExerciseType(rawValue: json["type"] as? String ?? "") ?? ExerciseType.defaultCase
 
             if let imgUrl = withImgUrl,
                 let imageURL = URL(string: imgUrl) {
@@ -69,7 +70,7 @@ class DataLoader {
                             if let imageData = data {
                                 let image = UIImage(data: imageData)
                                 if let exercise = Exercise(name: name, explanation: explanation, photo: image, rating: 0,
-                                                           sides: sides, muscle: muscle, id: uuid) {
+                                                           sides: sides, muscle: muscle, type: type, id: uuid) {
                                     add(exercise: exercise, exerciseLoaded: closure)
                                 }
                             } else {
@@ -82,7 +83,7 @@ class DataLoader {
                 }
                 downloadPicTask.resume()
             } else {
-                if let exercise = Exercise(name: name, explanation: explanation, photo: nil, rating: 0, sides: sides, muscle: muscle, id: uuid) {
+                if let exercise = Exercise(name: name, explanation: explanation, photo: nil, rating: 0, sides: sides, muscle: muscle, type: type, id: uuid) {
                     add(exercise: exercise, exerciseLoaded: closure)
                 }
             }

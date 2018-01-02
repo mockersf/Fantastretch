@@ -59,7 +59,7 @@ class StretchViewController: UITableViewController {
             if let tableController = viewControllers?.first as? StretchTableViewController {
                 if let selectedIndexPath = tableController.tableView.indexPathForSelectedRow {
                     // Update an existing stretch.
-                    tableController.stretches[selectedIndexPath.row] = stretch!
+                    tableController.exercises[stretch!.type]![selectedIndexPath.row] = stretch!
                     tableController.tableView.reloadRows(at: [selectedIndexPath], with: .none)
                     stretch?.update()
                 }
@@ -111,6 +111,9 @@ class StretchViewController: UITableViewController {
 
             case .some(PickTarget.Muscle):
                 fatalError("PickTarget.Muscle should not happen here")
+
+            case .some(PickTarget.ExerciseType):
+                fatalError("PickTarget.ExerciseType should not happen here")
 
             case .some(PickTarget.Timer):
                 guard let _ = pickerTableController.extraInfo else {

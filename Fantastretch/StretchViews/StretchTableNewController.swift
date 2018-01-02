@@ -11,7 +11,7 @@ import UIKit
 
 class StretchTableNewController: UITableViewController {
 
-    var exercises = [Exercise]()
+    var exercises = [ExerciseType: [Exercise]]()
     var knownExercises = [Exercise]()
 
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class StretchTableNewController: UITableViewController {
         DataLoader.load(exerciseLoaded: { (exercise) -> Void in
             DispatchQueue.main.async {
                 if !self.knownExercises.map({ $0.id }).contains(exercise.id) {
-                    self.exercises.append(exercise)
+                    self.exercises.merge([exercise.type: [exercise]], uniquingKeysWith: { $0 + $1 })
                     self.sortExercises()
                     self.tableView.reloadData()
                 }
@@ -36,13 +36,15 @@ class StretchTableNewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return ExerciseType.count
     }
 
-    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return exercises.count
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[section].rawValue
+    }
+
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exercises[ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[section]]?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,14 +54,14 @@ class StretchTableNewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of StretchTableNewCell.")
         }
 
-        let stretch = exercises[indexPath.row]
+        let exercise = exercises[ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[indexPath.section]]![indexPath.row]
 
-        cell.nameLabel.text = stretch.name
-        if let photo = stretch.photo {
+        cell.nameLabel.text = exercise.name
+        if let photo = exercise.photo {
             cell.photoView.image = photo
         }
-        cell.targetLabel.text = stretch.muscle.rawValue
-        cell.sidesLabel.text = stretch.sides.rawValue
+        cell.targetLabel.text = exercise.muscle.rawValue
+        cell.sidesLabel.text = exercise.sides.rawValue
 
         return cell
     }
@@ -119,7 +121,7 @@ class StretchTableNewController: UITableViewController {
                 fatalError("The selected cell is not being displayed by the table")
             }
 
-            let selectedStretch = exercises[indexPath.row]
+            let selectedStretch = exercises[ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[indexPath.section]]![indexPath.row]
             stretchAddController.stretch = selectedStretch
 
         default:
@@ -133,7 +135,7 @@ class StretchTableNewController: UITableViewController {
         if isMovingFromParentViewController {
             let viewControllers = navigationController?.viewControllers
             if let tableController = viewControllers?.first as? StretchTableViewController {
-                tableController.loadNewStretchesAndReload()
+                tableController.loadNewExercisesAndReload()
             }
         }
     }
@@ -142,10 +144,10 @@ class StretchTableNewController: UITableViewController {
 
     @IBAction func unwindToNewStretchList(sender _: UIStoryboardSegue) {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            let newExercise = exercises[selectedIndexPath.row]
+            let newExercise = exercises[ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[selectedIndexPath.section]]![selectedIndexPath.row]
             newExercise.save()
             knownExercises.append(newExercise)
-            exercises.remove(at: selectedIndexPath.row)
+            exercises[ExerciseType.allCases.sorted(by: { $0.rawValue < $1.rawValue })[selectedIndexPath.section]]!.remove(at: selectedIndexPath.row)
             tableView.reloadData()
         }
     }
@@ -153,12 +155,14 @@ class StretchTableNewController: UITableViewController {
     // MARK: private function
 
     private func sortExercises() {
-        exercises = exercises.sorted(by: { (exerciseA, exerciseB) -> Bool in
-            if exerciseA.muscle.rawValue == exerciseB.muscle.rawValue {
-                return exerciseA.name < exerciseB.name
-            } else {
-                return exerciseA.muscle.rawValue < exerciseB.muscle.rawValue
-            }
-        })
+        for (exerciseType, exercisesOfType) in exercises {
+            exercises[exerciseType] = exercisesOfType.sorted(by: { (stretchA, stretchB) -> Bool in
+                if stretchA.muscle.rawValue == stretchB.muscle.rawValue {
+                    return stretchA.name < stretchB.name
+                } else {
+                    return stretchA.muscle.rawValue < stretchB.muscle.rawValue
+                }
+            })
+        }
     }
 }

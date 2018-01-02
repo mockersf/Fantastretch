@@ -86,6 +86,9 @@ class SettingsController: UITableViewController {
             case .some(PickTarget.Muscle):
                 fatalError("PickTarget.Muscle should not happen here")
 
+            case .some(PickTarget.ExerciseType):
+                fatalError("PickTarget.ExerciseType should not happen here")
+
             case .some(PickTarget.Timer):
                 guard let from = pickerTableController.extraInfo else {
                     fatalError("missing info from wich timer we are choosing a value")

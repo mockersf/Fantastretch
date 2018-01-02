@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Stretches-->
+        <!--Exercises-->
         <scene sceneID="d87-sK-xce">
             <objects>
                 <tableViewController id="CBG-FX-k83" customClass="StretchTableViewController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,7 +81,7 @@
                             <outlet property="delegate" destination="CBG-FX-k83" id="yqu-aj-bT7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Stretches" id="Dps-vv-wpC">
+                    <navigationItem key="navigationItem" title="Exercises" id="Dps-vv-wpC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lfM-zM-vXb">
                             <connections>
                                 <segue destination="m2x-PI-ZPV" kind="show" identifier="ListNewExercises" id="VER-Cq-Of4"/>
@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="-772" y="-441"/>
         </scene>
-        <!--Stretch Details-->
+        <!--Exercise Details-->
         <scene sceneID="6BU-gg-DkJ">
             <objects>
                 <tableViewController id="uCo-qN-MNT" customClass="StretchViewController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
@@ -312,7 +312,7 @@
                             <outlet property="delegate" destination="uCo-qN-MNT" id="n8E-pX-Q9G"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Stretch Details" id="0Xa-Li-IVJ">
+                    <navigationItem key="navigationItem" title="Exercise Details" id="0Xa-Li-IVJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="LKm-WD-8ue">
                             <connections>
                                 <segue destination="k1b-Qa-2eB" kind="show" identifier="EditItem" id="WPg-zi-VoY"/>
@@ -382,19 +382,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyX-MT-vdW">
-                                <rect key="frame" x="125" y="318" width="126" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start Auto Routine"/>
-                                <connections>
-                                    <segue destination="bVl-7t-mc3" kind="show" identifier="startAutoStretch" id="VbW-2a-19O"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wo7-tV-n0a">
+                                <rect key="frame" x="87" y="293.5" width="201" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyX-MT-vdW">
+                                        <rect key="frame" x="0.0" y="0.0" width="201" height="30"/>
+                                        <state key="normal" title="Start Stretching Auto Routine"/>
+                                        <connections>
+                                            <segue destination="bVl-7t-mc3" kind="show" identifier="startAutoStretch" id="VbW-2a-19O"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-B7-b1u">
+                                        <rect key="frame" x="0.0" y="50" width="201" height="30"/>
+                                        <state key="normal" title="Start Exercise Auto Routine"/>
+                                        <connections>
+                                            <segue destination="bVl-7t-mc3" kind="show" identifier="startAutoExercise" id="Jww-oS-Qdr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wo7-tV-n0a" firstAttribute="centerX" secondItem="qRq-d8-VGk" secondAttribute="centerX" id="R18-LT-knI"/>
+                            <constraint firstItem="wo7-tV-n0a" firstAttribute="centerY" secondItem="qRq-d8-VGk" secondAttribute="centerY" id="e7R-8h-ewN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="EfL-17-H2m"/>
                     </view>
                     <navigationItem key="navigationItem" id="FxL-Bc-QVT"/>
+                    <connections>
+                        <outlet property="startAutoExercise" destination="PDD-B7-b1u" id="3VY-gX-7Px"/>
+                        <outlet property="startAutoStretch" destination="hyX-MT-vdW" id="naH-fe-tN4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqd-1y-gyS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1096,7 +1115,7 @@
             </objects>
             <point key="canvasLocation" x="1568.8" y="2086.5067466266869"/>
         </scene>
-        <!--Edit Stretch-->
+        <!--Edit Exercises-->
         <scene sceneID="W18-sR-HKs">
             <objects>
                 <tableViewController id="k1b-Qa-2eB" customClass="StretchEditController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
@@ -1187,12 +1206,39 @@
                                             <segue destination="ujR-vw-0v9" kind="presentation" identifier="PickSides" id="G5W-WI-Q1Y"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Nvu-Im-qnT" detailTextLabel="83w-S7-NGQ" style="IBUITableViewCellStyleValue1" id="gzj-OH-Cjh">
+                                        <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gzj-OH-Cjh" id="mgK-wp-wb7">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nvu-Im-qnT">
+                                                    <rect key="frame" x="16" y="12" width="37.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="exercise_type" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="83w-S7-NGQ">
+                                                    <rect key="frame" x="236" y="12" width="104" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ujR-vw-0v9" kind="presentation" identifier="PickType" id="oSo-Hw-Cn9"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle=" Details" id="M8f-5W-Oeo">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="320" id="XE0-R5-m3g">
-                                        <rect key="frame" x="0.0" y="188" width="375" height="320"/>
+                                        <rect key="frame" x="0.0" y="232" width="375" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XE0-R5-m3g" id="LOO-3Z-bfX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
@@ -1224,7 +1270,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="pfD-Xj-lN2">
-                                        <rect key="frame" x="0.0" y="508" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="552" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pfD-Xj-lN2" id="fKG-Lc-6e1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
@@ -1253,7 +1299,7 @@
                             <outlet property="delegate" destination="k1b-Qa-2eB" id="SbE-jN-2Sc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Edit Stretch" id="iNf-gx-bdX">
+                    <navigationItem key="navigationItem" title="Edit Exercises" id="iNf-gx-bdX">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PIC-cQ-OKW">
                             <connections>
                                 <action selector="cancel:" destination="k1b-Qa-2eB" id="fz0-ZY-gmd"/>
@@ -1272,6 +1318,7 @@
                         <outlet property="saveButton" destination="DyG-rY-at8" id="HY7-yV-GGF"/>
                         <outlet property="sidesLabel" destination="kQV-py-b8k" id="Wsg-lb-srU"/>
                         <outlet property="targetLabel" destination="O4P-De-hXf" id="nDU-e8-7VH"/>
+                        <outlet property="typeLabel" destination="83w-S7-NGQ" id="9sb-FT-aIE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QC8-TB-S7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1333,7 +1380,7 @@
             </objects>
             <point key="canvasLocation" x="4090" y="-441"/>
         </scene>
-        <!--New Stretches-->
+        <!--New Exercises-->
         <scene sceneID="1F4-oK-kF5">
             <objects>
                 <tableViewController id="m2x-PI-ZPV" customClass="StretchTableNewController" customModule="Fantastretch" customModuleProvider="target" sceneMemberID="viewController">
@@ -1401,7 +1448,7 @@
                             <outlet property="delegate" destination="m2x-PI-ZPV" id="olM-XA-Dyh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Stretches" id="qnt-Ou-bLz">
+                    <navigationItem key="navigationItem" title="New Exercises" id="qnt-Ou-bLz">
                         <barButtonItem key="rightBarButtonItem" title="New" id="UBb-1B-SwM">
                             <connections>
                                 <segue destination="RtY-Je-0M1" kind="presentation" id="zoG-jz-d7U"/>
@@ -1757,9 +1804,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gj6-65-5k4"/>
-        <segue reference="G5W-WI-Q1Y"/>
+        <segue reference="oSo-Hw-Cn9"/>
         <segue reference="H16-Zz-hcB"/>
         <segue reference="WPg-zi-VoY"/>
+        <segue reference="Jww-oS-Qdr"/>
         <segue reference="G0O-Z3-Oj4"/>
     </inferredMetricsTieBreakers>
 </document>
