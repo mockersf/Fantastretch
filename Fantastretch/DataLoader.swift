@@ -52,6 +52,7 @@ class DataLoader {
                 print("invalid json object: \(jsonObject)")
                 continue
             }
+            print("loading exercise \(name)")
             let explanation = json["explanation"] as? String ?? ""
             let sides = Repeat(rawValue: json["repeat"] as? String ?? "") ?? Repeat.defaultCase
             let muscle = Muscle(rawValue: json["muscle"] as? String ?? "") ?? Muscle.defaultCase
@@ -66,12 +67,14 @@ class DataLoader {
                         print("Error downloading exercise picture: \(e)")
                     } else {
                         if let res = response as? HTTPURLResponse {
-                            print("Downloaded exercise picture with response code \(res.statusCode)")
+                            print("Downloaded exercise \(name) picture with response code \(res.statusCode)")
                             if let imageData = data {
                                 let image = UIImage(data: imageData)
                                 if let exercise = Exercise(name: name, explanation: explanation, photo: image, rating: 0,
                                                            sides: sides, muscle: muscle, type: type, id: uuid) {
                                     add(exercise: exercise, exerciseLoaded: closure)
+                                } else {
+                                    print("error loading exercise \(name)")
                                 }
                             } else {
                                 print("Couldn't get image: Image is nil")
@@ -85,6 +88,8 @@ class DataLoader {
             } else {
                 if let exercise = Exercise(name: name, explanation: explanation, photo: nil, rating: 0, sides: sides, muscle: muscle, type: type, id: uuid) {
                     add(exercise: exercise, exerciseLoaded: closure)
+                } else {
+                    print("error loading exercise \(name)")
                 }
             }
         }
