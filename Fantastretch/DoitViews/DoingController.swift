@@ -61,7 +61,7 @@ class DoingController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
 
-        settings = Settings()
+        settings = Settings.sharedInstance
         prepareExercise(index: 0)
         currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
         currentStepLabel.text = Steps.Rest.rawValue

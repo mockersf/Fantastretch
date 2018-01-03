@@ -43,7 +43,7 @@ class HealthKitHelper {
     }
 
     class func authorizeIfNeededAndThen(doSomething: @escaping () -> Void) {
-        let settings = Settings()
+        let settings = Settings.sharedInstance
         if !settings.healthKitPermsAsked {
             authorizeHealthKit { authorized, error in
                 guard authorized else {

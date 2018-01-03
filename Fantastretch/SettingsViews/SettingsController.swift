@@ -21,7 +21,7 @@ class SettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settings = Settings()
+        settings = Settings.sharedInstance
         timersHoldLabel.text = "\(settings!.timerHold) s"
         timersRestLabel.text = "\(settings!.timerRest) s"
         alertsVibrationSwitch.isOn = settings!.alertsVibration
@@ -49,7 +49,7 @@ class SettingsController: UITableViewController {
             pickerTableController.allValues = Array(1 ... 12).flatMap({ "\($0 * 15) seconds" })
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "hold"
-            let settings = Settings()
+            let settings = Settings.sharedInstance
             pickerTableController.current = "\(settings.timerHold) seconds"
 
         case "restTimerSelection":
@@ -62,7 +62,7 @@ class SettingsController: UITableViewController {
             pickerTableController.allValues = Array(5 ... 15).flatMap({ "\($0) seconds" })
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "rest"
-            let settings = Settings()
+            let settings = Settings.sharedInstance
             pickerTableController.current = "\(settings.timerRest) seconds"
 
         case "autoStretchModeSetUp":
@@ -72,7 +72,7 @@ class SettingsController: UITableViewController {
             guard let musclePreferenceTableController = navigationController.childViewControllers[0] as? MusclePreferenceTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            let settings = Settings()
+            let settings = Settings.sharedInstance
             musclePreferenceTableController.getMusclePreference = { settings.autoStretchMusclePreferences[$0] ?? 1 }
             musclePreferenceTableController.updateMusclePreference = { settings.autoStretchMusclePreferences[$0] = $1
                 settings.save()
@@ -103,7 +103,7 @@ class SettingsController: UITableViewController {
                 guard let from = pickerTableController.extraInfo else {
                     fatalError("missing info from wich timer we are choosing a value")
                 }
-                let settings = Settings()
+                let settings = Settings.sharedInstance
                 let newValue = Int(selected.split(separator: " ")[0]) ?? 0
                 switch from {
                 case "hold":

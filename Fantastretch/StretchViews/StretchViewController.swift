@@ -27,7 +27,7 @@ class StretchViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settings = Settings()
+        settings = Settings.sharedInstance
         // Set up views with existing Stretch.
         if let exercise = exercise {
             exerciseSettings = exercise.getSettings()

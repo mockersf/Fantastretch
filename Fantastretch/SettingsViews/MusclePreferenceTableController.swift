@@ -22,7 +22,7 @@ class MusclePreferenceTableController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        muscles = Muscle.getAllMuscles(settings: Settings())
+        muscles = Muscle.getAllMuscles(settings: Settings.sharedInstance)
     }
 
     override func didReceiveMemoryWarning() {

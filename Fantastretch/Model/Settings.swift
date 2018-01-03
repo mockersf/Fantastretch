@@ -29,7 +29,9 @@ class Settings: AutoSettings {
     static let defaultTimerRest = 10
     static let maxOldExerciseWeight = 30
 
-    init() {
+    static let sharedInstance = Settings()
+
+    private init() {
         load()
     }
 

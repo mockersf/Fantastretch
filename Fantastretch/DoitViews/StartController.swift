@@ -49,12 +49,13 @@ struct ExerciseWithMetadata {
         let exercisesByScore = exercises
             .map({ ExerciseWithMetadata(exercise: $0, settings: settings) })
             .sorted(by: { $0.score > $1.score })
+        print("\(exercisesByScore)")
 
         let scores = exercisesByScore.map({ $0.score })
-//        let maxScore = scores.max() ?? 0
+        let maxScore = scores.max() ?? 0
         let meanScore = scores.reduce(0, +) / scores.count
-//        let mostAreOverScore = scores[scores.count * 3 / 4]
-//        print("scores: \(scores), max: \(maxScore), mean: \(meanScore), 3/4: \(mostAreOverScore)")
+        let mostAreOverScore = scores[scores.count * 3 / 4]
+        print("scores: \(scores), max: \(maxScore), mean: \(meanScore), 3/4: \(mostAreOverScore)")
 
         let firstPass = exercisesByScore.reduce([ExerciseWithMetadata](), { (acc, exercise) -> [ExerciseWithMetadata] in
 
@@ -66,10 +67,10 @@ struct ExerciseWithMetadata {
 
             return acc
         })
-//        print("firstpass: \(firstPass)")
+        print("firstpass: \(firstPass)")
 
         let remaining = exercisesByScore.filter({ (exercise) -> Bool in !firstPass.contains(where: { exercise.exercise.id == $0.exercise.id }) })
-//        print("remaining: \(remaining)")
+        print("remaining: \(remaining)")
 
         return Array(remaining.reduce(firstPass, { (acc, exercise) -> [ExerciseWithMetadata] in
             acc + [exercise]
