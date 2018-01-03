@@ -83,9 +83,15 @@ struct ExerciseWithMetadata {
         let remaining = exercisesByScore.filter({ (exercise) -> Bool in !firstPass.contains(where: { exercise.exercise.id == $0.exercise.id }) })
         print("remaining: \(remaining)")
 
-        return Array(remaining.reduce(firstPass, { (acc, exercise) -> [ExerciseWithMetadata] in
+        let singleRun = Array(remaining.reduce(firstPass, { (acc, exercise) -> [ExerciseWithMetadata] in
             acc + [exercise]
         }).prefix(exerciseTypeSettings.nbOfExercises))
+
+        var result = [ExerciseWithMetadata]()
+        for _ in 1 ... exerciseTypeSettings.nbRepetitions {
+            result += singleRun
+        }
+        return result
     }
 }
 

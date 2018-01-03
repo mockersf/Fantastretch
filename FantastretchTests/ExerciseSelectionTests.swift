@@ -16,9 +16,11 @@ class ExerciseSelectionTests: XCTestCase {
         let exercises = [
             Exercise(name: "1", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
+        let settings = Settings.sharedInstance
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         // expect(result.map({ $0.exercise })).to(satisfyAllOf(contain(exercises[0]), haveCount(1)))
         expect(result.map({ $0.exercise.id })).to(equal([exercises[0].id]))
     }
@@ -28,9 +30,12 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "1", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "2", explanation: "", photo: nil, rating: 2, sides: Repeat.Once, muscle: Muscle.Back, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
+        let settings = Settings.sharedInstance
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Back)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[0].id])).to(haveCount(2))
     }
 
@@ -39,11 +44,12 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "1", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "2", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Back, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
-        settings.musclePreferences.updateValue(1, forKey: Muscle.Abs)
-        settings.musclePreferences.updateValue(5, forKey: Muscle.Back)
+        let settings = Settings.sharedInstance
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        settings.autoStretchMusclePreferences.updateValue(5, forKey: Muscle.Back)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[0].id])).to(haveCount(2))
     }
 
@@ -52,11 +58,14 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "1", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "2", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Back, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
+        let settings = Settings.sharedInstance
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Back)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
         ExerciseHistory(exercise: exercises[0], date: Date(), duration: 10).save()
         ExerciseHistory(exercise: exercises[0], date: Date().addingTimeInterval(TimeInterval(-60)), duration: 10).save()
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[0].id])).to(haveCount(2))
     }
 
@@ -65,9 +74,11 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "1", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "2", explanation: "", photo: nil, rating: 2, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
+        let settings = Settings.sharedInstance
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[0].id])).to(haveCount(2))
     }
 
@@ -78,10 +89,12 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "3", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "4", explanation: "", photo: nil, rating: 2, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
-        settings.autoNbOfExercises = 3
+        let settings = Settings.sharedInstance
+        settings.autoStretchNbOfExercises = 3
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[3].id, exercises[0].id]))
     }
 
@@ -92,10 +105,13 @@ class ExerciseSelectionTests: XCTestCase {
             Exercise(name: "3", explanation: "", photo: nil, rating: 1, sides: Repeat.Once, muscle: Muscle.Back, type: ExerciseType.allCases.first!, id: nil)!,
             Exercise(name: "4", explanation: "", photo: nil, rating: 2, sides: Repeat.Once, muscle: Muscle.Abs, type: ExerciseType.allCases.first!, id: nil)!,
         ]
-        let settings = Settings()
-        settings.autoNbOfExercises = 3
+        let settings = Settings.sharedInstance
+        settings.autoStretchNbOfExercises = 3
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Abs)
+        settings.autoStretchMusclePreferences.updateValue(1, forKey: Muscle.Back)
+        let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
 
-        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, settings: settings)
+        let result = ExerciseWithMetadata.getSelectedExercisesByScore(exercises: exercises, userSettings: settings, exerciseTypeSettings: stretchSettings)
         expect(result.map({ $0.exercise.id })).to(equal([exercises[1].id, exercises[2].id, exercises[3].id]))
     }
 }
