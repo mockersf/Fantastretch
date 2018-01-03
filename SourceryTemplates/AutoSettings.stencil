@@ -1,0 +1,41 @@
+import Foundation
+
+{% for type in types.implementing.AutoSettings %}
+extension {{type.name}} {
+
+func load() {
+let defaults = UserDefaults.standard
+defaults.register(defaults:[
+{% for variable in type.storedVariables %}
+{% if variable.typeName.isDictionary %}
+"{{variable.name}}": [:],
+{% else %}
+"{{variable.name}}": {{variable.defaultValue}},
+{% endif %}
+{% endfor %}
+])
+
+{% for variable in type.storedVariables %}
+{% if variable.typeName.name == "Int" %}
+{{variable.name}} = defaults.integer(forKey: "{{variable.name}}")
+{% elif variable.typeName.name == "Bool" %}
+{{variable.name}} = defaults.bool(forKey: "{{variable.name}}")
+{% elif variable.typeName.isDictionary %}
+{{variable.name}} = {{variable.name}}FromRaw(defaults.dictionary(forKey: "{{variable.name}}") ?? [:])
+{% endif %}
+{% endfor %}
+}
+
+func save() {
+let defaults = UserDefaults.standard
+{% for variable in type.storedVariables %}
+{% if variable.typeName.isDictionary %}
+defaults.set({{variable.name}}ToRaw({{variable.name}}), forKey: "{{variable.name}}")
+{% else %}
+defaults.set({{variable.name}}, forKey: "{{variable.name}}")
+{% endif %}
+{% endfor %}
+
+}
+}
+{% endfor %}

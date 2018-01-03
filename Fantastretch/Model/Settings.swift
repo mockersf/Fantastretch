@@ -8,63 +8,38 @@
 
 import Foundation
 
-class Settings {
+class Settings: AutoSettings {
 
     // MARK: properties
 
-    var timerHold: Int
-    var timerRest: Int
-    var alertsVibration: Bool
-    var alertsSound: Bool
-    var musclePreferences: [Muscle: Int]
-    var autoNbOfExercises: Int
-    let maxOldExerciseWeight = 30
-    var healthKitPermsAsked: Bool
-    var advancedAbs: Bool
+    var timerHold = 30
+    var timerRest = 10
+    var alertsVibration = false
+    var alertsSound = true
+    var musclePreferences = [Muscle: Int]()
+    var autoNbOfExercises = 10
+    var maxOldExerciseWeight = 30
+    var healthKitPermsAsked = false
+    var advancedAbs = false
 
     static let defaultTimerHold = 30
     static let defaultTimerRest = 10
 
     init() {
-        let defaults = UserDefaults.standard
-        defaults.register(defaults: [
-            "timerHold": 30,
-            "timerRest": 10,
-            "alertsVibration": false,
-            "alertsSound": true,
-            "musclePreferences": [:],
-            "autoNbOfExercises": 10,
-            "healthKitPermsAsked": false,
-            "advancedAbs": false,
-        ])
-        timerHold = defaults.integer(forKey: "timerHold")
-        timerRest = defaults.integer(forKey: "timerRest")
-        alertsVibration = defaults.bool(forKey: "alertsVibration")
-        alertsSound = defaults.bool(forKey: "alertsSound")
-        healthKitPermsAsked = defaults.bool(forKey: "healthKitPermsAsked")
-        advancedAbs = defaults.bool(forKey: "advancedAbs")
+        load()
+    }
 
-        let musclePreferencesRaw = defaults.dictionary(forKey: "musclePreferences")
-        musclePreferences = Dictionary(uniqueKeysWithValues: Muscle.allCases.map({ (muscle: Muscle) -> (Muscle, Int) in
-            let savedValue: Any? = musclePreferencesRaw?[muscle.rawValue]
+    func musclePreferencesToRaw(_ musclePreferences: [Muscle: Int]) -> [String: Int] {
+        return Dictionary(uniqueKeysWithValues: musclePreferences.map({ (key: Muscle, value: Int) -> (String, Int) in
+            (key.rawValue, value)
+        }))
+    }
+
+    func musclePreferencesFromRaw(_ raw: [String: Any]) -> [Muscle: Int] {
+        return Dictionary(uniqueKeysWithValues: Muscle.allCases.map({ (muscle: Muscle) -> (Muscle, Int) in
+            let savedValue: Any? = raw[muscle.rawValue]
             let savedValueInt: Int? = savedValue as? Int
             return (muscle, savedValueInt ?? 1)
         }))
-        autoNbOfExercises = defaults.integer(forKey: "autoNbOfExercises")
-    }
-
-    func save() {
-        let defaults = UserDefaults.standard
-        defaults.set(timerHold, forKey: "timerHold")
-        defaults.set(timerRest, forKey: "timerRest")
-        defaults.set(alertsVibration, forKey: "alertsVibration")
-        defaults.set(alertsSound, forKey: "alertsSound")
-        let musclePreferencesRaw = Dictionary(uniqueKeysWithValues: musclePreferences.map({ (key: Muscle, value: Int) -> (String, Int) in
-            (key.rawValue, value)
-        }))
-        defaults.set(musclePreferencesRaw, forKey: "musclePreferences")
-        defaults.set(autoNbOfExercises, forKey: "autoNbOfExercises")
-        defaults.set(healthKitPermsAsked, forKey: "healthKitPermsAsked")
-        defaults.set(advancedAbs, forKey: "advancedAbs")
     }
 }

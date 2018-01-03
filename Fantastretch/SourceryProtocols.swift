@@ -7,3 +7,4 @@
 //
 
 protocol AutoEnumAllCases {}
+protocol AutoSettings {}
