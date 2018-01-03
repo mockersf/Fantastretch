@@ -25,8 +25,8 @@ enum Muscle: String, AutoEnumAllCases {
     case Back
     case Chest
     case Abs
-    case AbsExternalOblique = "Abs - External  Oblique"
-    case AbsInternalOblique = "Abs - Internal  Oblique"
+    case AbsExternalOblique = "Abs - External Oblique"
+    case AbsInternalOblique = "Abs - Internal Oblique"
     case AbsRectus = "Abs - Rectus"
     case AbsTransverse = "Abs - Transverse"
     case Glutes
