@@ -13,7 +13,8 @@ class MusclePreferenceCell: UITableViewCell {
     @IBOutlet var muscleLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var scoreStepper: UIStepper!
-    var muscle: Muscle?
+
+    var updateMusclePreference: ((Int) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +29,6 @@ class MusclePreferenceCell: UITableViewCell {
 
     @IBAction func scoreStepperChanged(_ sender: UIStepper) {
         scoreLabel.text = "\(Int(sender.value))"
-        let settings = Settings()
-        settings.musclePreferences[muscle!] = Int(sender.value)
-        settings.save()
+        updateMusclePreference!(Int(sender.value))
     }
 }

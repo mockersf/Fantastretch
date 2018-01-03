@@ -65,8 +65,18 @@ class SettingsController: UITableViewController {
             let settings = Settings()
             pickerTableController.current = "\(settings.timerRest) seconds"
 
-        case "autoModeSetUp":
-            ()
+        case "autoStretchModeSetUp":
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            guard let musclePreferenceTableController = navigationController.childViewControllers[0] as? MusclePreferenceTableController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            let settings = Settings()
+            musclePreferenceTableController.getMusclePreference = { settings.autoStretchMusclePreferences[$0] ?? 1 }
+            musclePreferenceTableController.updateMusclePreference = { settings.autoStretchMusclePreferences[$0] = $1
+                settings.save()
+            }
 
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")

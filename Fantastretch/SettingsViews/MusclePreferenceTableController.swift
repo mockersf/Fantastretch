@@ -11,6 +11,9 @@ import UIKit
 class MusclePreferenceTableController: UITableViewController {
     var muscles: [Muscle]?
 
+    var updateMusclePreference: ((Muscle, Int) -> Void)?
+    var getMusclePreference: ((Muscle) -> Int)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,17 +47,16 @@ class MusclePreferenceTableController: UITableViewController {
         let cellIdentifier = "MusclePreferenceCell"
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? MusclePreferenceCell else {
-            fatalError("The dequeued cell is not an instance of DoExerciseCell.")
+            fatalError("The dequeued cell is not an instance of MusclePreferenceCell.")
         }
 
-        let settings = Settings()
         let muscle = muscles![indexPath.row]
-        let preference = settings.musclePreferences[muscle] ?? 1
+        let preference = getMusclePreference!(muscle)
 
-        cell.muscle = muscle
         cell.muscleLabel.text = muscle.rawValue
         cell.scoreLabel.text = "\(preference)"
         cell.scoreStepper.value = Double(preference)
+        cell.updateMusclePreference = { (newScore: Int) -> Void in self.updateMusclePreference!(muscle, newScore) }
 
         return cell
     }

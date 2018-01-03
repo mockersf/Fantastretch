@@ -929,7 +929,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" identifier="autoModeSetUp" popoverAnchorView="ii6-8I-eYl" id="9G5-Ds-S6m">
+                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" identifier="autoStretchModeSetUp" popoverAnchorView="ii6-8I-eYl" id="9G5-Ds-S6m">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
