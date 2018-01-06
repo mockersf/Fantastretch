@@ -44,7 +44,10 @@ class SettingsController: UITableViewController {
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = Array(1 ... 12).flatMap({ "\($0 * 15) seconds" })
+            let bySeconds: [String] = Array(10 ... 14).flatMap({ "\($0) seconds" })
+            let by5Seconds: [String] = Array(3 ... 6).flatMap({ "\($0 * 5) seconds" })
+            let by15Seconds: [String] = Array(3 ... 12).flatMap({ "\($0 * 15) seconds" })
+            pickerTableController.allValues = bySeconds + by5Seconds + by15Seconds
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "hold"
             let settings = Settings.sharedInstance
