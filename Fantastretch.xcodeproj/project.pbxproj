@@ -13,6 +13,7 @@
 		03237A061FC9C1D500480A89 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03237A041FC9C1D500480A89 /* Model.xcdatamodeld */; };
 		03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3D1FCA266600480A89 /* PickerTableController.swift */; };
 		03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */; };
+		034651172000D0AE0017203D /* AutoSetUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034651162000D0AE0017203D /* AutoSetUpController.swift */; };
 		03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */; };
 		03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */; };
 		035437631FD3672000157D8A /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 035437621FD3672000157D8A /* sounds */; };
@@ -74,6 +75,7 @@
 		03237A051FC9C1D500480A89 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		03237A3D1FCA266600480A89 /* PickerTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableController.swift; sourceTree = "<group>"; };
 		03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableCell.swift; sourceTree = "<group>"; };
+		034651162000D0AE0017203D /* AutoSetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSetUpController.swift; sourceTree = "<group>"; };
 		03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoEnumAllCases.stencil; sourceTree = "<group>"; };
 		03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEnumAllCases.generated.swift; sourceTree = "<group>"; };
 		035437621FD3672000157D8A /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				038FD36A1FCCCD9B00C8C5C9 /* SettingsController.swift */,
+				034651162000D0AE0017203D /* AutoSetUpController.swift */,
 				038FD3741FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift */,
 				038FD3761FCCDCAD00C8C5C9 /* MusclePreferenceCell.swift */,
 			);
@@ -623,6 +626,7 @@
 				03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */,
 				038FD3731FCCD91600C8C5C9 /* DoExerciseCell.swift in Sources */,
 				03F9ACBA1FFCF97F0004711A /* AutoSettings.generated.swift in Sources */,
+				034651172000D0AE0017203D /* AutoSetUpController.swift in Sources */,
 				036F189F1FC1747B00D5FC02 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,6 @@ class SettingsController: UITableViewController {
     @IBOutlet var timersRestLabel: UILabel!
     @IBOutlet var alertsVibrationSwitch: UISwitch!
     @IBOutlet var alertsSoundSwitch: UISwitch!
-    @IBOutlet var advancedAbsSwitch: UISwitch!
 
     var settings: Settings?
 
@@ -26,7 +25,6 @@ class SettingsController: UITableViewController {
         timersRestLabel.text = "\(settings!.timerRest) s"
         alertsVibrationSwitch.isOn = settings!.alertsVibration
         alertsSoundSwitch.isOn = settings!.alertsSound
-        advancedAbsSwitch.isOn = settings!.advancedAbs
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +62,9 @@ class SettingsController: UITableViewController {
             pickerTableController.extraInfo = "rest"
             let settings = Settings.sharedInstance
             pickerTableController.current = "\(settings.timerRest) seconds"
+
+        case "autoSetUp":
+            ()
 
         case "autoStretchModeSetUp":
             guard let navigationController = segue.destination as? UINavigationController else {
@@ -121,10 +122,5 @@ class SettingsController: UITableViewController {
                 fatalError("missing picker type")
             }
         }
-    }
-
-    @IBAction func advancedAbsSwitched(_: UISwitch) {
-        settings?.advancedAbs = advancedAbsSwitch.isOn
-        settings?.save()
     }
 }
