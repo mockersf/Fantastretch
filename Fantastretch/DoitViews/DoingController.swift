@@ -226,7 +226,12 @@ class DoingController: UIViewController {
             fatalError("Unexpected controller: \(segue.destination)")
         }
 
-        stretchTableController.exercises = exercises.map({ $0.exercise }).reduce([:], { acc, exercise in
+        stretchTableController.exercises = exercises.reduce([Exercise](), { acc, exercise in
+            if acc.map({ $0.id }).contains(exercise.exercise.id) {
+                return acc
+            }
+            return acc + [exercise.exercise]
+        }).reduce([:], { acc, exercise in
             acc?.merging([exercise.type: [exercise]], uniquingKeysWith: { $0 + $1 })
         })!
         stretchTableController.fixedSet = true
