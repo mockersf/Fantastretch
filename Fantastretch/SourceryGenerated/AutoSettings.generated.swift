@@ -8,47 +8,74 @@ extension Settings {
     func load() {
         let defaults = UserDefaults.standard
         defaults.register(defaults: [
-            "timerHold": 30,
-            "timerRest": 10,
-            "alertsVibration": false,
-            "alertsSound": true,
-            "autoStretchMusclePreferences": [:],
-            "autoStretchNbOfExercises": 10,
-            "autoStretchNbRepetitions": 1,
-            "autoExerciseMusclePreferences": [:],
-            "autoExerciseNbOfExercises": 5,
-            "autoExerciseNbRepetitions": 2,
-            "healthKitPermsAsked": false,
-            "advancedAbs": false,
+            "alertsVibration": self.alertsVibration,
+            "alertsSound": self.alertsSound,
+            "healthKitPermsAsked": self.healthKitPermsAsked,
+            "advancedAbs": self.advancedAbs,
+
+            "autoStretchSettings.timerActive": self.autoStretchSettings.timerActive,
+            "autoStretchSettings.timerRest": self.autoStretchSettings.timerRest,
+            "autoStretchSettings.musclePreferences": [:],
+            "autoStretchSettings.nbOfExercises": self.autoStretchSettings.nbOfExercises,
+            "autoStretchSettings.nbRepetitions": self.autoStretchSettings.nbRepetitions,
+
+            "autoExerciseSettings.timerActive": self.autoExerciseSettings.timerActive,
+            "autoExerciseSettings.timerRest": self.autoExerciseSettings.timerRest,
+            "autoExerciseSettings.musclePreferences": [:],
+            "autoExerciseSettings.nbOfExercises": self.autoExerciseSettings.nbOfExercises,
+            "autoExerciseSettings.nbRepetitions": self.autoExerciseSettings.nbRepetitions,
+
         ])
 
-        timerHold = defaults.integer(forKey: "timerHold")
-        timerRest = defaults.integer(forKey: "timerRest")
         alertsVibration = defaults.bool(forKey: "alertsVibration")
         alertsSound = defaults.bool(forKey: "alertsSound")
-        autoStretchMusclePreferences = autoStretchMusclePreferencesFromRaw(defaults.dictionary(forKey: "autoStretchMusclePreferences") ?? [:])
-        autoStretchNbOfExercises = defaults.integer(forKey: "autoStretchNbOfExercises")
-        autoStretchNbRepetitions = defaults.integer(forKey: "autoStretchNbRepetitions")
-        autoExerciseMusclePreferences = autoExerciseMusclePreferencesFromRaw(defaults.dictionary(forKey: "autoExerciseMusclePreferences") ?? [:])
-        autoExerciseNbOfExercises = defaults.integer(forKey: "autoExerciseNbOfExercises")
-        autoExerciseNbRepetitions = defaults.integer(forKey: "autoExerciseNbRepetitions")
         healthKitPermsAsked = defaults.bool(forKey: "healthKitPermsAsked")
         advancedAbs = defaults.bool(forKey: "advancedAbs")
+
+        let autoStretchSettingstimerActive = defaults.integer(forKey: "autoStretchSettings.timerActive")
+        let autoStretchSettingstimerRest = defaults.integer(forKey: "autoStretchSettings.timerRest")
+        let autoStretchSettingsmusclePreferences = musclePreferencesFromRaw(defaults.dictionary(forKey: "autoStretchSettings.musclePreferences") ?? [:])
+        let autoStretchSettingsnbOfExercises = defaults.integer(forKey: "autoStretchSettings.nbOfExercises")
+        let autoStretchSettingsnbRepetitions = defaults.integer(forKey: "autoStretchSettings.nbRepetitions")
+        autoStretchSettings = SettingsExerciseType(
+            timerActive: autoStretchSettingstimerActive,
+            timerRest: autoStretchSettingstimerRest,
+            musclePreferences: autoStretchSettingsmusclePreferences,
+            nbOfExercises: autoStretchSettingsnbOfExercises,
+            nbRepetitions: autoStretchSettingsnbRepetitions
+        )
+
+        let autoExerciseSettingstimerActive = defaults.integer(forKey: "autoExerciseSettings.timerActive")
+        let autoExerciseSettingstimerRest = defaults.integer(forKey: "autoExerciseSettings.timerRest")
+        let autoExerciseSettingsmusclePreferences = musclePreferencesFromRaw(defaults.dictionary(forKey: "autoExerciseSettings.musclePreferences") ?? [:])
+        let autoExerciseSettingsnbOfExercises = defaults.integer(forKey: "autoExerciseSettings.nbOfExercises")
+        let autoExerciseSettingsnbRepetitions = defaults.integer(forKey: "autoExerciseSettings.nbRepetitions")
+        autoExerciseSettings = SettingsExerciseType(
+            timerActive: autoExerciseSettingstimerActive,
+            timerRest: autoExerciseSettingstimerRest,
+            musclePreferences: autoExerciseSettingsmusclePreferences,
+            nbOfExercises: autoExerciseSettingsnbOfExercises,
+            nbRepetitions: autoExerciseSettingsnbRepetitions
+        )
     }
 
     func save() {
         let defaults = UserDefaults.standard
-        defaults.set(timerHold, forKey: "timerHold")
-        defaults.set(timerRest, forKey: "timerRest")
         defaults.set(alertsVibration, forKey: "alertsVibration")
         defaults.set(alertsSound, forKey: "alertsSound")
-        defaults.set(autoStretchMusclePreferencesToRaw(autoStretchMusclePreferences), forKey: "autoStretchMusclePreferences")
-        defaults.set(autoStretchNbOfExercises, forKey: "autoStretchNbOfExercises")
-        defaults.set(autoStretchNbRepetitions, forKey: "autoStretchNbRepetitions")
-        defaults.set(autoExerciseMusclePreferencesToRaw(autoExerciseMusclePreferences), forKey: "autoExerciseMusclePreferences")
-        defaults.set(autoExerciseNbOfExercises, forKey: "autoExerciseNbOfExercises")
-        defaults.set(autoExerciseNbRepetitions, forKey: "autoExerciseNbRepetitions")
         defaults.set(healthKitPermsAsked, forKey: "healthKitPermsAsked")
         defaults.set(advancedAbs, forKey: "advancedAbs")
+
+        defaults.set(autoStretchSettings.timerActive, forKey: "autoStretchSettings.timerActive")
+        defaults.set(autoStretchSettings.timerRest, forKey: "autoStretchSettings.timerRest")
+        defaults.set(musclePreferencesToRaw(autoStretchSettings.musclePreferences), forKey: "autoStretchSettings.musclePreferences")
+        defaults.set(autoStretchSettings.nbOfExercises, forKey: "autoStretchSettings.nbOfExercises")
+        defaults.set(autoStretchSettings.nbRepetitions, forKey: "autoStretchSettings.nbRepetitions")
+
+        defaults.set(autoExerciseSettings.timerActive, forKey: "autoExerciseSettings.timerActive")
+        defaults.set(autoExerciseSettings.timerRest, forKey: "autoExerciseSettings.timerRest")
+        defaults.set(musclePreferencesToRaw(autoExerciseSettings.musclePreferences), forKey: "autoExerciseSettings.musclePreferences")
+        defaults.set(autoExerciseSettings.nbOfExercises, forKey: "autoExerciseSettings.nbOfExercises")
+        defaults.set(autoExerciseSettings.nbRepetitions, forKey: "autoExerciseSettings.nbRepetitions")
     }
 }

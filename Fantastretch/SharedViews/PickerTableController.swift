@@ -57,9 +57,10 @@ class PickerTableController: UITableViewController {
         }
 
         let value = allValues?[indexPath.row]
-
         if value == current {
             cell.accessoryType = UITableViewCellAccessoryType.checkmark
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.none
         }
         cell.label.text = value
 

@@ -1,41 +1,97 @@
 import Foundation
 
 {% for type in types.implementing.AutoSettings %}
-extension {{type.name}} {
+    extension {{type.name}} {
 
-func load() {
-let defaults = UserDefaults.standard
-defaults.register(defaults:[
-{% for variable in type.storedVariables %}
-{% if variable.typeName.isDictionary %}
-"{{variable.name}}": [:],
-{% else %}
-"{{variable.name}}": {{variable.defaultValue}},
-{% endif %}
-{% endfor %}
-])
+        func load() {
+            let defaults = UserDefaults.standard
+            defaults.register(defaults:[
+                {% for variable in type.storedVariables %}
+                    {% if variable.typeName.name == "Int" %}
+                        "{{variable.name}}": self.{{variable.name}},
+                    {% elif variable.typeName.name == "Bool" %}
+                        "{{variable.name}}": self.{{variable.name}},
+                    {% elif variable.typeName.isDictionary %}
+                        "{{variable.name}}": [:],
+                    {% else %}
 
-{% for variable in type.storedVariables %}
-{% if variable.typeName.name == "Int" %}
-{{variable.name}} = defaults.integer(forKey: "{{variable.name}}")
-{% elif variable.typeName.name == "Bool" %}
-{{variable.name}} = defaults.bool(forKey: "{{variable.name}}")
-{% elif variable.typeName.isDictionary %}
-{{variable.name}} = {{variable.name}}FromRaw(defaults.dictionary(forKey: "{{variable.name}}") ?? [:])
-{% endif %}
-{% endfor %}
-}
+                        {% for subtype in types.implementing.AutoSubSettings %}
+                            {% if subtype.name == variable.typeName.name %}
+                                {% for subvariable in subtype.storedVariables %}
+                                    {% if subvariable.typeName.name == "Int" %}
+                                        "{{variable.name}}.{{subvariable.name}}": self.{{variable.name}}.{{subvariable.name}},
+                                    {% elif subvariable.typeName.name == "Bool" %}
+                                        "{{variable.name}}.{{subvariable.name}}": self.{{variable.name}}.{{subvariable.name}},
+                                    {% elif subvariable.typeName.isDictionary %}
+                                        "{{variable.name}}.{{subvariable.name}}": [:],
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
 
-func save() {
-let defaults = UserDefaults.standard
-{% for variable in type.storedVariables %}
-{% if variable.typeName.isDictionary %}
-defaults.set({{variable.name}}ToRaw({{variable.name}}), forKey: "{{variable.name}}")
-{% else %}
-defaults.set({{variable.name}}, forKey: "{{variable.name}}")
-{% endif %}
-{% endfor %}
+                    {% endif %}
+                {% endfor %}
+            ])
 
-}
-}
+            {% for variable in type.storedVariables %}
+                {% if variable.typeName.name == "Int" %}
+                    {{variable.name}} = defaults.integer(forKey: "{{variable.name}}")
+                {% elif variable.typeName.name == "Bool" %}
+                    {{variable.name}} = defaults.bool(forKey: "{{variable.name}}")
+                {% elif variable.typeName.isDictionary %}
+                    {{variable.name}} = {{variable.name}}FromRaw(defaults.dictionary(forKey: "{{variable.name}}") ?? [:])
+                {% else %}
+                    {% for subtype in types.implementing.AutoSubSettings %}
+                        {% if subtype.name == variable.typeName.name %}
+
+                            {% for subvariable in subtype.storedVariables %}
+                                {% if subvariable.typeName.name == "Int" %}
+                                    let {{variable.name}}{{subvariable.name}} = defaults.integer(forKey: "{{variable.name}}.{{subvariable.name}}")
+                                {% elif subvariable.typeName.name == "Bool" %}
+                                    let {{variable.name}}{{subvariable.name}} = defaults.bool(forKey: "{{variable.name}}.{{subvariable.name}}")
+                                {% elif subvariable.typeName.isDictionary %}
+                                    let {{variable.name}}{{subvariable.name}} = {{subvariable.name}}FromRaw(defaults.dictionary(forKey: "{{variable.name}}.{{subvariable.name}}") ?? [:])
+                                {% endif %}
+                            {% endfor %}
+                            {{variable.name}} = {{variable.typeName.name}}(
+                            {% for subvariable in subtype.storedVariables %}
+                                {{subvariable.name}}: {{variable.name}}{{subvariable.name}}{% if not forloop.last %},{%endif%}
+                            {% endfor %}
+                            )
+
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        }
+
+        func save() {
+            let defaults = UserDefaults.standard
+            {% for variable in type.storedVariables %}
+                {% if variable.typeName.name == "Int" %}
+                    defaults.set({{variable.name}}, forKey: "{{variable.name}}")
+                {% elif variable.typeName.name == "Bool" %}
+                    defaults.set({{variable.name}}, forKey: "{{variable.name}}")
+                {% elif variable.typeName.isDictionary %}
+                    defaults.set({{variable.name}}ToRaw({{variable.name}}), forKey: "{{variable.name}}")
+                {% else %}
+                    {% for subtype in types.implementing.AutoSubSettings %}
+                        {% if subtype.name == variable.typeName.name %}
+
+                            {% for subvariable in subtype.storedVariables %}
+                                {% if subvariable.typeName.name == "Int" %}
+                                    defaults.set({{variable.name}}.{{subvariable.name}}, forKey: "{{variable.name}}.{{subvariable.name}}")
+                                {% elif subvariable.typeName.name == "Bool" %}
+                                    defaults.set({{variable.name}}.{{subvariable.name}}, forKey: "{{variable.name}}.{{subvariable.name}}")
+                                {% elif subvariable.typeName.isDictionary %}
+                                    defaults.set({{subvariable.name}}ToRaw({{variable.name}}.{{subvariable.name}}), forKey: "{{variable.name}}.{{subvariable.name}}")
+                                {% endif %}
+                            {% endfor %}
+
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        }
+    }
 {% endfor %}

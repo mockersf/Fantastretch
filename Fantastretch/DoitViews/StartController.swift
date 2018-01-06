@@ -9,25 +9,13 @@
 import CoreData
 import UIKit
 
-struct ExerciseTypeSettings {
-    let muscleWeights: [Muscle: Int]
-    let nbOfExercises: Int
-    let nbRepetitions: Int
-
-    init(muscleWeights: [Muscle: Int], nbOfExercises: Int, nbRepetitions: Int) {
-        self.muscleWeights = muscleWeights
-        self.nbOfExercises = nbOfExercises
-        self.nbRepetitions = nbRepetitions
-    }
-}
-
 struct ExerciseWithMetadata {
     let exercise: Exercise
     let settings: ExerciseSettings
     let score: Int
 
-    init(exercise: Exercise, userSettings: Settings, exerciseTypeSettings: ExerciseTypeSettings) {
-        let weight = exerciseTypeSettings.muscleWeights[exercise.muscle.getMuscle(settings: userSettings)] ?? 1
+    init(exercise: Exercise, userSettings: Settings, exerciseTypeSettings: SettingsExerciseType) {
+        let weight = exerciseTypeSettings.musclePreferences[exercise.muscle.getMuscle(settings: userSettings)] ?? 1
         let rating = exercise.rating
 
         let latestHistory = ExerciseHistory.loadLatest(exercise: exercise)
@@ -49,7 +37,7 @@ struct ExerciseWithMetadata {
         ExerciseHistory(exercise: exercise, date: Date(), duration: durationDone).save()
     }
 
-    static func getSelectedExercisesByScore(filter: (Exercise) -> Bool, exerciseTypeSettings: ExerciseTypeSettings) -> [ExerciseWithMetadata] {
+    static func getSelectedExercisesByScore(filter: (Exercise) -> Bool, exerciseTypeSettings: SettingsExerciseType) -> [ExerciseWithMetadata] {
         let settings = Settings.sharedInstance
 
         let exercisesOfType = Exercise.load()?
@@ -58,7 +46,7 @@ struct ExerciseWithMetadata {
         return getSelectedExercisesByScore(exercises: exercisesOfType, userSettings: settings, exerciseTypeSettings: exerciseTypeSettings)
     }
 
-    static func getSelectedExercisesByScore(exercises: [Exercise], userSettings: Settings, exerciseTypeSettings: ExerciseTypeSettings) -> [ExerciseWithMetadata] {
+    static func getSelectedExercisesByScore(exercises: [Exercise], userSettings: Settings, exerciseTypeSettings: SettingsExerciseType) -> [ExerciseWithMetadata] {
         let exercisesByScore = exercises
             .map({ ExerciseWithMetadata(exercise: $0, userSettings: userSettings, exerciseTypeSettings: exerciseTypeSettings) })
             .sorted(by: { $0.score > $1.score })
@@ -130,16 +118,14 @@ class StartController: UIViewController {
                 fatalError("zut")
             }
             let settings = Settings.sharedInstance
-            let stretchSettings = ExerciseTypeSettings(muscleWeights: settings.autoStretchMusclePreferences, nbOfExercises: settings.autoStretchNbOfExercises, nbRepetitions: settings.autoStretchNbRepetitions)
-            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Stretch }, exerciseTypeSettings: stretchSettings)
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Stretch }, exerciseTypeSettings: settings.autoStretchSettings)
 
         case "startAutoExercise":
             guard let activeExerciseTable = segue.destination as? ActiveExerciseTableController else {
                 fatalError("zut")
             }
             let settings = Settings.sharedInstance
-            let exerciseSettings = ExerciseTypeSettings(muscleWeights: settings.autoExerciseMusclePreferences, nbOfExercises: settings.autoExerciseNbOfExercises, nbRepetitions: settings.autoExerciseNbRepetitions)
-            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Strength }, exerciseTypeSettings: exerciseSettings)
+            activeExerciseTable.exercises = ExerciseWithMetadata.getSelectedExercisesByScore(filter: { $0.getMetaType() == MetaExerciseType.Strength }, exerciseTypeSettings: settings.autoExerciseSettings)
 
         default:
             fatalError("Unexpected Segue Identifier; \(segue.identifier ?? "missing segue")")

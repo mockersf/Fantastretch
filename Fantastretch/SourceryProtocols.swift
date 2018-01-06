@@ -8,3 +8,4 @@
 
 protocol AutoEnumAllCases {}
 protocol AutoSettings {}
+protocol AutoSubSettings {}

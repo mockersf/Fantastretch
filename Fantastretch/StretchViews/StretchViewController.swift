@@ -85,7 +85,7 @@ class StretchViewController: UITableViewController {
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = ["Default (\(settings?.timerHold ?? 15) seconds)"] + Array(1 ... 12).flatMap({ "\($0 * 15) seconds" })
+            pickerTableController.allValues = ["Default (\(settings?.autoStretchSettings.timerActive ?? 15) seconds)"] + Settings.activeTimerOptions
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "hold"
             pickerTableController.current = currentHold()
@@ -98,7 +98,7 @@ class StretchViewController: UITableViewController {
     // MARK: private functions
 
     private func currentHold() -> String {
-        return exerciseSettings?.duration.map({ "\($0) seconds" }) ?? "Default (\(settings?.timerHold ?? 15) seconds)"
+        return exerciseSettings?.duration.map({ "\($0) seconds" }) ?? "Default (\(settings?.autoStretchSettings.timerActive ?? 15) seconds)"
     }
 
     // MARK: Actions

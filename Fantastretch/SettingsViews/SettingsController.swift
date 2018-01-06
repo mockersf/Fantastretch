@@ -21,8 +21,8 @@ class SettingsController: UITableViewController {
         super.viewDidLoad()
 
         settings = Settings.sharedInstance
-        timersHoldLabel.text = "\(settings!.timerHold) s"
-        timersRestLabel.text = "\(settings!.timerRest) s"
+        timersHoldLabel.text = "\(settings!.autoStretchSettings.timerActive) s"
+        timersRestLabel.text = "\(settings!.autoExerciseSettings.timerRest) s"
         alertsVibrationSwitch.isOn = settings!.alertsVibration
         alertsSoundSwitch.isOn = settings!.alertsSound
     }
@@ -44,14 +44,11 @@ class SettingsController: UITableViewController {
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            let bySeconds: [String] = Array(10 ... 14).flatMap({ "\($0) seconds" })
-            let by5Seconds: [String] = Array(3 ... 6).flatMap({ "\($0 * 5) seconds" })
-            let by15Seconds: [String] = Array(3 ... 12).flatMap({ "\($0 * 15) seconds" })
-            pickerTableController.allValues = bySeconds + by5Seconds + by15Seconds
+            pickerTableController.allValues = Settings.activeTimerOptions
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "hold"
             let settings = Settings.sharedInstance
-            pickerTableController.current = "\(settings.timerHold) seconds"
+            pickerTableController.current = "\(settings.autoStretchSettings.timerActive) seconds"
 
         case "restTimerSelection":
             guard let navigationController = segue.destination as? UINavigationController else {
@@ -60,27 +57,14 @@ class SettingsController: UITableViewController {
             guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            pickerTableController.allValues = Array(5 ... 15).flatMap({ "\($0) seconds" })
+            pickerTableController.allValues = Settings.restTimerOptions
             pickerTableController.type = PickTarget.Timer
             pickerTableController.extraInfo = "rest"
             let settings = Settings.sharedInstance
-            pickerTableController.current = "\(settings.timerRest) seconds"
+            pickerTableController.current = "\(settings.autoStretchSettings.timerRest) seconds"
 
         case "autoSetUp":
             ()
-
-        case "autoStretchModeSetUp":
-            guard let navigationController = segue.destination as? UINavigationController else {
-                fatalError("Unexpected controller: \(segue.destination)")
-            }
-            guard let musclePreferenceTableController = navigationController.childViewControllers[0] as? MusclePreferenceTableController else {
-                fatalError("Unexpected controller: \(segue.destination)")
-            }
-            let settings = Settings.sharedInstance
-            musclePreferenceTableController.getMusclePreference = { settings.autoStretchMusclePreferences[$0] ?? 1 }
-            musclePreferenceTableController.updateMusclePreference = { settings.autoStretchMusclePreferences[$0] = $1
-                settings.save()
-            }
 
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")
@@ -112,10 +96,10 @@ class SettingsController: UITableViewController {
                 switch from {
                 case "hold":
                     timersHoldLabel.text = "\(newValue) s"
-                    settings.timerHold = Int(newValue)
+                    settings.autoStretchSettings.timerActive = Int(newValue)
                 case "rest":
                     timersRestLabel.text = "\(newValue) s"
-                    settings.timerRest = Int(newValue)
+                    settings.autoStretchSettings.timerRest = Int(newValue)
                 default:
                     fatalError("invalid timer pick: \(from) -> \(selected)")
                 }

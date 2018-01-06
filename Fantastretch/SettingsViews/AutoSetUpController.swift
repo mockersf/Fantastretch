@@ -24,14 +24,14 @@ class AutoSetUpController: UITableViewController {
         super.viewDidLoad()
 
         let settings = Settings.sharedInstance
-        stretchNbLabel.text = "\(settings.autoStretchNbOfExercises)"
-        stretchNbStepper.value = Double(settings.autoStretchNbOfExercises)
-        stretchRepetitionsLabel.text = "\(settings.autoStretchNbRepetitions)"
-        stretchRepetitionStepper.value = Double(settings.autoStretchNbRepetitions)
-        exercixesNbLabel.text = "\(settings.autoExerciseNbOfExercises)"
-        exerciseNbStepper.value = Double(settings.autoExerciseNbOfExercises)
-        exercisesRepetitionsLabel.text = "\(settings.autoExerciseNbRepetitions)"
-        exerciseRepetitionStepper.value = Double(settings.autoExerciseNbRepetitions)
+        stretchNbLabel.text = "\(settings.autoStretchSettings.nbOfExercises)"
+        stretchNbStepper.value = Double(settings.autoStretchSettings.nbOfExercises)
+        stretchRepetitionsLabel.text = "\(settings.autoStretchSettings.nbRepetitions)"
+        stretchRepetitionStepper.value = Double(settings.autoStretchSettings.nbRepetitions)
+        exercixesNbLabel.text = "\(settings.autoExerciseSettings.nbOfExercises)"
+        exerciseNbStepper.value = Double(settings.autoExerciseSettings.nbOfExercises)
+        exercisesRepetitionsLabel.text = "\(settings.autoExerciseSettings.nbRepetitions)"
+        exerciseRepetitionStepper.value = Double(settings.autoExerciseSettings.nbRepetitions)
         advancedAbsSwitch.isOn = settings.advancedAbs
     }
 
@@ -53,8 +53,8 @@ class AutoSetUpController: UITableViewController {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             let settings = Settings.sharedInstance
-            musclePreferenceTableController.getMusclePreference = { settings.autoStretchMusclePreferences[$0] ?? 1 }
-            musclePreferenceTableController.updateMusclePreference = { settings.autoStretchMusclePreferences[$0] = $1
+            musclePreferenceTableController.getMusclePreference = { settings.autoStretchSettings.musclePreferences[$0] ?? 1 }
+            musclePreferenceTableController.updateMusclePreference = { settings.autoStretchSettings.musclePreferences[$0] = $1
                 settings.save()
             }
 
@@ -66,8 +66,8 @@ class AutoSetUpController: UITableViewController {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             let settings = Settings.sharedInstance
-            musclePreferenceTableController.getMusclePreference = { settings.autoExerciseMusclePreferences[$0] ?? 1 }
-            musclePreferenceTableController.updateMusclePreference = { settings.autoExerciseMusclePreferences[$0] = $1
+            musclePreferenceTableController.getMusclePreference = { settings.autoExerciseSettings.musclePreferences[$0] ?? 1 }
+            musclePreferenceTableController.updateMusclePreference = { settings.autoExerciseSettings.musclePreferences[$0] = $1
                 settings.save()
             }
 
@@ -86,25 +86,25 @@ class AutoSetUpController: UITableViewController {
 
     @IBAction func changeNbStretches(_ sender: UIStepper) {
         stretchNbLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoStretchNbOfExercises = Int(sender.value)
+        Settings.sharedInstance.autoStretchSettings.nbOfExercises = Int(sender.value)
         Settings.sharedInstance.save()
     }
 
     @IBAction func changeRepetitionStretch(_ sender: UIStepper) {
         stretchRepetitionsLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoStretchNbRepetitions = Int(sender.value)
+        Settings.sharedInstance.autoStretchSettings.nbRepetitions = Int(sender.value)
         Settings.sharedInstance.save()
     }
 
     @IBAction func changeNbExercises(_ sender: UIStepper) {
         exercixesNbLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoExerciseNbOfExercises = Int(sender.value)
+        Settings.sharedInstance.autoExerciseSettings.nbOfExercises = Int(sender.value)
         Settings.sharedInstance.save()
     }
 
     @IBAction func changeRepetitionExercises(_ sender: UIStepper) {
         exercisesRepetitionsLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoExerciseNbRepetitions = Int(sender.value)
+        Settings.sharedInstance.autoExerciseSettings.nbRepetitions = Int(sender.value)
         Settings.sharedInstance.save()
     }
 }

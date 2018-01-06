@@ -33,14 +33,13 @@ class DoingController: UIViewController {
     var isTimerRunning = false
 
     var currentTimer = 0
+    var currentTimerInit = 0
     var currentExercise = 0
     var step = Steps.Rest
     var sides = [Sides]()
     var currentSide = 0
     var durationDone = 0
 
-    var restTime = Settings.defaultTimerRest
-    var holdTime = Settings.defaultTimerHold
     var defaultHoldTime = Settings.defaultTimerHold
 
     @IBOutlet var exerciseNameLabel: UILabel!
@@ -63,14 +62,11 @@ class DoingController: UIViewController {
 
         settings = Settings.sharedInstance
         prepareExercise(index: 0)
-        currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
         currentStepLabel.text = Steps.Rest.rawValue
         runTimer()
         durationDone = 0
         currentProgress.progress = 0
-        restTime = settings?.timerRest ?? Settings.defaultTimerRest
-        holdTime = settings?.timerHold ?? Settings.defaultTimerHold
-        defaultHoldTime = settings?.timerHold ?? Settings.defaultTimerHold
+        defaultHoldTime = settings?.autoStretchSettings.timerActive ?? Settings.defaultTimerHold
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +76,7 @@ class DoingController: UIViewController {
 
     // MARK: private functions
 
-    func prepareExercise(index: Int) {
+    private func prepareExercise(index: Int) {
         let exercise = exercises[index]
 
         exerciseNameLabel.text = exercise.exercise.name
@@ -97,9 +93,36 @@ class DoingController: UIViewController {
         }
         currentSide = 0
         displaySide(side: sides[currentSide])
+        setTimers(exercise, step)
     }
 
-    func runTimer() {
+    private func setTimers(_ exercise: ExerciseWithMetadata, _ step: Steps) {
+        switch (exercise.exercise.getMetaType(), step) {
+        case (MetaExerciseType.Strength, Steps.Hold):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoExerciseSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.Strength, Steps.Move):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoExerciseSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.Strength, Steps.Rest):
+            currentTimerInit = settings?.autoExerciseSettings.timerRest ?? Settings.defaultTimerRest
+
+        case (MetaExerciseType.WarmUp, Steps.Hold):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoExerciseSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.WarmUp, Steps.Move):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoExerciseSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.WarmUp, Steps.Rest):
+            currentTimerInit = settings?.autoExerciseSettings.timerRest ?? Settings.defaultTimerRest
+
+        case (MetaExerciseType.Stretch, Steps.Hold):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoStretchSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.Stretch, Steps.Move):
+            currentTimerInit = exercise.settings.duration ?? settings?.autoStretchSettings.timerActive ?? Settings.defaultTimerHold
+        case (MetaExerciseType.Stretch, Steps.Rest):
+            currentTimerInit = settings?.autoExerciseSettings.timerRest ?? Settings.defaultTimerRest
+        }
+        currentTimer = currentTimerInit * 10
+    }
+
+    private func runTimer() {
         guard timer == nil else { return }
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(DoingController.updateStatus)), userInfo: nil, repeats: true)
         runControlButton.setTitle("Pause", for: .normal)
@@ -107,7 +130,7 @@ class DoingController: UIViewController {
         stopButton.isEnabled = false
     }
 
-    func stopTimer() {
+    private func stopTimer() {
         guard timer != nil else { return }
         timer?.invalidate()
         timer = nil
@@ -116,7 +139,7 @@ class DoingController: UIViewController {
         stopButton.isEnabled = true
     }
 
-    func done() {
+    private func done() {
         UIApplication.shared.isIdleTimerDisabled = false
         if exercises.filter({ $0.exercise.getMetaType() == MetaExerciseType.Stretch }).count > exercises.filter({ $0.exercise.getMetaType() == MetaExerciseType.Strength }).count {
             HealthKitHelper.saveWorkoutDuration(duration: durationDone, workoutType: .Stretch)
@@ -131,34 +154,33 @@ class DoingController: UIViewController {
         currentTimer -= 1
         switch step {
         case Steps.Rest:
-            currentProgress.progress = 1 - Float(currentTimer) / (Float(restTime) * 10)
+            currentProgress.progress = 1 - Float(currentTimer) / (Float(currentTimerInit) * 10)
             if currentTimer == 10 || currentTimer == 20 || currentTimer == 30 {
                 Sound.play(file: "sounds/1000Hz.wav")
             } else if currentTimer == 0 {
-                durationDone += restTime
-                holdTime = exercises[currentExercise].settings.duration ?? defaultHoldTime
-                currentTimer = holdTime * 10
+                durationDone += currentTimerInit
                 switch exercises[currentExercise].exercise.type {
                 case ExerciseType.Isometric, ExerciseType.Stretch:
                     step = Steps.Hold
                 case ExerciseType.Exercise, ExerciseType.WarmUp:
                     step = Steps.Move
                 }
+                setTimers(exercises[currentExercise], step)
                 currentStepLabel.text = step.rawValue
                 Sound.play(file: "sounds/2000Hz.wav")
             }
         case Steps.Hold, Steps.Move:
-            currentProgress.progress = 1 - Float(currentTimer) / (Float(holdTime) * 10)
+            currentProgress.progress = 1 - Float(currentTimer) / (Float(currentTimerInit) * 10)
             if currentTimer == 0 {
                 Sound.play(file: "sounds/800Hz.wav")
 
                 currentSide += 1
-                durationDone += holdTime
+                durationDone += currentTimerInit
                 step = Steps.Rest
                 currentStepLabel.text = step.rawValue
-                currentTimer = restTime * 10
+                setTimers(exercises[currentExercise], step)
                 if currentSide >= sides.count {
-                    exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.timerHold ?? Settings.defaultTimerHold))
+                    exercises[currentExercise].updateHistory(durationDone: exercises[currentExercise].settings.duration ?? (settings?.autoStretchSettings.timerActive ?? Settings.defaultTimerHold))
                     currentExercise += 1
                     if currentExercise >= exercises.count {
                         stopTimer()
@@ -197,7 +219,7 @@ class DoingController: UIViewController {
     }
 
     @IBAction func resetAction(_: UIButton) {
-        currentTimer = (settings?.timerRest ?? Settings.defaultTimerRest) * 10
+        currentTimer = (settings?.autoStretchSettings.timerRest ?? Settings.defaultTimerRest) * 10
         step = Steps.Rest
         currentStepLabel.text = step.rawValue
         timerLabel.text = timeString(time: currentTimer)
