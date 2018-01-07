@@ -27,6 +27,28 @@ extension Settings {
             "autoExerciseSettings.nbRepetitions": self.autoExerciseSettings.nbRepetitions,
             "autoExerciseSettings.advancedAbs": self.autoExerciseSettings.advancedAbs,
 
+            "autoStretchNotification.hasAsked": self.autoStretchNotification.hasAsked,
+            "autoStretchNotification.time": "",
+            "autoStretchNotification.repeatEvery": "",
+            "autoStretchNotification.repeatMonday": self.autoStretchNotification.repeatMonday,
+            "autoStretchNotification.repeatTuesday": self.autoStretchNotification.repeatTuesday,
+            "autoStretchNotification.repeatWednesday": self.autoStretchNotification.repeatWednesday,
+            "autoStretchNotification.repeatThursday": self.autoStretchNotification.repeatThursday,
+            "autoStretchNotification.repeatFriday": self.autoStretchNotification.repeatFriday,
+            "autoStretchNotification.repeatSaturday": self.autoStretchNotification.repeatSaturday,
+            "autoStretchNotification.repeatSunday": self.autoStretchNotification.repeatSunday,
+
+            "autoExerciseNotification.hasAsked": self.autoExerciseNotification.hasAsked,
+            "autoExerciseNotification.time": "",
+            "autoExerciseNotification.repeatEvery": "",
+            "autoExerciseNotification.repeatMonday": self.autoExerciseNotification.repeatMonday,
+            "autoExerciseNotification.repeatTuesday": self.autoExerciseNotification.repeatTuesday,
+            "autoExerciseNotification.repeatWednesday": self.autoExerciseNotification.repeatWednesday,
+            "autoExerciseNotification.repeatThursday": self.autoExerciseNotification.repeatThursday,
+            "autoExerciseNotification.repeatFriday": self.autoExerciseNotification.repeatFriday,
+            "autoExerciseNotification.repeatSaturday": self.autoExerciseNotification.repeatSaturday,
+            "autoExerciseNotification.repeatSunday": self.autoExerciseNotification.repeatSunday,
+
         ])
 
         alertsVibration = defaults.bool(forKey: "alertsVibration")
@@ -63,6 +85,52 @@ extension Settings {
             nbRepetitions: autoExerciseSettingsnbRepetitions,
             advancedAbs: autoExerciseSettingsadvancedAbs
         )
+
+        let autoStretchNotificationhasAsked = defaults.bool(forKey: "autoStretchNotification.hasAsked")
+        let autoStretchNotificationtime = timeFromRaw(defaults.string(forKey: "autoStretchNotification.time") ?? "")
+        let autoStretchNotificationrepeatEvery = repeatEveryFromRaw(defaults.string(forKey: "autoStretchNotification.repeatEvery") ?? "")
+        let autoStretchNotificationrepeatMonday = defaults.bool(forKey: "autoStretchNotification.repeatMonday")
+        let autoStretchNotificationrepeatTuesday = defaults.bool(forKey: "autoStretchNotification.repeatTuesday")
+        let autoStretchNotificationrepeatWednesday = defaults.bool(forKey: "autoStretchNotification.repeatWednesday")
+        let autoStretchNotificationrepeatThursday = defaults.bool(forKey: "autoStretchNotification.repeatThursday")
+        let autoStretchNotificationrepeatFriday = defaults.bool(forKey: "autoStretchNotification.repeatFriday")
+        let autoStretchNotificationrepeatSaturday = defaults.bool(forKey: "autoStretchNotification.repeatSaturday")
+        let autoStretchNotificationrepeatSunday = defaults.bool(forKey: "autoStretchNotification.repeatSunday")
+        autoStretchNotification = SettingsNotification(
+            hasAsked: autoStretchNotificationhasAsked,
+            time: autoStretchNotificationtime,
+            repeatEvery: autoStretchNotificationrepeatEvery,
+            repeatMonday: autoStretchNotificationrepeatMonday,
+            repeatTuesday: autoStretchNotificationrepeatTuesday,
+            repeatWednesday: autoStretchNotificationrepeatWednesday,
+            repeatThursday: autoStretchNotificationrepeatThursday,
+            repeatFriday: autoStretchNotificationrepeatFriday,
+            repeatSaturday: autoStretchNotificationrepeatSaturday,
+            repeatSunday: autoStretchNotificationrepeatSunday
+        )
+
+        let autoExerciseNotificationhasAsked = defaults.bool(forKey: "autoExerciseNotification.hasAsked")
+        let autoExerciseNotificationtime = timeFromRaw(defaults.string(forKey: "autoExerciseNotification.time") ?? "")
+        let autoExerciseNotificationrepeatEvery = repeatEveryFromRaw(defaults.string(forKey: "autoExerciseNotification.repeatEvery") ?? "")
+        let autoExerciseNotificationrepeatMonday = defaults.bool(forKey: "autoExerciseNotification.repeatMonday")
+        let autoExerciseNotificationrepeatTuesday = defaults.bool(forKey: "autoExerciseNotification.repeatTuesday")
+        let autoExerciseNotificationrepeatWednesday = defaults.bool(forKey: "autoExerciseNotification.repeatWednesday")
+        let autoExerciseNotificationrepeatThursday = defaults.bool(forKey: "autoExerciseNotification.repeatThursday")
+        let autoExerciseNotificationrepeatFriday = defaults.bool(forKey: "autoExerciseNotification.repeatFriday")
+        let autoExerciseNotificationrepeatSaturday = defaults.bool(forKey: "autoExerciseNotification.repeatSaturday")
+        let autoExerciseNotificationrepeatSunday = defaults.bool(forKey: "autoExerciseNotification.repeatSunday")
+        autoExerciseNotification = SettingsNotification(
+            hasAsked: autoExerciseNotificationhasAsked,
+            time: autoExerciseNotificationtime,
+            repeatEvery: autoExerciseNotificationrepeatEvery,
+            repeatMonday: autoExerciseNotificationrepeatMonday,
+            repeatTuesday: autoExerciseNotificationrepeatTuesday,
+            repeatWednesday: autoExerciseNotificationrepeatWednesday,
+            repeatThursday: autoExerciseNotificationrepeatThursday,
+            repeatFriday: autoExerciseNotificationrepeatFriday,
+            repeatSaturday: autoExerciseNotificationrepeatSaturday,
+            repeatSunday: autoExerciseNotificationrepeatSunday
+        )
     }
 
     func save() {
@@ -85,5 +153,27 @@ extension Settings {
         defaults.set(autoExerciseSettings.nbOfExercises, forKey: "autoExerciseSettings.nbOfExercises")
         defaults.set(autoExerciseSettings.nbRepetitions, forKey: "autoExerciseSettings.nbRepetitions")
         defaults.set(autoExerciseSettings.advancedAbs, forKey: "autoExerciseSettings.advancedAbs")
+
+        defaults.set(autoStretchNotification.hasAsked, forKey: "autoStretchNotification.hasAsked")
+        defaults.set(timeToRaw(autoStretchNotification.time), forKey: "autoStretchNotification.time")
+        defaults.set(repeatEveryToRaw(autoStretchNotification.repeatEvery), forKey: "autoStretchNotification.repeatEvery")
+        defaults.set(autoStretchNotification.repeatMonday, forKey: "autoStretchNotification.repeatMonday")
+        defaults.set(autoStretchNotification.repeatTuesday, forKey: "autoStretchNotification.repeatTuesday")
+        defaults.set(autoStretchNotification.repeatWednesday, forKey: "autoStretchNotification.repeatWednesday")
+        defaults.set(autoStretchNotification.repeatThursday, forKey: "autoStretchNotification.repeatThursday")
+        defaults.set(autoStretchNotification.repeatFriday, forKey: "autoStretchNotification.repeatFriday")
+        defaults.set(autoStretchNotification.repeatSaturday, forKey: "autoStretchNotification.repeatSaturday")
+        defaults.set(autoStretchNotification.repeatSunday, forKey: "autoStretchNotification.repeatSunday")
+
+        defaults.set(autoExerciseNotification.hasAsked, forKey: "autoExerciseNotification.hasAsked")
+        defaults.set(timeToRaw(autoExerciseNotification.time), forKey: "autoExerciseNotification.time")
+        defaults.set(repeatEveryToRaw(autoExerciseNotification.repeatEvery), forKey: "autoExerciseNotification.repeatEvery")
+        defaults.set(autoExerciseNotification.repeatMonday, forKey: "autoExerciseNotification.repeatMonday")
+        defaults.set(autoExerciseNotification.repeatTuesday, forKey: "autoExerciseNotification.repeatTuesday")
+        defaults.set(autoExerciseNotification.repeatWednesday, forKey: "autoExerciseNotification.repeatWednesday")
+        defaults.set(autoExerciseNotification.repeatThursday, forKey: "autoExerciseNotification.repeatThursday")
+        defaults.set(autoExerciseNotification.repeatFriday, forKey: "autoExerciseNotification.repeatFriday")
+        defaults.set(autoExerciseNotification.repeatSaturday, forKey: "autoExerciseNotification.repeatSaturday")
+        defaults.set(autoExerciseNotification.repeatSunday, forKey: "autoExerciseNotification.repeatSunday")
     }
 }
