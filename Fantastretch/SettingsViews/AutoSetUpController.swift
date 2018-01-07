@@ -10,29 +10,26 @@ import UIKit
 
 class AutoSetUpController: UITableViewController {
 
-    @IBOutlet var stretchNbLabel: UILabel!
-    @IBOutlet var stretchNbStepper: UIStepper!
-    @IBOutlet var stretchRepetitionsLabel: UILabel!
-    @IBOutlet var stretchRepetitionStepper: UIStepper!
+    var settingsExerciseType: SettingsExerciseType?
+
     @IBOutlet var exercixesNbLabel: UILabel!
     @IBOutlet var exerciseNbStepper: UIStepper!
     @IBOutlet var exercisesRepetitionsLabel: UILabel!
     @IBOutlet var exerciseRepetitionStepper: UIStepper!
     @IBOutlet var advancedAbsSwitch: UISwitch!
+    @IBOutlet var timersHoldLabel: UILabel!
+    @IBOutlet var timersRestLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let settings = Settings.sharedInstance
-        stretchNbLabel.text = "\(settings.autoStretchSettings.nbOfExercises)"
-        stretchNbStepper.value = Double(settings.autoStretchSettings.nbOfExercises)
-        stretchRepetitionsLabel.text = "\(settings.autoStretchSettings.nbRepetitions)"
-        stretchRepetitionStepper.value = Double(settings.autoStretchSettings.nbRepetitions)
-        exercixesNbLabel.text = "\(settings.autoExerciseSettings.nbOfExercises)"
-        exerciseNbStepper.value = Double(settings.autoExerciseSettings.nbOfExercises)
-        exercisesRepetitionsLabel.text = "\(settings.autoExerciseSettings.nbRepetitions)"
-        exerciseRepetitionStepper.value = Double(settings.autoExerciseSettings.nbRepetitions)
-        advancedAbsSwitch.isOn = settings.advancedAbs
+        exercixesNbLabel.text = "\(settingsExerciseType!.nbOfExercises)"
+        exerciseNbStepper.value = Double(settingsExerciseType!.nbOfExercises)
+        exercisesRepetitionsLabel.text = "\(settingsExerciseType!.nbRepetitions)"
+        exerciseRepetitionStepper.value = Double(settingsExerciseType!.nbRepetitions)
+        timersHoldLabel.text = "\(settingsExerciseType!.timerActive) s"
+        timersRestLabel.text = "\(settingsExerciseType!.timerRest) s"
+        advancedAbsSwitch.isOn = Settings.sharedInstance.advancedAbs
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +42,7 @@ class AutoSetUpController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         switch segue.identifier ?? "" {
-        case "autoStretchMuscles":
+        case "musclePreferences":
             guard let navigationController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
@@ -53,23 +50,34 @@ class AutoSetUpController: UITableViewController {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
             let settings = Settings.sharedInstance
-            musclePreferenceTableController.getMusclePreference = { settings.autoStretchSettings.musclePreferences[$0] ?? 1 }
-            musclePreferenceTableController.updateMusclePreference = { settings.autoStretchSettings.musclePreferences[$0] = $1
-                settings.save()
+            musclePreferenceTableController.getMusclePreference = { self.settingsExerciseType!.musclePreferences[$0] ?? 1 }
+            musclePreferenceTableController.updateMusclePreference = { self.settingsExerciseType!.musclePreferences[$0] = $1
+                settings.saveExerciseTypeSettings()
             }
 
-        case "autoExerciseMuscles":
+        case "holdTimerSelection":
             guard let navigationController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            guard let musclePreferenceTableController = navigationController.childViewControllers[0] as? MusclePreferenceTableController else {
+            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            let settings = Settings.sharedInstance
-            musclePreferenceTableController.getMusclePreference = { settings.autoExerciseSettings.musclePreferences[$0] ?? 1 }
-            musclePreferenceTableController.updateMusclePreference = { settings.autoExerciseSettings.musclePreferences[$0] = $1
-                settings.save()
+            pickerTableController.allValues = Settings.activeTimerOptions
+            pickerTableController.type = PickTarget.Timer
+            pickerTableController.extraInfo = "hold"
+            pickerTableController.current = "\(settingsExerciseType!.timerActive) seconds"
+
+        case "restTimerSelection":
+            guard let navigationController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected controller: \(segue.destination)")
             }
+            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
+                fatalError("Unexpected controller: \(segue.destination)")
+            }
+            pickerTableController.allValues = Settings.restTimerOptions
+            pickerTableController.type = PickTarget.Timer
+            pickerTableController.extraInfo = "rest"
+            pickerTableController.current = "\(settingsExerciseType!.timerRest) seconds"
 
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")
@@ -78,33 +86,53 @@ class AutoSetUpController: UITableViewController {
 
     @IBAction func advancedAbsSwitched(_: UISwitch) {
         Settings.sharedInstance.advancedAbs = advancedAbsSwitch.isOn
-        Settings.sharedInstance.save()
-    }
-
-    @IBAction func unwindToAutoSettings(sender _: UIStoryboardSegue) {
-    }
-
-    @IBAction func changeNbStretches(_ sender: UIStepper) {
-        stretchNbLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoStretchSettings.nbOfExercises = Int(sender.value)
-        Settings.sharedInstance.save()
-    }
-
-    @IBAction func changeRepetitionStretch(_ sender: UIStepper) {
-        stretchRepetitionsLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoStretchSettings.nbRepetitions = Int(sender.value)
-        Settings.sharedInstance.save()
+        Settings.sharedInstance.saveExerciseTypeSettings()
     }
 
     @IBAction func changeNbExercises(_ sender: UIStepper) {
         exercixesNbLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoExerciseSettings.nbOfExercises = Int(sender.value)
-        Settings.sharedInstance.save()
+        settingsExerciseType!.nbOfExercises = Int(sender.value)
+        Settings.sharedInstance.saveExerciseTypeSettings()
     }
 
     @IBAction func changeRepetitionExercises(_ sender: UIStepper) {
         exercisesRepetitionsLabel.text = "\(Int(sender.value))"
-        Settings.sharedInstance.autoExerciseSettings.nbRepetitions = Int(sender.value)
-        Settings.sharedInstance.save()
+        settingsExerciseType!.nbRepetitions = Int(sender.value)
+        Settings.sharedInstance.saveExerciseTypeSettings()
+    }
+
+    @IBAction func unwindToExerciseTypeSettings(sender: UIStoryboardSegue) {
+        if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
+            switch pickerTableController.type {
+            case .some(PickTarget.Repeat):
+                fatalError("PickTarget.Repeat should not happen here")
+
+            case .some(PickTarget.Muscle):
+                fatalError("PickTarget.Muscle should not happen here")
+
+            case .some(PickTarget.ExerciseType):
+                fatalError("PickTarget.ExerciseType should not happen here")
+
+            case .some(PickTarget.Timer):
+                guard let from = pickerTableController.extraInfo else {
+                    fatalError("missing info from wich timer we are choosing a value")
+                }
+                let newValue = Int(selected.split(separator: " ")[0]) ?? 0
+                switch from {
+                case "hold":
+                    timersHoldLabel.text = "\(newValue) s"
+                    settingsExerciseType!.timerActive = Int(newValue)
+                case "rest":
+                    timersRestLabel.text = "\(newValue) s"
+                    settingsExerciseType!.timerRest = Int(newValue)
+                default:
+                    fatalError("invalid timer pick: \(from) -> \(selected)")
+                }
+                Settings.sharedInstance.saveExerciseTypeSettings()
+
+            case .none:
+                fatalError("missing picker type")
+            }
+        }
     }
 }

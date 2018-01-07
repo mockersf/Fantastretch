@@ -32,6 +32,7 @@ class Settings: AutoSettings {
     var alertsSound = true
     var healthKitPermsAsked = false
     var advancedAbs = false
+    var advancedAuto = false
 
     var autoStretchSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 10, nbRepetitions: 1)
     var autoExerciseSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 5, nbRepetitions: 2)
@@ -50,6 +51,13 @@ class Settings: AutoSettings {
 
     private init() {
         load()
+    }
+
+    func saveExerciseTypeSettings() {
+        if !advancedAuto {
+            autoExerciseSettings = autoStretchSettings
+        }
+        save()
     }
 
     func musclePreferencesFromRaw(_ raw: [String: Any]) -> [Muscle: Int] {

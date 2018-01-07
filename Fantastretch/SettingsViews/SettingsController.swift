@@ -10,10 +10,11 @@ import UIKit
 
 class SettingsController: UITableViewController {
 
-    @IBOutlet var timersHoldLabel: UILabel!
-    @IBOutlet var timersRestLabel: UILabel!
     @IBOutlet var alertsVibrationSwitch: UISwitch!
     @IBOutlet var alertsSoundSwitch: UISwitch!
+    @IBOutlet var autoAdvancedSwitch: UISwitch!
+
+    @IBOutlet var firstAutoSetUp: UILabel!
 
     var settings: Settings?
 
@@ -21,10 +22,18 @@ class SettingsController: UITableViewController {
         super.viewDidLoad()
 
         settings = Settings.sharedInstance
-        timersHoldLabel.text = "\(settings!.autoStretchSettings.timerActive) s"
-        timersRestLabel.text = "\(settings!.autoExerciseSettings.timerRest) s"
         alertsVibrationSwitch.isOn = settings!.alertsVibration
         alertsSoundSwitch.isOn = settings!.alertsSound
+        autoAdvancedSwitch.isOn = settings!.advancedAuto
+        setFirstAutoSetUpLabel()
+    }
+
+    private func setFirstAutoSetUpLabel() {
+        if settings!.advancedAuto {
+            firstAutoSetUp.text = "Stretches"
+        } else {
+            firstAutoSetUp.text = "All Exercise Types"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,34 +46,17 @@ class SettingsController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         switch segue.identifier ?? "" {
-        case "holdTimerSelection":
-            guard let navigationController = segue.destination as? UINavigationController else {
+        case "autoSetUpStretches":
+            guard let autoSetUpController = segue.destination as? AutoSetUpController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
-                fatalError("Unexpected controller: \(segue.destination)")
-            }
-            pickerTableController.allValues = Settings.activeTimerOptions
-            pickerTableController.type = PickTarget.Timer
-            pickerTableController.extraInfo = "hold"
-            let settings = Settings.sharedInstance
-            pickerTableController.current = "\(settings.autoStretchSettings.timerActive) seconds"
+            autoSetUpController.settingsExerciseType = Settings.sharedInstance.autoStretchSettings
 
-        case "restTimerSelection":
-            guard let navigationController = segue.destination as? UINavigationController else {
+        case "autoSetUpExercises":
+            guard let autoSetUpController = segue.destination as? AutoSetUpController else {
                 fatalError("Unexpected controller: \(segue.destination)")
             }
-            guard let pickerTableController = navigationController.childViewControllers[0] as? PickerTableController else {
-                fatalError("Unexpected controller: \(segue.destination)")
-            }
-            pickerTableController.allValues = Settings.restTimerOptions
-            pickerTableController.type = PickTarget.Timer
-            pickerTableController.extraInfo = "rest"
-            let settings = Settings.sharedInstance
-            pickerTableController.current = "\(settings.autoStretchSettings.timerRest) seconds"
-
-        case "autoSetUp":
-            ()
+            autoSetUpController.settingsExerciseType = Settings.sharedInstance.autoExerciseSettings
 
         default:
             fatalError("unexpected segue \(segue.identifier ?? "no identifier")")
@@ -73,41 +65,41 @@ class SettingsController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
 
-    // MARK: Actions
+    // MARK: - Table view data source
 
-    @IBAction func unwindToSettings(sender: UIStoryboardSegue) {
-        if let pickerTableController = sender.source as? PickerTableController, let selected = pickerTableController.selected {
-            switch pickerTableController.type {
-            case .some(PickTarget.Repeat):
-                fatalError("PickTarget.Repeat should not happen here")
-
-            case .some(PickTarget.Muscle):
-                fatalError("PickTarget.Muscle should not happen here")
-
-            case .some(PickTarget.ExerciseType):
-                fatalError("PickTarget.ExerciseType should not happen here")
-
-            case .some(PickTarget.Timer):
-                guard let from = pickerTableController.extraInfo else {
-                    fatalError("missing info from wich timer we are choosing a value")
-                }
-                let settings = Settings.sharedInstance
-                let newValue = Int(selected.split(separator: " ")[0]) ?? 0
-                switch from {
-                case "hold":
-                    timersHoldLabel.text = "\(newValue) s"
-                    settings.autoStretchSettings.timerActive = Int(newValue)
-                case "rest":
-                    timersRestLabel.text = "\(newValue) s"
-                    settings.autoStretchSettings.timerRest = Int(newValue)
-                default:
-                    fatalError("invalid timer pick: \(from) -> \(selected)")
-                }
-                settings.save()
-
-            case .none:
-                fatalError("missing picker type")
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 2
+        case 1:
+            if Settings.sharedInstance.advancedAuto {
+                return 3
+            } else {
+                return 2
             }
+        case 2:
+            return 2
+        case 3:
+            return 3
+        default:
+            return 0
         }
+    }
+
+    @IBAction func alertsVibrationSwitched(_ sender: UISwitch) {
+        Settings.sharedInstance.alertsVibration = sender.isOn
+        Settings.sharedInstance.save()
+    }
+
+    @IBAction func alertsSoundSwitched(_ sender: UISwitch) {
+        Settings.sharedInstance.alertsSound = sender.isOn
+        Settings.sharedInstance.save()
+    }
+
+    @IBAction func autoAdvancedSwitched(_ sender: UISwitch) {
+        Settings.sharedInstance.advancedAuto = sender.isOn
+        Settings.sharedInstance.saveExerciseTypeSettings()
+        setFirstAutoSetUpLabel()
+        tableView.reloadData()
     }
 }

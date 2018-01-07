@@ -12,6 +12,7 @@ extension Settings {
             "alertsSound": self.alertsSound,
             "healthKitPermsAsked": self.healthKitPermsAsked,
             "advancedAbs": self.advancedAbs,
+            "advancedAuto": self.advancedAuto,
 
             "autoStretchSettings.timerActive": self.autoStretchSettings.timerActive,
             "autoStretchSettings.timerRest": self.autoStretchSettings.timerRest,
@@ -31,6 +32,7 @@ extension Settings {
         alertsSound = defaults.bool(forKey: "alertsSound")
         healthKitPermsAsked = defaults.bool(forKey: "healthKitPermsAsked")
         advancedAbs = defaults.bool(forKey: "advancedAbs")
+        advancedAuto = defaults.bool(forKey: "advancedAuto")
 
         let autoStretchSettingstimerActive = defaults.integer(forKey: "autoStretchSettings.timerActive")
         let autoStretchSettingstimerRest = defaults.integer(forKey: "autoStretchSettings.timerRest")
@@ -65,6 +67,7 @@ extension Settings {
         defaults.set(alertsSound, forKey: "alertsSound")
         defaults.set(healthKitPermsAsked, forKey: "healthKitPermsAsked")
         defaults.set(advancedAbs, forKey: "advancedAbs")
+        defaults.set(advancedAuto, forKey: "advancedAuto")
 
         defaults.set(autoStretchSettings.timerActive, forKey: "autoStretchSettings.timerActive")
         defaults.set(autoStretchSettings.timerRest, forKey: "autoStretchSettings.timerRest")
