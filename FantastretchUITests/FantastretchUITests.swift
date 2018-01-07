@@ -31,7 +31,7 @@ class FantastretchUITests: XCTestCase {
     func testAddNewAndRate() {
 
         let app = XCUIApplication()
-        app.tabBars.buttons["Stretch List"].tap()
+        app.tabBars.buttons["Exercise List"].tap()
         app.navigationBars["Exercises"].buttons["Add"].tap()
         app.navigationBars["New Exercises"].buttons["New"].tap()
 
