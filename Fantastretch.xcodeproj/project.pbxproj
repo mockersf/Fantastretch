@@ -14,6 +14,8 @@
 		03237A3E1FCA266600480A89 /* PickerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3D1FCA266600480A89 /* PickerTableController.swift */; };
 		03237A401FCA2A4A00480A89 /* PickerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */; };
 		034651172000D0AE0017203D /* AutoSetUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034651162000D0AE0017203D /* AutoSetUpController.swift */; };
+		034651192001BAA20017203D /* AutoCopy.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 034651182001BAA20017203D /* AutoCopy.stencil */; };
+		0346511B2001BCC20017203D /* AutoCopy.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346511A2001BCC20017203D /* AutoCopy.generated.swift */; };
 		03471BF91FCC7428008671A7 /* AutoEnumAllCases.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */; };
 		03471BFE1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */; };
 		035437631FD3672000157D8A /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 035437621FD3672000157D8A /* sounds */; };
@@ -76,6 +78,8 @@
 		03237A3D1FCA266600480A89 /* PickerTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableController.swift; sourceTree = "<group>"; };
 		03237A3F1FCA2A4A00480A89 /* PickerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableCell.swift; sourceTree = "<group>"; };
 		034651162000D0AE0017203D /* AutoSetUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSetUpController.swift; sourceTree = "<group>"; };
+		034651182001BAA20017203D /* AutoCopy.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoCopy.stencil; sourceTree = "<group>"; };
+		0346511A2001BCC20017203D /* AutoCopy.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCopy.generated.swift; sourceTree = "<group>"; };
 		03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */ = {isa = PBXFileReference; lastKnownFileType = text; path = AutoEnumAllCases.stencil; sourceTree = "<group>"; };
 		03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoEnumAllCases.generated.swift; sourceTree = "<group>"; };
 		035437621FD3672000157D8A /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 			children = (
 				03471BF81FCC7428008671A7 /* AutoEnumAllCases.stencil */,
 				03F9ACB71FFCF6C90004711A /* AutoSettings.stencil */,
+				034651182001BAA20017203D /* AutoCopy.stencil */,
 			);
 			path = SourceryTemplates;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 		03471BF71FCC73EC008671A7 /* SourceryGenerated */ = {
 			isa = PBXGroup;
 			children = (
+				0346511A2001BCC20017203D /* AutoCopy.generated.swift */,
 				03471BFD1FCC7CFE008671A7 /* AutoEnumAllCases.generated.swift */,
 				03F9ACB91FFCF97F0004711A /* AutoSettings.generated.swift */,
 			);
@@ -436,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				035437631FD3672000157D8A /* sounds in Resources */,
+				034651192001BAA20017203D /* AutoCopy.stencil in Resources */,
 				036F18A91FC1747B00D5FC02 /* LaunchScreen.storyboard in Resources */,
 				03F9ACB81FFCF6CA0004711A /* AutoSettings.stencil in Resources */,
 				036F18A61FC1747B00D5FC02 /* Assets.xcassets in Resources */,
@@ -602,6 +609,7 @@
 				036F18C51FC1D20A00D5FC02 /* StretchTableViewController.swift in Sources */,
 				03DD52DF1FCE264C00E9C69D /* DataLoader.swift in Sources */,
 				038FD3751FCCDC9300C8C5C9 /* MusclePreferenceTableController.swift in Sources */,
+				0346511B2001BCC20017203D /* AutoCopy.generated.swift in Sources */,
 				038207F71FD763DB008355ED /* HealthKitHelper.swift in Sources */,
 				038FD36F1FCCD48300C8C5C9 /* StartController.swift in Sources */,
 				03DD52E31FCF5A3A00E9C69D /* StretchTableNewCell.swift in Sources */,

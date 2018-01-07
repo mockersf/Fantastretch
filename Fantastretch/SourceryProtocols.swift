@@ -9,3 +9,4 @@
 protocol AutoEnumAllCases {}
 protocol AutoSettings {}
 protocol AutoSubSettings {}
+protocol AutoCopy {}

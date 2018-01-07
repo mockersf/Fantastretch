@@ -29,7 +29,7 @@ class AutoSetUpController: UITableViewController {
         exerciseRepetitionStepper.value = Double(settingsExerciseType!.nbRepetitions)
         timersHoldLabel.text = "\(settingsExerciseType!.timerActive) s"
         timersRestLabel.text = "\(settingsExerciseType!.timerRest) s"
-        advancedAbsSwitch.isOn = Settings.sharedInstance.advancedAbs
+        advancedAbsSwitch.isOn = settingsExerciseType!.advancedAbs
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +54,7 @@ class AutoSetUpController: UITableViewController {
             musclePreferenceTableController.updateMusclePreference = { self.settingsExerciseType!.musclePreferences[$0] = $1
                 settings.saveExerciseTypeSettings()
             }
+            musclePreferenceTableController.muscles = Muscle.getAllMuscles(settings: settingsExerciseType!)
 
         case "holdTimerSelection":
             guard let navigationController = segue.destination as? UINavigationController else {
@@ -85,7 +86,7 @@ class AutoSetUpController: UITableViewController {
     }
 
     @IBAction func advancedAbsSwitched(_: UISwitch) {
-        Settings.sharedInstance.advancedAbs = advancedAbsSwitch.isOn
+        settingsExerciseType!.advancedAbs = advancedAbsSwitch.isOn
         Settings.sharedInstance.saveExerciseTypeSettings()
     }
 

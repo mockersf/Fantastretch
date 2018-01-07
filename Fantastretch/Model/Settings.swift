@@ -8,19 +8,22 @@
 
 import Foundation
 
-class SettingsExerciseType: AutoSubSettings {
+class SettingsExerciseType: AutoSubSettings, AutoCopy {
+
     var timerActive = 30
     var timerRest = 10
     var musclePreferences = [Muscle: Int]()
     var nbOfExercises = 10
     var nbRepetitions = 1
+    var advancedAbs = false
 
-    init(timerActive: Int, timerRest: Int, musclePreferences: [Muscle: Int], nbOfExercises: Int, nbRepetitions: Int) {
+    init(timerActive: Int, timerRest: Int, musclePreferences: [Muscle: Int], nbOfExercises: Int, nbRepetitions: Int, advancedAbs: Bool) {
         self.timerActive = timerActive
         self.timerRest = timerRest
         self.musclePreferences = musclePreferences
         self.nbOfExercises = nbOfExercises
         self.nbRepetitions = nbRepetitions
+        self.advancedAbs = advancedAbs
     }
 }
 
@@ -31,11 +34,10 @@ class Settings: AutoSettings {
     var alertsVibration = false
     var alertsSound = true
     var healthKitPermsAsked = false
-    var advancedAbs = false
     var advancedAuto = false
 
-    var autoStretchSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 10, nbRepetitions: 1)
-    var autoExerciseSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 5, nbRepetitions: 2)
+    var autoStretchSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 10, nbRepetitions: 1, advancedAbs: false)
+    var autoExerciseSettings = SettingsExerciseType(timerActive: 30, timerRest: 10, musclePreferences: [Muscle: Int](), nbOfExercises: 5, nbRepetitions: 2, advancedAbs: false)
 
     static let defaultTimerHold = 30
     static let defaultTimerRest = 10
@@ -55,7 +57,7 @@ class Settings: AutoSettings {
 
     func saveExerciseTypeSettings() {
         if !advancedAuto {
-            autoExerciseSettings = autoStretchSettings
+            autoExerciseSettings = autoStretchSettings.copy()
         }
         save()
     }

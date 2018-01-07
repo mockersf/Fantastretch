@@ -14,8 +14,8 @@ struct ExerciseWithMetadata {
     let settings: ExerciseSettings
     let score: Int
 
-    init(exercise: Exercise, userSettings: Settings, exerciseTypeSettings: SettingsExerciseType) {
-        let weight = exerciseTypeSettings.musclePreferences[exercise.muscle.getMuscle(settings: userSettings)] ?? 1
+    init(exercise: Exercise, userSettings _: Settings, exerciseTypeSettings: SettingsExerciseType) {
+        let weight = exerciseTypeSettings.musclePreferences[exercise.muscle.getMuscle(settings: exerciseTypeSettings)] ?? 1
         let rating = exercise.rating
 
         let latestHistory = ExerciseHistory.loadLatest(exercise: exercise)
@@ -60,7 +60,7 @@ struct ExerciseWithMetadata {
 
         let firstPass = exercisesByScore.reduce([ExerciseWithMetadata](), { (acc, exercise) -> [ExerciseWithMetadata] in
 
-            if (!acc.map({ $0.exercise.muscle.getMuscle(settings: userSettings) }).contains(exercise.exercise.muscle.getMuscle(settings: userSettings))) && (exercise.score >= meanScore) {
+            if (!acc.map({ $0.exercise.muscle.getMuscle(settings: exerciseTypeSettings) }).contains(exercise.exercise.muscle.getMuscle(settings: exerciseTypeSettings))) && (exercise.score >= meanScore) {
                 return acc + [exercise]
             }
 

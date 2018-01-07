@@ -1070,7 +1070,7 @@
                     <navigationItem key="navigationItem" title="Muscle Weight" id="oRe-yy-G9q">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="h6R-Nh-mcc">
                             <connections>
-                                <segue destination="hUA-qT-BtL" kind="unwind" unwindAction="unwindToAutoSettingsWithSender:" id="70y-6r-oXP"/>
+                                <segue destination="hUA-qT-BtL" kind="unwind" unwindAction="unwindToExerciseTypeSettingsWithSender:" id="A4C-JK-ZIJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1791,7 +1791,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" identifier="MusclePreferences" popoverAnchorView="ukp-pS-nPz" id="c4J-IJ-o4l">
+                                            <segue destination="YgI-rs-aBN" kind="popoverPresentation" identifier="musclePreferences" popoverAnchorView="ukp-pS-nPz" id="c4J-IJ-o4l">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>

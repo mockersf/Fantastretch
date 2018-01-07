@@ -40,7 +40,7 @@ enum Muscle: String, AutoEnumAllCases {
 }
 
 extension Muscle {
-    static func getAllMuscles(settings: Settings) -> [Muscle] {
+    static func getAllMuscles(settings: SettingsExerciseType) -> [Muscle] {
         return Muscle.allCases.filter({ muscle -> Bool in
             if !settings.advancedAbs {
                 return ![.AbsExternalOblique, .AbsInternalOblique, .AbsTransverse, .AbsRectus].contains(muscle)
@@ -49,7 +49,7 @@ extension Muscle {
         })
     }
 
-    func getMuscle(settings: Settings) -> Muscle {
+    func getMuscle(settings: SettingsExerciseType) -> Muscle {
         switch self {
         case .AbsExternalOblique: return settings.advancedAbs ? self : .Abs
         case .AbsInternalOblique: return settings.advancedAbs ? self : .Abs
